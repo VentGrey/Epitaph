@@ -1,0 +1,79 @@
+#!/bin/bash
+
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# Down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+    /tmp/leftwm-theme-down
+    rm /tmp/leftwm-theme-down
+fi
+
+ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
+
+#boot picom if it exists
+if [ -x "$(command -v picom)" ]; then
+  picom --experimental-backends --config "$SCRIPTPATH"/picom/picom.conf &> /dev/null &
+elif [ -x "$(command -v compton)" ]; then
+  compton &> /dev/null &
+fi
+#set background
+if [ -x "$(command -v feh)" ]; then
+  feh --bg-fill "$SCRIPTPATH"/background.png
+fi
+
+echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
+
+# ==== Apps to run at startup ====
+# Note: Make sure to run everything "async" by adding a trailing &
+
+# Update common folder names fo match current user region
+xdg-user-dirs-gtk-update &
+
+# Exec the MATE polkit for privilege management
+/usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 &
+
+# SSH key deposit
+/usr/bin/gnome-keyring-daemon --start --components=ssh &
+
+# Receive apparmor notification denials
+/usr/bin/aa-notify -p -s 1 -w 60 &
+
+# System config printer applet
+system-config-printer-applet &
+
+# Gnome key registry (PKCS component)
+/usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
+
+# Exec MATE settings
+/usr/bin/mate-settings-daemon &
+
+# Start bluetooth systray applet
+blueman-applet &
+
+# Start network manager applet
+nm-applet &
+
+# Manage power settings from MATE
+mate-power-manager &
+
+# Screensaver
+mate-screensaver &
+
+# Secret storage service
+/usr/bin/gnome-keyring-daemon --start --components=secrets &
+
+# Init PulseAudio
+start-pulseaudio-x11 &
+
+# User folders update
+xdg-user-dirs-update &
+
+#boot polybar based on the number of monitors found
+if [ -x "$(command -v polybar)" ]; then
+  pkill polybar
+  monitors="$(polybar -m | sed s/:.*// | tac)"
+  while read -r display; do
+    MONITOR=$display polybar -c "$SCRIPTPATH/polybar.config" mainbar &> /dev/null &
+  done <<< "$monitors"
+  exit 0
+fi

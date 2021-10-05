@@ -1,0 +1,11 @@
+polybar
+picom
+mate-polkit
+apparmor
+gnome-keyring
+mate-settings-daemon
+blueman
+networkmanager
+mate-power-manager
+mate-screensaver
+pulseaudio
