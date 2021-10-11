@@ -24,7 +24,8 @@ fi
 echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
 # ==== Apps to run at startup ====
-# Note: Make sure to run everything "async" by adding a trailing &
+# Note: Make sure to run everything "async" by adding a trailing "&" to avoid
+# process blocking
 
 # Update common folder names fo match current user region
 xdg-user-dirs-gtk-update &
@@ -41,11 +42,14 @@ xdg-user-dirs-gtk-update &
 # System config printer applet
 system-config-printer-applet &
 
+# Start xscreensaver
+xscreensaver -nosplash &
+
 # Gnome key registry (PKCS component)
 /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
 
-# Exec MATE settings
-/usr/bin/mate-settings-daemon &
+# Exec XFCE settings
+/usr/bin/xfsettingsd &
 
 # Start bluetooth systray applet
 blueman-applet &
@@ -53,11 +57,8 @@ blueman-applet &
 # Start network manager applet
 nm-applet &
 
-# Manage power settings from MATE
-mate-power-manager &
-
-# Screensaver
-mate-screensaver &
+# Manage power settings from XFCE
+xfce4-power-manager &
 
 # Secret storage service
 /usr/bin/gnome-keyring-daemon --start --components=secrets &
