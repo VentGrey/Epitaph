@@ -7,6 +7,8 @@ for Loonex :penguin: users who are transitioning from a complete Desktop Environ
 aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendly while keeping 
 modularity at first.
 
+You can find my personal config in the `config.toml` file
+
 This configuration includes:
 - Simple animations on windows powered by picom
 - A simple rofi application menu (ultra-ripped off from Regolith)
@@ -78,9 +80,13 @@ This theme needs the following dependencies to work properly:
 
 ### Check for dependencies and compatibility
 
-You should run the `install` script, mind that it **might** not install things properly (it hasn't been tested extensively), for now I recommend you to run it with the `--deps` flag just to check dependencies and nothing more. It should guide you on which packages are missing from your system.
+You should run the `install` script, mind that it **WON'T**  install anything, we have `leftwm-theme` for that. This script will check if you have all the correct dependencies in order to install this theme.
 
-### I want to do this manually, Go away!
+### NO! I'm too lazy, do it for me! >.<
+
+`leftwm-theme install "Epitaph"`
+
+### Manual Installation (If you want the latest git commit)
 
 This theme installation is pretty straightforward:
 
