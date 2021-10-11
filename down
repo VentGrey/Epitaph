@@ -9,5 +9,9 @@ fi
 
 echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
-pkill picom
-pkill polybar
+pkill picom &
+pkill polybar &
+pkill xfsettingsd &
+pkill blueman-applet &
+pkill nm-applet &
+pkill xfce4-power-manager &
