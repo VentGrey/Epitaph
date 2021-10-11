@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# FIXME: Find a way to "compress this", bypassing column 80 is unforgiveable
+    c=0; n=0; reqs=(leftwm polybar rofi picom feh xdg-user-dirs-update mate-polkit gnome-keyring-daemon aa-notify xfsettingsd blueman-applet nm-applet xscreensaver pulseaudio notify-send)
+
+
+    for p in "${reqs[@]}"; do
+        if command -v "$p" &>/dev/null
+        then
+            echo -e "[\e[32mOK\e[39m] $p is installed!"
+            (( c++ )) || true
+        else
+            echo -e "[\e[31mERROR\e[39m] $p is NOT installed!"
+            (( n++ )) || true
+        fi
+    done
+
+    printf "%d of %d requirements were found.\n"  "$c" "${#reqs[@]}"
+    printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
+
+    exit 0
