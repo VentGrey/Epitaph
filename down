@@ -9,9 +9,15 @@ fi
 
 echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
-pkill picom &
-pkill polybar &
-pkill xfsettingsd &
-pkill blueman-applet &
-pkill nm-applet &
-pkill xfce4-power-manager &
+# Don't kill with ampersand, let killing processes block state to ensure
+# nothing gets messed up in --experimental-backends the process.
+pkill picom
+pkill compton
+pkill nm-applet
+pkill blueman-applet
+pkill polybar
+pkill xfce4-power-manager
+pkill seahorse-daemon
+pkill gnome-keyring-daemon
+pkill alacritty
+pkill flameshot
