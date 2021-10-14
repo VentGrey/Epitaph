@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Down the last running theme
@@ -12,7 +11,7 @@ ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 
 #boot picom if it exists
 if [ -x "$(command -v picom)" ]; then
-  picom --experimental-backends --config "$SCRIPTPATH"/picom/picom.conf &> /dev/null &
+  picom --config "$SCRIPTPATH"/picom/picom.conf &> /dev/null &
 elif [ -x "$(command -v compton)" ]; then
   compton &> /dev/null &
 fi
@@ -23,9 +22,13 @@ fi
 
 echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
-# ==== Apps to run at startup ====
-# Note: Make sure to run everything "async" by adding a trailing "&" to avoid
-# process blocking
+# ==== Things to run at startup ====
+
+# Screensaver timeout
+xset s 300 20
+
+# Setup xss-lock
+xss-lock -l -- "$HOME/.config/leftwm/themes/epitaph/scripts/lock" &
 
 # Update common folder names fo match current user region
 xdg-user-dirs-gtk-update &
@@ -33,23 +36,15 @@ xdg-user-dirs-gtk-update &
 # Exec the MATE polkit for privilege management
 /usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 &
 
-# SSH key deposit
-/usr/bin/gnome-keyring-daemon --start --components=ssh &
+# Gnome Secrets deposit (Block state until process is started)
+/usr/bin/gnome-keyring-daemon --start --components=gpg,ssh,pkcs11,secrets
+export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+
+# Start the seahorse daemon
+seahorse-daemon &
 
 # Receive apparmor notification denials
 /usr/bin/aa-notify -p -s 1 -w 60 &
-
-# System config printer applet
-system-config-printer-applet &
-
-# Start xscreensaver
-xscreensaver -nosplash &
-
-# Gnome key registry (PKCS component)
-/usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
-
-# Exec XFCE settings
-/usr/bin/xfsettingsd &
 
 # Start bluetooth systray applet
 blueman-applet &
@@ -59,9 +54,6 @@ nm-applet &
 
 # Manage power settings from XFCE
 xfce4-power-manager &
-
-# Secret storage service
-/usr/bin/gnome-keyring-daemon --start --components=secrets &
 
 # Init PulseAudio
 start-pulseaudio-x11 &
