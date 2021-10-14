@@ -1,2 +1,2 @@
 #!/usr/bin/dash
-rofi -theme Paper -font "JetBrainsMono Nerd Font 10" -width 20 -lines 6 -show power-menu -modi power-menu:~/.config/leftwm/themes/epitaph/scripts/rofi-power-menu
+rofi -theme Pop-Dark -font "JetBrainsMono Nerd Font 10" -width 20 -lines 6 -show power-menu -modi power-menu:~/.config/leftwm/themes/epitaph/scripts/rofi-power-menu
