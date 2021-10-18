@@ -1,7 +1,7 @@
 modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
-tags = ["", "", "", "", "", "", ""]
+tags = ["", "", "", "", "", "", "", "", ""]
 layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
 scratchpad = []
 disable_current_tag_swap = false
@@ -16,7 +16,7 @@ key = "space"
 
 [[keybind]]
 command = "Execute"
-value = "alacritty"
+value = "st"
 modifier = ["modkey", "Shift"]
 key = "Return"
 
@@ -266,6 +266,13 @@ command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
 
+# LockScreen Command
+[[keybind]]
+command = "Execute"
+value = "i3lock-fancy -p"
+modifier = ["modkey", "Shift"]
+key = "l"
+
 # Volume Keys
 [[keybind]]
 command = "Execute"
@@ -294,13 +301,13 @@ key = "XF86XK_AudioMicMute"
 # Brightness keys
 [[keybind]]
 command = "Execute"
-value = "xbacklight -dec 5 -steps 1"
+value = "light -U 5"
 modifier = []
 key = "XF86XK_MonBrightnessDown"
 
 [[keybind]]
 command = "Execute"
-value = "xbacklight -inc 5 -steps 1"
+value = "light -A 5"
 modifier = []
 key = "XF86XK_MonBrightnessUp"
 
