@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
 #set background
 if [ -x "$(command -v feh)" ]; then
@@ -14,9 +14,7 @@ echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 pkill picom
 pkill compton
 pkill nm-applet
-pkill blueman-applet
 pkill polybar
-pkill xfce4-power-manager
 pkill seahorse-daemon
 pkill gnome-keyring-daemon
 pkill alacritty
