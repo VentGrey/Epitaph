@@ -1,5 +1,7 @@
-#!/bin/bash
-export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+#!/bin/sh
+export SCRIPTPATH
+
+SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
 # Down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
@@ -11,9 +13,9 @@ ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 
 #boot picom if it exists
 if [ -x "$(command -v picom)" ]; then
-  picom --config "$SCRIPTPATH"/picom/picom.conf &> /dev/null &
+  picom --config "$SCRIPTPATH"/picom/picom.conf > /dev/null &
 elif [ -x "$(command -v compton)" ]; then
-  compton &> /dev/null &
+  compton > /dev/null &
 fi
 #set background
 if [ -x "$(command -v feh)" ]; then
@@ -36,9 +38,10 @@ xdg-user-dirs-gtk-update &
 # Exec the MATE polkit for privilege management
 /usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 &
 
-# Gnome Secrets deposit (Block state until process is started)
-/usr/bin/gnome-keyring-daemon --start --components=gpg,ssh,pkcs11,secrets
+# Gnome Secrets deposit
+eval "$(/usr/bin/gnome-keyring-daemon --start --components=gpg,ssh,pkcs11,secrets)"
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
 
 # Start the seahorse daemon
 seahorse-daemon &
@@ -46,14 +49,8 @@ seahorse-daemon &
 # Receive apparmor notification denials
 /usr/bin/aa-notify -p -s 1 -w 60 &
 
-# Start bluetooth systray applet
-blueman-applet &
-
 # Start network manager applet
 nm-applet &
-
-# Manage power settings from XFCE
-xfce4-power-manager &
 
 # Init PulseAudio
 start-pulseaudio-x11 &
@@ -64,9 +61,11 @@ xdg-user-dirs-update &
 #boot polybar based on the number of monitors found
 if [ -x "$(command -v polybar)" ]; then
   pkill polybar
-  monitors="$(polybar -m | sed s/:.*// | tac)"
-  while read -r display; do
-    MONITOR=$display polybar -c "$SCRIPTPATH/polybar.config" mainbar &> /dev/null &
-  done <<< "$monitors"
-  exit 0
+    if type "xrandr"; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+      done
+    else
+      polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+    fi
 fi
