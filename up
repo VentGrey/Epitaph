@@ -17,8 +17,14 @@ if [ -x "$(command -v picom)" ]; then
 elif [ -x "$(command -v compton)" ]; then
   compton > /dev/null &
 fi
+
 #set background
 if [ -x "$(command -v feh)" ]; then
+
+  if [ -d "$SCRIPTPATH"/wallpapers ]; then
+    "$SCRIPTPATH"/scripts/wallpaper &
+  fi
+
   feh --bg-fill "$SCRIPTPATH"/background.png
 fi
 
@@ -45,6 +51,9 @@ export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
 
 # Start the seahorse daemon
 seahorse-daemon &
+
+# Start custom power management notifications
+"$HOME"/.config/leftwm/themes/epitaph/scripts/battery-notify &
 
 # Receive apparmor notification denials
 /usr/bin/aa-notify -p -s 1 -w 60 &
