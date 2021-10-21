@@ -1,7 +1,7 @@
 modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
-tags = ["", "", "", "", "", "", "", "", ""]
+tags = ["", "", "", "", "", "", "", "", ""]
 layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
 scratchpad = []
 disable_current_tag_swap = false
@@ -16,7 +16,7 @@ key = "space"
 
 [[keybind]]
 command = "Execute"
-value = "st"
+value = "alacritty"
 modifier = ["modkey", "Shift"]
 key = "Return"
 
