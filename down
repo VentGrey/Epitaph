@@ -14,8 +14,9 @@ echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 pkill picom
 pkill compton
 pkill nm-applet
+pkill battery-notify
+pkill wallpaper
 pkill polybar
 pkill seahorse-daemon
 pkill gnome-keyring-daemon
-pkill alacritty
 pkill flameshot
