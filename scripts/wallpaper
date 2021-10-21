@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while true; do
+    feh --bg-fill --no-fehbg --randomize "$SCRIPTPATH"/wallpapers
+    sleep 10m
+done
