@@ -3,7 +3,7 @@
 # FIXME: Find a way to "compress this", bypassing column 80 is unforgiveable
 c=0;
 n=0;
-reqs=(leftwm polybar rofi picom feh xdg-user-dirs-update mate-polkit gnome-keyring-daemon aa-notify blueman-applet nm-applet pulseaudio notify-send cargo)
+reqs=(leftwm polybar rofi picom feh xdg-user-dirs-update mate-polkit gnome-keyring-daemon aa-notify blueman-applet nm-applet pulseaudio notify-send xrandr dmenu)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null
@@ -18,11 +18,5 @@ reqs=(leftwm polybar rofi picom feh xdg-user-dirs-update mate-polkit gnome-keyri
 
     printf "%d of %d requirements were found.\n"  "$c" "${#reqs[@]}"
     printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
-
-    echo "Compiling rust goodies for polybar"
-
-    cd "$HOME/.config/leftwm/themes/epitaph/goodies/" || exit
-    cargo build --release
-    mv "$HOME/.config/leftwm/themes/epitaph/goodies/target/release/rspotify" "$HOME/.config/leftwm/themes/epitaph/scripts/rspotify"
 
     exit 0
