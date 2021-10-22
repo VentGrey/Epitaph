@@ -1,0 +1,10 @@
+#!/bin/sh
+
+terminal="alacritty"
+
+manual="$(man -k . | dmenu -p Manual: -l 10 | awk '{print $2 " " $1}'\
+    | tr -d '()')"
+
+if [ -n "$manual" ]; then
+    "$terminal" --command man $manual
+fi
