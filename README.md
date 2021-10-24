@@ -1,29 +1,26 @@
 # Epitaph
 
-*Version: 0.3.15 - "Arelidrews"*
+*Version: 0.5.2 - "Moonchild"*
 
 > Confusion, will be my epitaph...🎶 
-
-# News :newspaper:
-- Epitaph now has a built-in power manager written in POSIX sh that notifies you when your battery is:
-  - Fully charged
-  - Low
-  - Critical
-  - Almost dead
-  
-- Custom wallpaper slideshow powered by `feh`!
 
 Complete theme for LeftWM. Epitaph is being developed as a starting point
 for Loonex :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
 aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendly while keeping 
 modularity at first.
 
+## News :newspaper:
+- I've dropped `rofi` completely for `dmenu` which is simpler and powerful enough to get customization.
+- dmenu scripts come with an application launcher for common programs + flatpaks
+- the powermenu that polybar invoked has been rewritten to use dmenu
+- Polybar spacing has been improved
+
 You can find my personal config in the `config.toml` file
 
 This configuration includes:
 - POSIX shell `up` and `down` scripts for fast loading / reloading times
 - Simple animations on windows powered by picom
-- A simple rofi application menu (ultra-ripped off from Regolith)
+- A simple `dmenu` application menu with icons
 - Compact workspaces
 - Polybar indicators for:
   - CPU use percentage
@@ -46,6 +43,7 @@ Built on top of [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by 
 And some inspiration / patches taken from these wonderful sources:
 
 - @Suavesito-Olimpiada [dotfiles](https://github.com/Suavesito-Olimpiada/dotfiles) - No license but author [states](https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/README.md?plain=1#L26) that his code can be used free as in freedom.
+
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
@@ -83,8 +81,7 @@ This theme needs the following dependencies to work properly:
 
 - `leftwm` (duh)
 - `polybar`(Status bar written in very unsafe rust...or very safe C++)
-- `rofi` (dmenu for people who don't like dmenu)
-- `rofi-themes` (you can get those [here](https://github.com/adi1090x/rofi))
+- `dmenu` (rofi for people who don't like rofi)
 - `picom (THE STABLE ONE!)` (Nice blur, shadow and transparency effects brought to you by the gazillionth fork of a composter)
 - [OPTIONAL]`compton` (Just in case picom doesn't work, we can always fall back to the ugly one)
 - `feh` (Simple tool for an awesome wallpaper)
@@ -127,5 +124,4 @@ to open requests, make suggestions and improvements, try not to get confused.
 
 ## Issues (Not worth using the tabs up there)
 - Make a wiki / howto guide for customization
-- Improve install script
-- (Not sure) Replace polybar with lemonbar 
+- Add more dmenu scripts
