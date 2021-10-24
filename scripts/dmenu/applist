@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Forked from:
+# https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/dmenu/dmenu
+
+# CONFIGURATION VARIABLES
+
+# Appfile path
+appfile=$HOME/.local/bin/applist
+
+# MAIN
+
+# flrun function to prevent dmenu clutter
+flrun() {
+    branch="stable"
+    arch="x86_64"
+
+    flatpak run --branch=$branch --arch=$arch $1
+
+    if [ $1 = "org.signal.Signal" ]; then
+        flatpak run --branch=$branch --arch=$arch $1 --use-tray-icon
+    fi
+}
+
+# check if appfile exists under the directory you chose earlier
+if [ -f ${appfile} ]; then
+    # Show dmenu to prompt user into selection
+    sel=$(cat $HOME/.local/bin/applist | dmenu -l 15 -p " Run: ")
+
+    run=$(printf "%s" "$sel" | sed -E 's/(.+)?#.*/\1/')
+
+    printf "%s\n" "$run"
+
+    if [ "$(printf "%s" "$run" | grep "flrun")" ] ; then
+        _run="$(printf "%s" "$run" | sed 's/flrun//g')"
+        flrun $_run
+    fi
+
+    exec $run > /dev/null 2>&1 &
+    exit 0
+
+else
+    # if app doesn't exist, notify user or print to terminal.
+    notify-send "Applist file doesn't exist!" || echo "Applist doesn't exist"
+    touch $appfile
+    notify-send "Applist file created under $appfile" \
+        || echo "Applist created under $appfile"
+    exit 0
+fi
