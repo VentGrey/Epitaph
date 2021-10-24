@@ -10,9 +10,15 @@ focus_new_windows = true
 
 [[keybind]]
 command = "Execute"
-value = "rofi -show drun -theme ~/.config/rofi/launchers/colorful/style_2 -font \"JetBrainsMono Nerd Font 10\" -icon-theme \"Papirus-Dark\""
+value = "~/.config/leftwm/themes/epitaph/scripts/dmenu/applist"
 modifier = ["modkey"]
 key = "space"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/themes/epitaph/scripts/dmenu/manpages"
+modifier = ["modkey"]
+key = "m"
 
 [[keybind]]
 command = "Execute"
