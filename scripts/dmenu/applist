@@ -25,7 +25,8 @@ flrun() {
 # check if appfile exists under the directory you chose earlier
 if [ -f ${appfile} ]; then
     # Show dmenu to prompt user into selection
-    sel=$(cat $HOME/.local/bin/applist | dmenu -l 15 -p " Run: ")
+    sel=$(cat $HOME/.local/bin/applist |\
+        dmenu -fn 'JetBrainsMono Nerd Font:size=14' -l 15 -p " Run: ")
 
     run=$(printf "%s" "$sel" | sed -E 's/(.+)?#.*/\1/')
 
