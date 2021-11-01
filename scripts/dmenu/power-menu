@@ -7,7 +7,7 @@ case $option in
     " Shutdown") systemctl poweroff ;;
     " Reboot") systemctl reboot ;;
     "鈴 Suspend") systemctl suspend;;
-    " Logout") loginctl terminate-session ${XDG_SESSION_ID-};;
+    " Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
     "") exit 0;;
     *) notify-send "What are you trying to do?"\
         "Son, this is a power menu" --icon=face-worried
