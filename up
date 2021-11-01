@@ -14,24 +14,19 @@ ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 #boot picom if it exists
 if [ -x "$(command -v picom)" ]; then
   picom --config "$SCRIPTPATH"/picom/picom.conf > /dev/null &
-elif [ -x "$(command -v compton)" ]; then
-  compton > /dev/null &
 fi
 
 #set background
 if [ -x "$(command -v feh)" ]; then
-
   if [ -d "$SCRIPTPATH"/wallpapers ]; then
     "$SCRIPTPATH"/scripts/wallpaper &
   fi
-
-  feh --bg-fill "$SCRIPTPATH"/background.png
+  feh --bg-scale "$SCRIPTPATH"/background.png
 fi
 
 echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
 # ==== Things to run at startup ====
-
 # Screensaver timeout
 xset s 300 20
 
@@ -67,7 +62,7 @@ start-pulseaudio-x11 &
 # User folders update
 xdg-user-dirs-update &
 
-#boot polybar based on the number of monitors found
+# boot polybar based on the number of monitors found
 if [ -x "$(command -v polybar)" ]; then
   pkill polybar
     if type "xrandr"; then
