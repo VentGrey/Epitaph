@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# FIXME: Find a way to "compress this", bypassing column 80 is unforgiveable
 c=0;
 n=0;
-reqs=(leftwm polybar rofi picom feh xdg-user-dirs-update mate-polkit gnome-keyring-daemon aa-notify blueman-applet nm-applet pulseaudio notify-send xrandr dmenu)
+reqs=(leftwm polybar picom feh xdg-user-dirs-update\
+    mate-polkit gnome-keyring-daemon aa-notify blueman-applet\
+    nm-applet pulseaudio notify-send xrandr i3lock i3lock-fancy dmenu)
+
+recommended=(kitty flatpak)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null
