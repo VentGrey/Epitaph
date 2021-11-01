@@ -3,11 +3,20 @@
 # Forked from:
 # https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/dmenu/dmenu
 
-# CONFIGURATION VARIABLES
-
 # Appfile path
 appfile=$HOME/.local/bin/applist
 
+# Appfile format
+# <modifier> <command>          # <Readable name> <icon>
+# eg:
+# TERM       htop                 System Monitor  
+# Available modifiers:
+# TERM - Run apps from terminal
+# flrun - Run flatpaks
+
+# Current Terminal
+TERMINAL="kitty"
+TERMINAL_TITLE="-T"
 # MAIN
 
 # flrun function to prevent dmenu clutter
@@ -15,20 +24,35 @@ flrun() {
     branch="stable"
     arch="x86_64"
 
-    flatpak run --branch=$branch --arch=$arch $1
+    flatpak run --branch=$branch --arch=$arch "$1"
 
-    if [ $1 = "org.signal.Signal" ]; then
-        flatpak run --branch=$branch --arch=$arch $1 --use-tray-icon
+    if [ "$1" = "org.signal.Signal" ]; then
+        flatpak run --branch=$branch --arch=$arch "$1" --use-tray-icon
     fi
 }
 
 # check if appfile exists under the directory you chose earlier
-if [ -f ${appfile} ]; then
+if [ -f "${appfile}" ]; then
     # Show dmenu to prompt user into selection
-    sel=$(cat $HOME/.local/bin/applist |\
+    sel=$(cat "$HOME/.local/bin/applist" |\
         dmenu -fn 'JetBrainsMono Nerd Font:size=14' -l 15 -p " Run: ")
 
+    HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
+    HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
+    HAS_TERMTITLE=$(printf "%s" "$sel" | grep TITLE)
+
     run=$(printf "%s" "$sel" | sed -E 's/(.+)?#.*/\1/')
+
+    if [ -n "$HAS_TERM" ]; then
+       if [ -z "$HAS_TERMTITLE" ]; then
+          _run="$(printf "%s" "$run" | cut -f 1 -d ' ' --complement)"
+          run="$TERMINAL -e $_run"
+       else
+           TITLE=$(printf "%s" "$run" | awk '{printf "%s", $2}' | sed -E 's/.*=(.*)/\1/')
+           _run="$(printf "%s" "$run" | cut -f 1,2 -d ' ' --complement)"
+           run="$TERMINAL $TERMINAL_TITLE $TITLE -e $_run"
+       fi
+    fi
 
     printf "%s\n" "$run"
 
@@ -37,13 +61,14 @@ if [ -f ${appfile} ]; then
         flrun $_run
     fi
 
+
     exec $run > /dev/null 2>&1 &
     exit 0
 
 else
     # if app doesn't exist, notify user or print to terminal.
     notify-send "Applist file doesn't exist!" || echo "Applist doesn't exist"
-    touch $appfile
+    touch "$appfile"
     notify-send "Applist file created under $appfile" \
         || echo "Applist created under $appfile"
     exit 0
