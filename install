@@ -22,4 +22,16 @@ recommended=(kitty flatpak)
     printf "%d of %d requirements were found.\n"  "$c" "${#reqs[@]}"
     printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
 
+    echo "Requirements check complete."
+    echo "If you did the installation correctly there are a few additional
+         steps you must follow to get Epitaph up and running:
+
+         1 - [Optional] Install the recommended packages printed down here
+         2 - Customize your terminal in the applist and manpages script
+         3 - Customize your applist
+         4 - Open bugs in GitHub :D
+        "
+
+    echo "The following apps are recommended:" "${recommended[@]}"
+
     exit 0
