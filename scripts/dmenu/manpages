@@ -1,10 +1,11 @@
 #!/bin/sh
 
-terminal="alacritty"
+terminal="kitty"
 
 manual="$(man -k . | dmenu -p Manual: -l 10 | awk '{print $2 " " $1}'\
     | tr -d '()')"
 
 if [ -n "$manual" ]; then
-    "$terminal" --command man $manual
+    # shellcheck disable=SC2086
+    "$terminal" -e -T "Manual Reader - 📕 Reading: $manual" man $manual
 fi
