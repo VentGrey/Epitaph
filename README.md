@@ -1,21 +1,23 @@
 # Epitaph
 
-*Version: 0.5.2 - "Moonchild"*
+*Version: 0.6.4 - "The fate of mankind I see is in the hands of fools."*
 
 > Confusion, will be my epitaph...🎶 
 
 Complete theme for LeftWM. Epitaph is being developed as a starting point
-for Loonex :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
+for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
 aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendly while keeping 
 modularity at first.
 
 ## News :newspaper:
-- I've dropped `rofi` completely for `dmenu` which is simpler and powerful enough to get customization.
-- dmenu scripts come with an application launcher for common programs + flatpaks
-- the powermenu that polybar invoked has been rewritten to use dmenu
-- Polybar spacing has been improved
+- Add post install steps to `install` script for users wanting more juice out of epitaph.
+- Made polybar smaller, more compact but still readable (also faster 😉)
+- Fixed bugs in `battery-notify` script
+- Several improvements in applist module. Run TERMINAL & Flatpak apps from dmenu!
+- Several shellcheck warnings have been fixed
+- Improved theme colors
 
-You can find my personal config in the `config.toml` file
+## Overview
 
 This configuration includes:
 - POSIX shell `up` and `down` scripts for fast loading / reloading times
@@ -48,8 +50,6 @@ And some inspiration / patches taken from these wonderful sources:
 
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
 
-- Erina (The Cat) wallpaper was made by Arelidrews, please give her a :heart: if you liked her work [here](https://www.instagram.com/arelidrews/)
-
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
 
 ## Screenshots
@@ -71,29 +71,9 @@ take their first steps in here.
 
 As stated before, this config's main goal is **NOT** to be minimal, it is to be modular while being complete for new users, as their (mine) experience increases with this environment they should be able to trim down these files at their liking.
 
-*But, why XFCE / LXDE tools?* you ask.
+*But, why xDE tools?* you ask.
 
 Simple, some other tools are a hell-like experience to configure, also editing dotfiles like a madman only helps by adding fuel to this hell, so LXDE / XFCE tools are lightweight, UNIX compliant and do one thing and do it well, of course I can add alternatives or change those tools over time given the right arguments to do so.
-
-
-## Prerequisites / Dependencies 
-This theme needs the following dependencies to work properly:
-
-- `leftwm` (duh)
-- `polybar`(Status bar written in very unsafe rust...or very safe C++)
-- `dmenu` (rofi for people who don't like rofi)
-- `picom (THE STABLE ONE!)` (Nice blur, shadow and transparency effects brought to you by the gazillionth fork of a composter)
-- [OPTIONAL]`compton` (Just in case picom doesn't work, we can always fall back to the ugly one)
-- `feh` (Simple tool for an awesome wallpaper)
-- `xdg-user-dirs-gtk` (Keep your home folders in your home language)
-- `mate-polkit` or `mate-polkit-bin` (Manage privileges with the grace of MATE)
-- `gnome-keyring-daemon` (Save secrets, ssh keys and NASA hacking passwords)
-- `apparmor + aa-notify` (Userspace security made usabe by the user in it's space)
-- `lxapperance` (Just for more theming thingies)
-- `blueman` (We need a bluetooth applet)
-- `nm-applet` (The good old systray applet, nothing beats it)
-- `notify-send` (We need this to report errors to you!)
-- `pulseaudio` (The good alsa, the bad daemon & the ugly pipewire)
 
 ## Installation:
 
@@ -124,4 +104,4 @@ to open requests, make suggestions and improvements, try not to get confused.
 
 ## Issues (Not worth using the tabs up there)
 - Make a wiki / howto guide for customization
-- Add more dmenu scripts
+- Add royalty free wallpapers (or CC-licensed ones)
