@@ -42,6 +42,7 @@ while true ; do
                 'Connect to power immediately, shutdown or face data loss!'\
                 --icon=battery-low
             light -S $criticalb
+            notified=$((notified+1))
         elif [ "$battery" -le $dead ]; then
             notify-send 'Battery is about to die'\
                 'Suspending gracefully to avoid data loss.' --icon=battery-low
@@ -49,7 +50,7 @@ while true ; do
             execommand="systemctl $dead_action"
             eval "$execommand"
         fi
-    elif [ "$status" = "Charging" ]; then
+    elif [ "$status" = "Charging" ] || [ "$status" = "Unknown" ]; then
         light -S $plug
         if [ "$battery" -ge $max_charge ] && [ $notified -eq 0 ]; then
             notify-send 'Battery fully charged' 'Unplug to avoid messing up your charge cycles' --icon=battery
