@@ -2,7 +2,6 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
-#set background
 if [ -x "$(command -v feh)" ]; then
   feh --bg-scale "$SCRIPTPATH"/reset.jpg
 fi
@@ -10,13 +9,8 @@ fi
 echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
 # Don't kill with ampersand, let killing processes block state to ensure
-# nothing gets messed up in --experimental-backends the process.
+# nothing gets messed up in the process.
 pkill picom
-pkill compton
-pkill nm-applet
 pkill battery-notify
 pkill wallpaper
 pkill polybar
-pkill seahorse-daemon
-pkill gnome-keyring-daemon
-pkill flameshot
