@@ -27,6 +27,17 @@ fi
 echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 
 # ==== Things to run at startup ====
+
+# Optionally start Emacs daemon (if present)
+if [ -x "$(command -v emacsclient)" ]; then
+  if pidof -x emacs > /dev/null; then
+  notify-send 'The Emacs Client is already running.' ||\
+    echo "The Emacs Client is already running."
+  else
+    emacs --daemon &
+  fi
+fi
+
 # Screensaver timeout
 xset s 300 20
 
