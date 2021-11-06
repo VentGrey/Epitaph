@@ -8,7 +8,7 @@ appfile=$HOME/.local/bin/applist
 
 # Appfile format
 # <modifier> <command>          # <Readable name> <icon>
-# eg:
+# example:
 # TERM       htop                 System Monitor  
 # Available modifiers:
 # TERM - Run apps from terminal
@@ -17,25 +17,26 @@ appfile=$HOME/.local/bin/applist
 # Current Terminal
 TERMINAL="kitty"
 TERMINAL_TITLE="-T"
-# MAIN
 
 # flrun function to prevent dmenu clutter
 flrun() {
     branch="stable"
     arch="x86_64"
 
-    flatpak run --branch=$branch --arch=$arch "$1"
-
     if [ "$1" = "org.signal.Signal" ]; then
         flatpak run --branch=$branch --arch=$arch "$1" --use-tray-icon
+    else
+        flatpak run --branch=$branch --arch=$arch "$1"
     fi
 }
 
 # check if appfile exists under the directory you chose earlier
 if [ -f "${appfile}" ]; then
+    # Include binaries from cargo an ~/.local/bin
+    export PATH="$HOME/.cargo/bin/:$HOME/.local/bin/:$PATH"
     # Show dmenu to prompt user into selection
-    sel=$(cat "$HOME/.local/bin/applist" |\
-        dmenu -fn 'JetBrainsMono Nerd Font:size=14' -l 15 -p " Run: ")
+    sel=$(dmenu -fn 'JetBrainsMono Nerd Font:size=10'\
+        -l 15 -p " Run: " < "$HOME"/.local/bin/applist)
 
     HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
     HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
@@ -48,7 +49,8 @@ if [ -f "${appfile}" ]; then
           _run="$(printf "%s" "$run" | cut -f 1 -d ' ' --complement)"
           run="$TERMINAL -e $_run"
        else
-           TITLE=$(printf "%s" "$run" | awk '{printf "%s", $2}' | sed -E 's/.*=(.*)/\1/')
+           TITLE=$(printf "%s" "$run" | awk '{printf "%s", $2}' |\
+               sed -E 's/.*=(.*)/\1/')
            _run="$(printf "%s" "$run" | cut -f 1,2 -d ' ' --complement)"
            run="$TERMINAL $TERMINAL_TITLE $TITLE -e $_run"
        fi
@@ -56,11 +58,11 @@ if [ -f "${appfile}" ]; then
 
     printf "%s\n" "$run"
 
-    if [ "$(printf "%s" "$run" | grep "flrun")" ] ; then
+    if printf "%s" "$run" | grep -q "flrun" ; then
         _run="$(printf "%s" "$run" | sed 's/flrun//g')"
+        # shellcheck disable=SC2086
         flrun $_run
     fi
-
 
     exec $run > /dev/null 2>&1 &
     exit 0
