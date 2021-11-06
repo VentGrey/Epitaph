@@ -53,7 +53,8 @@ while true ; do
     elif [ "$status" = "Charging" ] || [ "$status" = "Unknown" ]; then
         light -S $plug
         if [ "$battery" -ge $max_charge ] && [ $notified -eq 0 ]; then
-            notify-send 'Battery fully charged' 'Unplug to avoid messing up your charge cycles' --icon=battery
+            notify-send 'Battery fully charged' "Unplug to avoid messing up\
+                your charge cycles" --icon=battery
             notified=$((notified+1))
         fi
     else
