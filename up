@@ -44,34 +44,8 @@ xset s 300 20
 # Setup xss-lock
 xss-lock -l -- "$HOME/.config/leftwm/themes/epitaph/scripts/lock" &
 
-# Update common folder names fo match current user region
-xdg-user-dirs-gtk-update &
-
-# Exec the MATE polkit for privilege management
-/usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1 &
-
-# Gnome Secrets deposit
-eval "$(/usr/bin/gnome-keyring-daemon --start --components=gpg,ssh,pkcs11,secrets)"
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
-export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
-
-# Start the seahorse daemon
-seahorse-daemon &
-
 # Start custom power management notifications
 "$HOME"/.config/leftwm/themes/epitaph/scripts/battery-notify &
-
-# Receive apparmor notification denials
-/usr/bin/aa-notify -p -s 1 -w 60 &
-
-# Start network manager applet
-nm-applet &
-
-# Init PulseAudio
-start-pulseaudio-x11 &
-
-# User folders update
-xdg-user-dirs-update &
 
 # boot polybar based on the number of monitors found
 if [ -x "$(command -v polybar)" ]; then
