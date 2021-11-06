@@ -1,6 +1,6 @@
 # Epitaph
 
-*Version: 0.6.4 - "The fate of mankind I see is in the hands of fools."*
+*Version: 0.7.1 - "The sunlight brightly gleams."*
 
 > Confusion, will be my epitaph...🎶 
 
@@ -10,12 +10,13 @@ aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendl
 modularity at first.
 
 ## News :newspaper:
-- Add post install steps to `install` script for users wanting more juice out of epitaph.
-- Made polybar smaller, more compact but still readable (also faster 😉)
-- Fixed bugs in `battery-notify` script
-- Several improvements in applist module. Run TERMINAL & Flatpak apps from dmenu!
-- Several shellcheck warnings have been fixed
-- Improved theme colors
+- Add a new wallpaper! (Made by me)
+- **BREAKING CHANGE**: As of commit b4a06860, leftwm now follows de `xdg-autostart` specification, which helps making `up` scripts smaller and easier to maintain. Copy your respective autostart `.desktop` files from `/etc/xdg/autostart` to `~/.config/autostart/` before upgrading Epitaph.
+- Huge improvements in appmenu script:
+  - Shellcheck warnings fix
+  - Script is way faster (Noticeable on huge application lists)
+  - Fix flatpak run bug where Signal would be excecuted twice with / without systray
+  
 
 ## Overview
 
@@ -48,9 +49,13 @@ And some inspiration / patches taken from these wonderful sources:
 
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
+## Wallpaper artists credit
+
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
 
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
+
+- The "LeftWM" One Dark wallpaper is made by me, you can use it under the CC0 License (Public Domain).
 
 ## Screenshots
 
@@ -87,7 +92,7 @@ You can install using the official `leftwm-theme` tool.
 
 `leftwm-theme install "Epitaph"`
 
-**BUT** bear in mind that this won't work as expected since it is not possible to make "post-install hooks" in `leftwm-theme`, you'll have to compile the rust goodies by yourself.
+**BUT** bear in mind that this won't work as expected since it is not possible to make "post-install hooks" in `leftwm-theme`, you'll have to do extra-work by yourself.
 
 ### Manual Installation (If you want the latest git commit)
 
