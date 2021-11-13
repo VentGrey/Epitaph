@@ -36,7 +36,7 @@ if [ -f "${appfile}" ]; then
     export PATH="$HOME/.cargo/bin/:$HOME/.local/bin/:$PATH"
     # Show dmenu to prompt user into selection
     sel=$(dmenu -fn 'JetBrainsMono Nerd Font:size=10'\
-        -l 15 -p " Run: " < "$HOME"/.local/bin/applist)
+        -l 15 -i -p " Run: " < "$HOME"/.local/bin/applist)
 
     HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
     HAS_TERM=$(printf "%s" "$sel" | grep TERMINAL)
