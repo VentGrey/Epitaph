@@ -2,8 +2,8 @@
 
 terminal="kitty"
 
-manual="$(man -k . | dmenu -p Manual: -l 10 | awk '{print $2 " " $1}'\
-    | tr -d '()')"
+manual=$(man -k . | dmenu -p  " Manual:" -l 10 | awk '{print $2 " " $1}'\
+    | tr -d '()')
 
 if [ -n "$manual" ]; then
     # shellcheck disable=SC2086
