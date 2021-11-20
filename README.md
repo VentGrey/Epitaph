@@ -1,6 +1,6 @@
 # Epitaph
 
-*Version: 0.7.1 - "The sunlight brightly gleams."*
+*Version: 0.8.2 - "If we make it, we can all sit back and laugh."*
 
 > Confusion, will be my epitaph...🎶 
 
