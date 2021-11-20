@@ -41,11 +41,63 @@ is the current system battery status (charge percentage). It is recommended to c
 
 .\" cmustatus section\"
 .IP "cmustatus"
-
+This script is used by the polybar.config file to display your current playing song in cmus.
 .\" cmustatus section\"
+
+.\" lock section\"
 .IP "lock"
+This script is called by the up script and it is used to lock the screen using i3lock-fancy. If you wish to change your screenlock program with anything else please modify the 5th line of this script.
+.\" lock section\"
+
+.\" wallpaper section\"
 .IP "wallpaper"
+This script uses feh to change randomly the current epitaph wallpaper every 10 minutes from the wallpapers/ directory. If you want to add new wallpapers place it in the wallpapers directory and name it accordingly, most image formats are supported, if you want to modify the wallpaper change time just change the sleep command.
+.\" wallpaper section\"
+
 .SH DMENU SCRIPTS
+These are scripts that use dmenu as a frontend and are one of the main reasons to use Epitaph as your leftwm theme :)
+
+.\" applist section\"
 .IP "applist"
+This script acts as your "launcher" menu similar to other Desktop Environments or window managers. Applist reads a file at $HOME/.local/bin/applist and follows the following syntax:
+.br
+.B "<modifier> <command>     #<readable name> <icon>"
+For the sake of example, an applist entry should look like this:
+.br
+.B "gimp  # GIMP "
+.br
+If you wish to launch a terminal command you should use the
+.B TERMINAL
+modifier (in caps). For example:
+.br
+.B "TERMINAL htop  # htop system monitor "
+.br
+Applist has dmenu as a dependency and requires two variables to be set:
+.sp
+.I TERMINAL
+is a variable used to tell applist which terminal emulator should it use to launch terminal specific applications. The default value for this is kitty (https://github.com/kovidgoyal/kitty). If you don't use kitty you should change this value for any terminal emulator you like.
+.sp
+.I TERMINAL_TITLE
+is a variable used to specify the title tag for your terminal emulator which will be displayed on the top polybar panel. Most terminal emulators support this flag, make sure yours does. If yours doesn't, change this flag to a supported one or delete it completely.
+.sp
+Applist also comes with a special function called
+.B flrun
+used to run flatpak apps. This is because launching a flatpak app from the command line is verbose and pasting that order in Applist would be a long one liner. This function is used to shorten the flatpak syntax to a more compact order for it to run:
+.br
+.B "flrun md.obsidian.Obsidian                   # Obsidian ﴬ"
+.br
+As extra info, Applist detects binaries in your home folder if they are registered in the $PATH variable.
+.sp
+If you don't know how to start writing your appfile, the install script can download + install one for you if you wish.
+.\" applist section\"
+
+.\" manpages section\"
 .IP "manpages"
+WIP
+.\" manpages section\"
+
+
+.\" power-menu section\"
 .IP "power-menu"
+WIP
+.\" power-menu section\"
