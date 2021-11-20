@@ -6,7 +6,7 @@ reqs=(leftwm polybar picom feh xdg-user-dirs-update\
     mate-polkit gnome-keyring-daemon aa-notify blueman-applet\
     nm-applet pulseaudio notify-send xrandr i3lock i3lock-fancy dmenu)
 
-recommended=(kitty flatpak)
+recommended=(kitty flatpak thunar)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null
