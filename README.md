@@ -10,13 +10,17 @@ aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendl
 modularity at first.
 
 ## News :newspaper:
-- Add a new wallpaper! (Made by me)
-- **BREAKING CHANGE**: As of commit b4a06860, leftwm now follows de `xdg-autostart` specification, which helps making `up` scripts smaller and easier to maintain. Copy your respective autostart `.desktop` files from `/etc/xdg/autostart` to `~/.config/autostart/` before upgrading Epitaph.
-- Huge improvements in appmenu script:
-  - Shellcheck warnings fix
-  - Script is way faster (Noticeable on huge application lists)
-  - Fix flatpak run bug where Signal would be excecuted twice with / without systray
-  
+
+**Epitaph is preparing itself for a big release including new features, wallpapers, installer
+and much more sweets for it's users! This version is just a "taste" of what the future of Epitaph is and how it will work.**
+
+- Improved polybar icons for CPU and RAM
+- Applist dmenu script is now case insensitive (it works better with fuzzy search patch)
+- Improved the manpage dmenu script look and feel (just added a book emoji)
+- Deleted the emacs daemon init from the `up` script
+- Deleted the light command from the `battery-notify` script
+- [WIP] Improved the recommended applist in the `install script`
+- Added a manpage for documenting Epitaph scripts. 
 
 ## Overview
 
@@ -108,5 +112,4 @@ If everything is good, this theme should load up quickly if not, please check yo
 to open requests, make suggestions and improvements, try not to get confused.
 
 ## Issues (Not worth using the tabs up there)
-- Make a wiki / howto guide for customization
-- Add royalty free wallpapers (or CC-licensed ones)
+- Nothing for now
