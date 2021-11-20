@@ -5,3 +5,47 @@ epitaph - Epitaph Theme Documentation
 Epitaph is a complete theme for LeftWM. It is being developed as a starting point for users transitioning from a full blown Desktop Environment to a standalone Window Manager.
 This documentation is not a list of commands or flags, but rather a compilation of how some
 scripts and configurations work, and how can you modify them to suit your own needs.
+.SH SCRIPTS
+Epitaph comes with the following scripts:
+.\" Battery Notify section\"
+.IP "battery-notify"
+battery-notify is a POSIX sh script used for monitoring your battery and sending notifications based on it's status. This script defines 9 variables for configuration purposes.
+.sp
+.I max-charge
+is used to determine what is the max charging value your battery has to be considered "full". It is recommended to set a value lower than 100 to avoid messing up your charging cycles.
+.sp
+.I low
+is used to determine when your battery charge can be considered "low" and as a first warning to plug in your system to charge.
+.sp
+.I critical
+is used to determine if your battery is VERY low.
+.sp
+.I dead
+is used as a "stopping" value to notify the user when the battery is WAY too low and immediate action is needed. It's recommended to set a value higher than 0 or 1 to avoid a full discharge and thus damaging the battery in the long run.
+.sp
+.I notified
+is a variable used to track if the user has been notified at least once about it's system status. It's not recommended to change this value to other than zero.
+.sp
+.I sleep_time
+is used to tell the script how much time should it wait (in seconds) before checking the battery status again. The lower the value the higher CPU / disk operations usage.
+.sp
+.I dead_action
+is used to define what action should be taken when the system battery reaches the dead battery value. The default value is "suspend" and is used on a systemd command. If your init system is different, please change the full command accordingly.
+.sp
+.I battery
+is the current system battery variable grabbed by the cat command. It is recommended to change this value as this differs from computer to computer. The author's computer uses BAT1 as main battery, if your computer uses BAT0 as the main battery you'll need to modify this script to work properly.
+.sp
+.I status
+is the current system battery status (charge percentage). It is recommended to change this value as this differs from computer to computer. The author's computer uses BAT1 as main battery, if your computer uses BAT0 as the main battery you'll need to modify this script to work properly.
+.\" Battery Notify section\"
+
+.\" cmustatus section\"
+.IP "cmustatus"
+
+.\" cmustatus section\"
+.IP "lock"
+.IP "wallpaper"
+.SH DMENU SCRIPTS
+.IP "applist"
+.IP "manpages"
+.IP "power-menu"
