@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Get all xworkspaces without commas and quotation marks
+all=$(xprop -root -notype _NET_DESKTOP_NAMES |\
+    awk '{$1=$2="";print $0}'| sed -e 's/ //g' -e 's/"//g' -e 's/,/ /g')
+index=$(xprop -root -notype _NET_CURRENT_DESKTOP | awk '{print $3}')
+current=$(echo $all| cut -d " " -f$(($index+1)))
+
+echo "$all"| sed -e  "s/$current/%{F#98C379} $current %{F#98C379}/"
