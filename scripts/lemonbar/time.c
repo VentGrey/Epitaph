@@ -8,13 +8,12 @@ int main()
 {
     char buf[BUF_LEN] = {0};
     time_t rawtime = time(NULL);
+    struct tm *ptm = localtime(&rawtime);
 
     if (rawtime == -1) {
         puts("The time() function failed");
         return 1;
     }
-
-    struct tm *ptm = localtime(&rawtime);
 
     if (ptm == NULL) {
         puts("The localtime() function failed");
