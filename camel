@@ -1,0 +1,15 @@
+#!/bin/sh
+
+while :
+do
+    printf "%%{F#FAFAFA}%s%%{F#FAFAFA} | %%{F#FAFAFA}%s  %%{r} %%{F#E5C07B} 龍 cpu: %s %%{F#FAFAFA}|%%{F#E06c75}  ram: %s %%{F#FAFAFA}|%%{F#61AFEF}  %s %%{F#FAFAFA}|%%{F#98C379}  %%{F#FAFAFA} %s| 墳 %s |%%{F#c678dd}  %s"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/xworkspaces &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/active_window &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scritps/lemonbar/battery &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/get_vol &)"\
+        "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid &)"
+    sleep 0.1s
+done
