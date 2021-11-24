@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ssid=$(/usr/sbin/iwgetid -r)
+
+if [ -n "$ssid" ]; then
+    printf "%s" "$ssid";
+else
+    printf "%s" "Disconnected"
+fi
