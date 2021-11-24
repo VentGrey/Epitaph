@@ -1,6 +1,10 @@
 #!/bin/sh
 export SCRIPTPATH
 
+# Change this to 1 if you want to use polybar instead of lemonbar
+use_polybar=0
+camelscript="$HOME/.config/leftwm/themes/epitaph/camel"
+
 SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
 # Down the last running theme
@@ -37,14 +41,19 @@ xss-lock -l -- "$HOME/.config/leftwm/themes/epitaph/scripts/lock" &
 # Start custom power management notifications
 "$HOME"/.config/leftwm/themes/epitaph/scripts/battery-notify &
 
-# boot polybar based on the number of monitors found
-if [ -x "$(command -v polybar)" ]; then
-  pkill polybar
-    if type "xrandr"; then
-      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-      done
-    else
-      polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-    fi
+# boot bar based on options
+if [ $use_polybar -eq 0 ]; then
+  pkill lemonbar;
+  exec $camelscript | lemonbar -g 1920x20 -B#282c34 -F#FAFAFA -f "JetBrainsMono Nerd Font"-8 -f "Noto Color Emoji"-8
+else
+  if [ -x "$(command -v polybar)" ]; then
+    pkill polybar
+      if type "xrandr"; then
+        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+          MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+        done
+      else
+        polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+      fi
+  fi
 fi
