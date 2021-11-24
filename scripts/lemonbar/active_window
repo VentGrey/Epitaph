@@ -1,7 +1,2 @@
 #!/bin/sh
-
-if [ "$(xdotool getwindowfocus getwindowname | wc -m)" -gt 30 ];then
-	echo "$(xdotool getwindowfocus getwindowname | cut -c 1-30)..."
-else
-	xdotool getwindowfocus getwindowname
-fi
+echo "$(xdotool getwindowfocus getwindowname | cut -c 1-30)..."

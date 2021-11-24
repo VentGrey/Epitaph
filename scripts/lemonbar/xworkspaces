@@ -1,8 +1,8 @@
 #!/bin/sh
 # Get all xworkspaces without commas and quotation marks
-all=$(xprop -root -notype _NET_DESKTOP_NAMES |\
-    awk '{$1=$2="";print $0}'| sed -e 's/ //g' -e 's/"//g' -e 's/,/ /g')
-index=$(xprop -root -notype _NET_CURRENT_DESKTOP | awk '{print $3}')
-current=$(echo "$all" | cut -d " " -f$((index+1)))
+al=$(xprop -root _NET_DESKTOP_NAMES| cut -d" " -f3- |\
+    sed -e 's/, / /g' -e 's/"//g')
 
-echo "$all"| sed -e  "s/$current/%{R} $current %{R}/"
+ind=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+curr=$(printf "%s" "$al" | cut -d " " -f$((ind+1)))
+printf "%s" "$al"| sed -e "s/$curr/%{R} $curr %{R}/"
