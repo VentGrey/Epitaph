@@ -1,9 +1,7 @@
 #!/bin/sh
 
-len=$(xdotool getwindowfocus getwindowname | wc -m)
-max_len=30
-if [ "$len" -gt "$max_len" ];then
-	echo "$(xdotool getwindowfocus getwindowname | cut -c 1-$max_len)..."
+if [ "$(xdotool getwindowfocus getwindowname | wc -m)" -gt 30 ];then
+	echo "$(xdotool getwindowfocus getwindowname | cut -c 1-30)..."
 else
 	xdotool getwindowfocus getwindowname
 fi

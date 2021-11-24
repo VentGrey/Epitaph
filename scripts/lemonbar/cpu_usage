@@ -14,4 +14,4 @@ while (<MPSTAT>) {
 close(MPSTAT);
 
 $cpu_usage eq -1 and die 'Can\'t find CPU information';
-printf "%.0f%%\n", $cpu_usage;
+printf "%.0f%%", $cpu_usage;
