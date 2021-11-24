@@ -20,7 +20,7 @@ fn main() {
     } else if bat_stat == "Discharging" {
         status = '';
     } else if bat_stat == "Full" {
-        status = '\0';
+        status = '';
     } else {
         status = '';
     }
