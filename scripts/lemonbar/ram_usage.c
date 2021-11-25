@@ -1,20 +1,34 @@
+#define _GNU_SOURCE
 #include <stdio.h>
-#include <sys/sysinfo.h>
-
-typedef struct sysinfo sysinfo_t;
+#include <stdlib.h>
 
 int main()
 {
-        sysinfo_t info;
-        sysinfo(&info);
+        FILE *fd = NULL;
+        fd = fopen("/proc/meminfo", "r");
+        if (!fd)
+                printf("Unkown");
 
-        long usage = info.totalram - info.freeram;
-        float percent = 100 * ((float)usage / info.totalram);
+        char *line = NULL;
+        size_t len = 0;
+        ssize_t read;
 
-        const float byte_to_gb = 1024 * 1024 * 1024;
+        unsigned long total = 0;
+        unsigned long available = 0;
 
-        float usage_gb = usage / byte_to_gb;
-
-        printf("%.2f GB", usage_gb);
+        for(int i = 0; i<3; i++) {
+                line = NULL;
+                len = 0;
+                if((read = getline(&line, &len, fd)) != -1) {
+                        if(i == 0) {
+                                sscanf(line, "%*s %lu ", &total);
+                        } else if (i == 2) {
+                                sscanf(line, "%*s %lu ", &available);
+                        }
+                        free(line);
+                }
+        }
+        printf("%.2lf GB", (double)(total - available) / (double)(1<<20));
+        fclose(fd);
         return 0;
 }
