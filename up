@@ -44,7 +44,15 @@ xss-lock -l -- "$HOME/.config/leftwm/themes/epitaph/scripts/lock" &
 # boot bar based on options
 if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
-  exec $camelscript | lemonbar -g 1920x20 -B#282c34 -F#FAFAFA -f "JetBrainsMono Nerd Font"-8 -f "Noto Color Emoji"-8
+
+  # Lemonbar settings
+  dims="1920x20+0+0"
+  bg="#282c34"
+  fg="#FAFAFA"
+  jbf="JetBrainsMono Nerd Font"
+  ncf="Noto Color Emoji"
+
+  exec $camelscript | lemonbar -g $dims -B$bg -F$fg -f "$jbf"-8 -f "$ncf"-8
 else
   if [ -x "$(command -v polybar)" ]; then
     pkill polybar
