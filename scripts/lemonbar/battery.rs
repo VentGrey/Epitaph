@@ -24,7 +24,6 @@ fn main() {
     } else {
         status = '';
     }
-
     print!("{} {}%", status, (bat_now.parse::<i32>().unwrap() /
                               (bat_full.parse::<i32>().unwrap() / 100)));
 }
