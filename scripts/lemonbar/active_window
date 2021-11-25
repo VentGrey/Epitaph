@@ -1,2 +1,0 @@
-#!/bin/sh
-echo "$(xdotool getwindowfocus getwindowname | cut -c 1-30)..."
