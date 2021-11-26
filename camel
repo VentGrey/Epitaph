@@ -10,55 +10,21 @@ _Workspaces() {
         printf "%s" "$al"| sed -e "s/$curr/%{R} $curr %{R}/"
 }
 
-_WindowName() {
-        printf "%s" "$(xdotool getwindowfocus getwindowname | cut -c 1-30).."
-}
-
-_Cpu() {
-        "$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage
-}
-
-_Ram() {
-        "$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage
-}
-
-_Time() {
-        "$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time
-}
-
-_Battery() {
-        "$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery
-}
-
-_Volume() {
-        amixer get Master | awk -F'[][]' 'END{ print $2 }'
-}
-
-_SSID() {
-        ssid=$(/usr/sbin/iwgetid -r)
-
-        if [ -n "$ssid" ]; then
-                printf "%s" "$ssid";
-        else
-                printf "%s" "Disconnected"
-        fi
-}
-
 _Modules() {
         while true; do
-                echo "B:$(_Battery)"
-                echo "C:$(_Cpu)"
-                echo "R:$(_Ram)"
-                echo "S:$(_SSID)"
-                echo "T:$(_Time)"
-                echo "V:$(_Volume)"
+                echo "B:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery)"
+                echo "C:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage)"
+                echo "R:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage)"
+                echo "S:$(/usr/sbin/iwgetid -r || printf '%s' 'Disconnected')"
+                echo "T:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time)"
+                echo "V:$(amixer get Master | awk -F'[][]' 'END{ print $2 }')"
                 sleep 1
         done
 }
 
 _Wininfo() {
         leftwm-state | while read -r line; do
-                echo "W:$(_WindowName)"
+                echo "W:$(xdotool getwindowfocus getwindowname | cut -c 1-30)"
                 echo "K:$(_Workspaces)"
         done
 }
@@ -83,7 +49,7 @@ _Main() {
                         V*) vol="$(echo "$report" | cut -d':' -f2-)";;
                         W*) wname="$(echo "$report" | cut -d':' -f2-)";;
                 esac
-                sleep 0.01
+                sleep 0.1s
                 printf "%s" "%{F#FAFAFA} $wm | $wname %{r} %{F#E5C07B} 龍 cpu: $cpu %{F#FAFAFA}| %{F#E06c75}  ram: $ram %{F#FAFAFA}|%{F#61AFEF}  $time %{F#FAFAFA}|%{F#98C379}  %{F#FAFAFA}$batt | 墳 $vol |%{F#c678dd}  $ssid "
         done
 }
