@@ -5,8 +5,7 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
         al=$(xprop -root _NET_DESKTOP_NAMES | sed 's/.*= //' | tr -d ',"')
-        ind=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
-        curr=$(printf "%s" "$al" | cut -d " " -f$((ind+1)))
+        curr=$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk)
         printf "%s" "$al"| sed -e "s/$curr/%{R} $curr %{R}/"
 }
 
