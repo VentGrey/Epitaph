@@ -2,26 +2,26 @@
 .SH NAME
 epitaph - Epitaph Theme Documentation
 .SH DESCRIPTION
-Epitaph is a complete theme for LeftWM. It is being developed as a starting point for users transitioning from a full blown Desktop Environment to a standalone Window Manager.
+Epitaph is a complete theme for LeftWM. It is being developed as a starting point for users transitioning from a full-blown Desktop Environment to a standalone Window Manager.
 This documentation is not a list of commands or flags, but rather a compilation of how some
 scripts and configurations work, and how can you modify them to suit your own needs.
 .SH SCRIPTS
 Epitaph comes with the following scripts:
 .\" Battery Notify section\"
 .IP "battery-notify"
-battery-notify is a POSIX sh script used for monitoring your battery and sending notifications based on it's status. This script defines 9 variables for configuration purposes.
+battery-notify is a POSIX sh script used for monitoring your battery and sending notifications based on its status. This script defines 9 variables for configuration purposes.
 .sp
 .I max-charge
-is used to determine what is the max charging value your battery has to be considered "full". It is recommended to set a value lower than 100 to avoid messing up your charging cycles.
+It is used to determine what is the max charging value your battery has to be considered "full". It is recommended to set a value lower than 100 to avoid messing up your charging cycles.
 .sp
 .I low
-is used to determine when your battery charge can be considered "low" and as a first warning to plug in your system to charge.
+It is used to determine when your battery charge can be considered "low" and as a first warning to plug in your system to charge.
 .sp
 .I critical
-is used to determine if your battery is VERY low.
+It is used to determine if your battery is VERY low.
 .sp
 .I dead
-is used as a "stopping" value to notify the user when the battery is WAY too low and immediate action is needed. It's recommended to set a value higher than 0 or 1 to avoid a full discharge and thus damaging the battery in the long run.
+It is used as a "stopping" value to notify the user when the battery is WAY too low and immediate action is needed. It's recommended to set a value higher than 0 or 1 to avoid a full discharge and thus damaging the battery in the long run.
 .sp
 .I notified
 is a variable used to track if the user has been notified at least once about it's system status. It's not recommended to change this value to other than zero.
@@ -101,3 +101,14 @@ WIP
 .IP "power-menu"
 WIP
 .\" power-menu section\"
+
+.SH Switching from polybar <---> lemonbar.
+If you'd like to use polybar instead of lemonbar just edit the up script, located at the root of the epitaph theme and change the following variable:
+.I use_polybar=0
+to
+.I use_polybar=1
+
+.SH Customizing Lemonbar
+It is recommended that you use the lemonbar-xft fork as some
+
+.SH Editing lemonbar scripts / programs
