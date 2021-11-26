@@ -11,8 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   Display *dpy;
   Window root;
@@ -58,15 +57,16 @@ main(int argc, char **argv)
 
   if (argc == 2 && strcmp(argv[1], "-a") == 0) {
     while (name-data < n) {
-      printf("%c%s\n", desktop-- ? ' ' : '*', name);
+      printf("%c%s", desktop-- ? ' ' : ' ', name);
       name += strlen((char *) name) + 1;
     }
   } else {
     while (desktop > 0)
       if (*name++ == 0)
         desktop--;
-    printf("%s\n", name);
+    printf("%s", name);
   }
+
 
   XSync(dpy, False);
   XCloseDisplay(dpy);
