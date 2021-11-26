@@ -1,27 +1,36 @@
 # Epitaph
 
-*Version: 0.8.2 - "If we make it, we can all sit back and laugh."*
+*Version: 0.11.9 - "Three lullabies in an ancient tongue."*
 
 > Confusion, will be my epitaph...🎶 
 
 Complete theme for LeftWM. Epitaph is being developed as a starting point
 for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
-aim to be "simple" or "minimalistic", it aims to be complete and new-ser friendly while keeping 
+aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping 
 modularity at first.
 
 ## News :newspaper:
 
-**Epitaph is preparing itself for a big release including new features, wallpapers, installer
-and much more sweets for it's users! This version is just a "taste" of what the future of Epitaph is and how it will work.**
+**¡HUGE LEAP!**
+Epitaph comes with a lot of changes (and more to come) in this release!
 
-- Improved polybar icons for CPU and RAM
-- Applist dmenu script is now case insensitive (it works better with fuzzy search patch)
-- Improved the manpage dmenu script look and feel (just added a book emoji)
-- Deleted the emacs daemon init from the `up` script
-- Deleted the light command from the `battery-notify` script
-- [WIP] Improved the recommended applist in the `install script`
-- Added a manpage for documenting Epitaph scripts. 
+### ¡Here comes a new challenger!
+![NewBars](screenshots/bars.png)
 
+- Lemonbar joins the party with these super-fast C / Rust programs for you to enjoy:
+  - Battery Percentage program with icons (Rust)
+  - CPU usage program (C)
+  - RAM usage program (C)
+  - Date + Time reporting program (C)
+  - Window Manager Xworkspace tool (C)
+  - Very tiny window manager title printing tool (C)
+
+- Users can now easily switch between lemonbar and polybar by just editing one variable on the `up` script (After installing this using the `install` script).
+
+- Improved polybar icons
+- Improved `install` script
+- Manual Page for offline reference.
+- GitHub wiki for a complete reference! [WIP]
 ## Overview
 
 This configuration includes:
@@ -29,14 +38,16 @@ This configuration includes:
 - Simple animations on windows powered by picom
 - A simple `dmenu` application menu with icons
 - Compact workspaces
-- Polybar indicators for:
+- 
+- Polybar / Lemonbar indicators for:
   - CPU use percentage
   - Memory use in GiB
   - Calendar + Hour in a simple format
   - Battery / AC Adapter indicator
   - Pulseaudio indicator
-  - Spotify music indicator
-  - Systray
+  - Music indicator (Polybar Only)
+  - SSID indicator (Lemonbar Only)
+  - Systray (Polybar Only)
 - Doom One colorscheme (Taken from DT's [xmobar config](https://gitlab.com/dwt1/dtos-configs/-/blob/main/etc/skel/.config/xmobar/xmobarrc))
 - Very tiny POSIX Shell power manager
 - An integrated script for wallpaper slideshows
@@ -53,13 +64,20 @@ And some inspiration / patches taken from these wonderful sources:
 
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
+### Lemonbar programs credits / licenses
+
+*All external programs retain their respective copyright notices* 
+
+- Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2 ONLY.
+- Both `wmdesk.c` and `wmtitle.c` are written by Christian Neukirchen and are licensed under the public domain.
+- The `cpu-usage.c` program is written by Cosmin Cojocar under the terms of the GPL version 2.
+- The `ram-usage.c` program was written by me and later improved by @Suavesito-Olimpiada, you can use it under the GPL-v2 or later.
+
 ## Wallpaper artists credit
 
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
-
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
-
-- The "LeftWM" One Dark wallpaper is made by me, you can use it under the CC0 License (Public Domain).
+- All "LeftWM" / "LeftOWO" One Dark wallpaper were made by me, from scratch. You can use those under the CC0 License (Public Domain).
 
 ## Screenshots
 
@@ -96,7 +114,7 @@ You can install using the official `leftwm-theme` tool.
 
 `leftwm-theme install "Epitaph"`
 
-**BUT** bear in mind that this won't work as expected since it is not possible to make "post-install hooks" in `leftwm-theme`, you'll have to do extra-work by yourself.
+**BUT** bear in mind that this won't work as expected since it is not possible to make "post-install hooks" in `leftwm-theme`, you'll have to do extra-work by yourself. Also it will install an older version of epitaph, I recommend you to install this theme manually until their PR #292 is up and running.
 
 ### Manual Installation (If you want the latest git commit)
 
@@ -109,7 +127,13 @@ Extract this repository to `~/.config/leftwm/themes`
 - Soft reload with:  <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>
 
 If everything is good, this theme should load up quickly if not, please check your dependencies. Feel free
-to open requests, make suggestions and improvements, try not to get confused.
+to open requests, make suggestions and improvements, try not to get confused or that'll be your epitaph.
 
-## Issues (Not worth using the tabs up there)
-- Nothing for now
+## Issues (Not worth using the issues tab up there)
+- Improve install script
+  - Ask the user if he/she wants lemonbar or polybar and omit unnecessary steps
+  - Cleanup the `install` script code.
+  - Make xworkspaces script faster / write it in C to avoid the HUGE cpu consumption when changing state quickly.
+  - Separate the camel script into more fifos for improved lemonbar output processing.
+  - Create a C / Rust program to get the current volume percentage.
+  - Integrate a systray for lemonbar users
