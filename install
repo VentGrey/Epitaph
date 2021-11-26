@@ -34,4 +34,5 @@ recommended=(kitty flatpak thunar)
 
     echo "The following apps are recommended:" "${recommended[@]}"
 
+
     exit 0

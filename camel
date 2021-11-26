@@ -23,7 +23,7 @@ _Modules() {
 
 _Wininfo() {
         leftwm-state | while read -r line; do
-                echo "W:$(xdotool getwindowfocus getwindowname | cut -c 1-30)"
+                echo "W:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle | cut -c 1-30)"
                 echo "K:$(_Workspaces)"
         done
 }
