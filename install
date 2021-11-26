@@ -1,38 +1,83 @@
 #!/bin/bash
 
+compile_modules() {
+    echo "Compiling modules..."
+    # Compile the battery module with rust
+    rustc scripts/lemonbar/battery.rs -C opt-level=3
+    # Strip the ELF information from this binary (we don't need it)
+    strip scripts/lemonbar/battery
+
+    # Compile CPU usage
+    gcc scripts/lemonbar/cpu_usage.c -O3 -o scripts/lemonbar/cpu_usage
+
+    # Compile ram usage
+    gcc scripts/lemonbar/ram_usage.c -O3 -o scripts/lemonbar/ram_usage
+
+    # Compile time module
+    gcc scripts/lemonbar/time.c -O3 -o scripts/lemonbar/time
+
+    # Compile wmdesk usage
+    gcc scripts/lemonbar/wmdesk.c -O3 "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
+
+    # Compile wmtitle usage
+    gcc scripts/lemonbar/wmtitle.c -O3 "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmtitle
+    echo "Done compiling modules..."
+}
+
 c=0;
 n=0;
-reqs=(leftwm polybar picom feh xdg-user-dirs-update\
+reqs=(leftwm dmenu gcc rustc xrandr lemonbar picom feh xdg-user-dirs-update\
     mate-polkit gnome-keyring-daemon aa-notify blueman-applet\
-    nm-applet pulseaudio notify-send xrandr i3lock i3lock-fancy dmenu)
+    nm-applet pulseaudio notify-send i3lock i3lock-fancy polybar)
 
 recommended=(kitty flatpak thunar)
 
-    for p in "${reqs[@]}"; do
-        if command -v "$p" &>/dev/null
-        then
-            echo -e "[\e[32mOK\e[39m] $p is installed!"
-            (( c++ )) || true
-        else
-            echo -e "[\e[31mERROR\e[39m] $p is NOT installed!"
-            (( n++ )) || true
-        fi
-    done
+for p in "${reqs[@]}"; do
+    if command -v "$p" &>/dev/null
+    then
+        echo -e "[\e[32mOK\e[39m] $p is installed!"
+        (( c++ )) || true
+    else
+        echo -e "[\e[31mERROR\e[39m] $p is NOT installed!"
+        (( n++ )) || true
+    fi
+done
 
-    printf "%d of %d requirements were found.\n"  "$c" "${#reqs[@]}"
-    printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
+printf "%d of %d requirements were found.\n"  "$c" "${#reqs[@]}"
+printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
 
-    echo "Requirements check complete."
-    echo "If you did the installation correctly there are a few additional
-         steps you must follow to get Epitaph up and running:
+echo "Requirements check complete."
+echo "==== BASIC SETUP COMPLETE ===="
+echo "           ! IMPORTANT !                                       "
+echo "   ! Leave this terminal open and read instructions carefully !"
 
-         1 - [Optional] Install the recommended packages printed down here
-         2 - Customize your terminal in the applist and manpages script
-         3 - Customize your applist
-         4 - Open bugs in GitHub :D
-        "
+echo "Some lemonbar modules require compilation, however most of them were built
+using the suckless philosophy in mind, which means no input / configuration files
+whatsoever. Please go to the scripts/lemonbar folder and carefully read the
+source code for all scripts and modify them to your needs. Most of them should
+work out of the box but it is wise to check first, also you'll need to modify
+them if you want another kind of output, for example, floating points in the
+CPU percentage module.
 
-    echo "The following apps are recommended:" "${recommended[@]}"
+If you've read all of these instructions and already customized everything, read
+the line below and proceed..."
 
+read -n 1 -s -r -p "Press any key to continue with the module compilation"
 
-    exit 0
+compile_modules;
+
+echo "==== MODULE COMPILATION COMPLETE ===="
+echo "==== INSTALLATION COMPLETE ===="
+echo "If you did the installation correctly there are a few additional
+              steps you must follow to get Epitaph up and running:
+
+              1 - [Optional] Install the recommended packages printed down here for a better out of the box experience
+              2 - Change your terminal in the applist and manpages script
+              3 - Customize/Write your applist
+              4 - Try polybar/lemonbar and find which one suits you best! :D
+              5 - Help me improve this script by giving me your suggestions
+              6 - Consider sponsoring this theme :)
+              "
+
+echo "The following apps are recommended:" "${recommended[@]}"
+exit 0
