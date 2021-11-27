@@ -72,6 +72,7 @@ And some inspiration / patches taken from these wonderful sources:
 - Both `wmdesk.c` and `wmtitle.c` are written by Christian Neukirchen and are licensed under the public domain.
 - The `cpu-usage.c` program is written by Cosmin Cojocar under the terms of the GPL version 2.
 - The `ram-usage.c` program was written by me and later improved by @Suavesito-Olimpiada, you can use it under the GPL-v2 or later.
+- The `getvol.c` program is written by hvod2000. This has no license file but it's a public repository, will assume "UNLICENSE" here.
 
 ## Wallpaper artists credit
 
@@ -135,5 +136,4 @@ to open requests, make suggestions and improvements, try not to get confused or 
   - Cleanup the `install` script code.
   - Make xworkspaces script faster / write it in C to avoid the HUGE cpu consumption when changing state quickly.
   - Separate the camel script into more fifos for improved lemonbar output processing.
-  - Create a C / Rust program to get the current volume percentage.
   - Integrate a systray for lemonbar users
