@@ -15,7 +15,7 @@ _Modules() {
                 echo "R:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
                 echo "S:$(/usr/sbin/iwgetid -r || printf '%s' 'Disconnected')"
                 echo "T:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"
-                echo "V:$(amixer get Master | awk -F'[][]' 'END{ print $2 }')"
+                echo "V:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
                 sleep 1
         done
 }
