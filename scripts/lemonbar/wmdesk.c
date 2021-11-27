@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   XFree (data);
 
   if (argc == 2 && strcmp(argv[1], "-n") == 0) {
-    printf("%d\n", desktop);
+    printf("%ld\n", desktop);
     exit(0);
   }
 
