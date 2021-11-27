@@ -4,9 +4,8 @@
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
-        al=$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk -a)
         curr=$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk)
-        printf "%s" "$al"| sed -e "s/$curr/%{R} $curr %{R}/"
+        printf "%s" "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$curr/%{R} $curr %{R}/"
 }
 
 _Modules() {
