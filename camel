@@ -49,7 +49,7 @@ _Main() {
                         W*) wname="$(echo "$report" | cut -d':' -f2-)";;
                 esac
                 sleep 0.1s
-                printf "%s" "%{F#FAFAFA} $wm | $wname %{r} %{F#E5C07B} 龍 cpu: $cpu %{F#FAFAFA}| %{F#E06c75}  ram: $ram %{F#FAFAFA}|%{F#61AFEF}  $time %{F#FAFAFA}|%{F#98C379}  %{F#FAFAFA}$batt | 墳 $vol |%{F#c678dd}  $ssid "
+                printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname... %{r} %{F#E5C07B} 龍 cpu: $cpu %{F#FAFAFA}| %{F#E06c75}  ram: $ram %{F#FAFAFA}|%{F#61AFEF}  $time %{F#FAFAFA}|%{F#98C379}  %{F#FAFAFA}$batt | 墳 $vol |%{F#c678dd}  $ssid "
         done
 }
 
