@@ -57,19 +57,17 @@ _SysInfoModule > "$lemon_fifo" &
 _Modules > "$lemon_fifo" &
 _Wininfo > "$lemon_fifo" &
 
-# TODO: Replace cut with: echo "${var1##*:}
-
 _Main() {
         while read -r report; do
                 case $report in
-                        B*) batt="$(echo "$report" | cut -d':' -f2-)";;
-                        C*) cpu="$(echo "$report" | cut -d':' -f2-)";;
-                        K*) wm="$(echo "$report" | cut -d':' -f2-)";;
-                        R*) ram="$(echo "$report" | cut -d':' -f2-)";;
-                        S*) ssid="$(echo "$report" | cut -d':' -f2-)";;
+                        B*) batt="$(echo "${report##*:}")";;
+                        C*) cpu="$(echo "${report##*:}")";;
+                        K*) wm="$(echo "${report##*:}")";;
+                        R*) ram="$(echo "${report##*:}")";;
+                        S*) ssid="$(echo "${report##*:}")";;
                         T*) time="$(echo "$report" | cut -d':' -f2-)";;
-                        V*) vol="$(echo "$report" | cut -d':' -f2-)";;
-                        W*) wname="$(echo "$report" | cut -d':' -f2-)";;
+                        V*) vol="$(echo "${report##*:}")";;
+                        W*) wname="$(echo "${report##*:}")";;
                 esac
                 sleep 0.1s
                 printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname... %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34}  $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}"
