@@ -10,13 +10,32 @@ _Workspaces() {
 
 _Modules() {
         while true; do
-                echo "B:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
-                echo "C:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
-                echo "R:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
                 echo "S:$(/usr/sbin/iwgetid -r || printf '%s' 'Disconnected')"
                 echo "T:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"
-                echo "V:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
-                sleep 1
+                sleep 3
+        done
+}
+
+_SysInfoModule() {
+        while true; do
+                echo "C:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
+                echo "R:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
+                sleep 5;
+        done
+}
+
+# Battery can be updated every five seconds, no battery drains that fast.
+_BatModule() {
+        while true; do
+            echo "B:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
+            sleep 5;
+        done
+}
+# Volume module. This needs to be updated constantly to reflect the current vol.
+_VolModule() {
+        while true; do
+        echo "V:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
+        sleep 0.2;
         done
 }
 
@@ -32,8 +51,13 @@ lemon_fifo="/tmp/lemonfifo"
 [ -e "$lemon_fifo" ] && rm "$lemon_fifo"
 mkfifo "$lemon_fifo"
 
+_VolModule > "$lemon_fifo" &
+_BatModule > "$lemon_fifo" &
+_SysInfoModule > "$lemon_fifo" &
 _Modules > "$lemon_fifo" &
 _Wininfo > "$lemon_fifo" &
+
+# TODO: Replace cut with: echo "${var1##*:}
 
 _Main() {
         while read -r report; do
