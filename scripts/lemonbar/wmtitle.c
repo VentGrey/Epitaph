@@ -10,48 +10,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-  Display *dpy;
-  Window root;
-  Atom netactivewindow, real;
+        Display *dpy;
+        Window root;
+        Atom netactivewindow, real;
 
-  int format;
-  unsigned long extra, n, window;
-  unsigned char *data;
+        int format;
+        unsigned long extra, n, window;
+        unsigned char *data;
 
-  if (argc > 1) {
-    printf("wmtitle     display the title of the currently active window\n");
-    exit(0);
-  }
+        if (argc > 1) {
+                printf("wmtitle  \
+display the title of the currently active window\n");
+                exit(0);
+        }
   
-  if (!(dpy = XOpenDisplay(0)))
-    exit(1);
+        if (!(dpy = XOpenDisplay(0))) {
+                exit(1);
+        }
+
+        root = XDefaultRootWindow(dpy);
+        netactivewindow = XInternAtom(dpy, "_NET_ACTIVE_WINDOW", False);
+
+        if(XGetWindowProperty(dpy, root, netactivewindow, 0, ~0, False,
+                              AnyPropertyType, &real, &format, &n, &extra,
+                              &data) != Success && data != 0)
+                exit(2);
+
+        window = *(unsigned long *) data;
+        XFree (data);
+
+
+        /* No active window.  */
+        if (window == 0) {
+                exit(0);
+        }
+
+
+        if(XGetWindowProperty(dpy, (Window) window, XA_WM_NAME, 0, ~0, False,
+                              AnyPropertyType, &real, &format, &n, &extra,
+                              &data) != Success && data != 0)
+                exit(3);
   
-  root = XDefaultRootWindow(dpy);
-  netactivewindow = XInternAtom(dpy, "_NET_ACTIVE_WINDOW", False);
-
-  if(XGetWindowProperty(dpy, root, netactivewindow, 0, ~0, False,
-                        AnyPropertyType, &real, &format, &n, &extra,
-                        &data) != Success && data != 0)
-    exit(2);
-
-  window = *(unsigned long *) data;
-  XFree (data);
-
-  if (window == 0)              /* No active window.  */
-    exit(0);
-
-  if(XGetWindowProperty(dpy, (Window) window, XA_WM_NAME, 0, ~0, False,
-                        AnyPropertyType, &real, &format, &n, &extra,
-                        &data) != Success && data != 0)
-    exit(3);
+        printf("%s\n", data);
+        XFree (data);
   
-  printf("%s\n", data);
-  XFree (data);
-  
-  XSync(dpy, False);
-  XCloseDisplay(dpy);
-  return 0;
+        XSync(dpy, False);
+        XCloseDisplay(dpy);
+        return 0;
 }
