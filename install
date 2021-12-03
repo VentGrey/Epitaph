@@ -7,6 +7,11 @@ compile_modules() {
     # Strip the ELF information from this binary (we don't need it)
     strip scripts/lemonbar/battery
 
+    # Compile the battery-notify power manager with rust
+    rustc scripts/battery-notify.rs -C opt-level=3
+    # Strip the ELF information from this binary (we don't need it)
+    strip scripts/battery-notify
+
     # Compile CPU usage
     gcc scripts/lemonbar/cpu_usage.c -O3 -o scripts/lemonbar/cpu_usage
 
