@@ -3,22 +3,11 @@
 # Forked from:
 # https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/dmenu/dmenu
 
-# Appfile path
 appfile=$HOME/.local/bin/applist
 
-# Appfile format
-# <modifier> <command>          # <Readable name> <icon>
-# example:
-# TERM       htop                 System Monitor  
-# Available modifiers:
-# TERM - Run apps from terminal
-# flrun - Run flatpaks
-
-# Current Terminal
 TERMINAL="kitty"
 TERMINAL_TITLE="-T"
 
-# flrun function to prevent dmenu clutter
 flrun() {
     branch="stable"
     arch="x86_64"
@@ -30,11 +19,8 @@ flrun() {
     fi
 }
 
-# check if appfile exists under the directory you chose earlier
 if [ -f "${appfile}" ]; then
-    # Include binaries from cargo an ~/.local/bin
     export PATH="$HOME/.cargo/bin/:$HOME/.local/bin/:$PATH"
-    # Show dmenu to prompt user into selection
     sel=$(dmenu -fn 'JetBrainsMono Nerd Font:size=10'\
         -l 15 -i -p " Run: " < "$HOME"/.local/bin/applist)
 
@@ -66,9 +52,7 @@ if [ -f "${appfile}" ]; then
 
     exec $run > /dev/null 2>&1 &
     exit 0
-
 else
-    # if app doesn't exist, notify user or print to terminal.
     notify-send "Applist file doesn't exist!" || echo "Applist doesn't exist"
     touch "$appfile"
     notify-send "Applist file created under $appfile" \

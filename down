@@ -7,10 +7,6 @@ if [ -x "$(command -v feh)" ]; then
 fi
 
 echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
-
-# Don't kill with ampersand, let killing processes block state to ensure
-# nothing gets messed up in the process.
 pkill picom
 pkill battery-notify
 pkill wallpaper
-pkill polybar
