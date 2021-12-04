@@ -3,12 +3,12 @@
 compile_modules() {
     echo "Compiling modules..."
     # Compile the battery module with rust
-    rustc scripts/lemonbar/battery.rs -C opt-level=3
+    rustc scripts/lemonbar/battery.rs -C opt-level=3 -C lto -C panic=abort
     # Strip the ELF information from this binary (we don't need it)
     strip scripts/lemonbar/battery
 
     # Compile the battery-notify power manager with rust
-    rustc scripts/battery-notify.rs -C opt-level=3
+    rustc scripts/battery-notify.rs -C opt-level=3 -C lto -C panic=abort
     # Strip the ELF information from this binary (we don't need it)
     strip scripts/battery-notify
 
