@@ -66,10 +66,13 @@ fn main() {
                 }
             },
             "Full" => {
-                bat_notify("Battery Full",
-                           "Already 100%, please unplug",
-                           "--icon=battery");
-                notified = true;
+                if battery == 100 && notified == false {
+
+                    bat_notify("Battery Full",
+                               "Already 100%, please unplug",
+                               "--icon=battery");
+                    notified = true;
+                }
             }
             _ => panic!("Battery status not known"),
         }
