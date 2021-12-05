@@ -24,14 +24,13 @@ _SysInfoModule() {
         done
 }
 
-# Battery can be updated every five seconds, no battery drains that fast.
 _BatModule() {
         while true; do
             echo "B:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
             sleep 5;
         done
 }
-# Volume module. This needs to be updated constantly to reflect the current vol.
+
 _VolModule() {
         while true; do
         echo "V:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
@@ -40,8 +39,10 @@ _VolModule() {
 }
 
 _Wininfo() {
-        leftwm-state | while read -r line; do
-                echo "W:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle | cut -c 1-30)"
+        # Reduce the output as much as possible, while read is slow because the
+        # shell has to make a syscall for every byte.
+        leftwm-state -w0 -s "{{workspace.index | remove:'0'}}" | while read -r line; do
+                echo "W:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle &)"
                 echo "K:$(_Workspaces &)"
         done
 }
@@ -70,7 +71,7 @@ _Main() {
                         W*) wname="$(echo "${report##*:}")";;
                 esac
                 sleep 0.1s
-                printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname... %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34}  $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}"
+                printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34}  $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}"
         done
 }
 
