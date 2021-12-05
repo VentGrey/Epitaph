@@ -23,7 +23,7 @@ if [ -x "$(command -v feh)" ]; then
   if [ -d "$SCRIPTPATH"/wallpapers ]; then
     "$SCRIPTPATH"/scripts/wallpaper &
   fi
-  feh --bg-scale "$SCRIPTPATH"/background.png
+  feh --bg-scale "$SCRIPTPATH"/background.png &
 fi
 
 echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
@@ -44,13 +44,7 @@ if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
 
   # Lemonbar settings
-  dims="1920x15+0+0"
-  bg="#282c34"
-  fg="#FAFAFA"
-  jbf="JetBrainsMono Nerd Font"
-  ncf="Noto Color Emoji"
-
-  exec $camelscript | lemonbar -g $dims -B$bg -F$fg -f "$jbf"-9 -f "$ncf"-9
+  exec $camelscript | lemonbar -g "1920x15+0+0s" -B"#282c34" -F"#FAFAFA" -f "JetBrainsMono Nerd Font"-9 -f "Noto Color Emoji"-9
 else
   if [ -x "$(command -v polybar)" ]; then
     pkill polybar
