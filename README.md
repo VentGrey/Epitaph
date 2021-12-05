@@ -1,6 +1,6 @@
 # Epitaph
 
-*Version: 0.11.9 - "Three lullabies in an ancient tongue."*
+*Version: ROLLING - "If we make it, we can all sit back and laugh."*
 
 > Confusion, will be my epitaph...🎶 
 
