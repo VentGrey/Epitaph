@@ -65,7 +65,7 @@ _Main() {
                         K*) wm="$(echo "${report##*:}")";;
                         R*) ram="$(echo "${report##*:}")";;
                         S*) ssid="$(echo "${report##*:}")";;
-                        T*) time="$(echo "$report" | cut -d':' -f2-)";;
+                        T*) time="$(echo "${report#*:}")";;
                         V*) vol="$(echo "${report##*:}")";;
                         W*) wname="$(echo "${report##*:}")";;
                 esac

@@ -67,7 +67,6 @@ fn main() {
             },
             "Full" => {
                 if battery == 100 && notified == false {
-
                     bat_notify("Battery Full",
                                "Already 100%, please unplug",
                                "--icon=battery");
