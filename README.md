@@ -11,8 +11,6 @@ modularity at first.
 
 ## News :newspaper:
 
-**¡HUGE LEAP!**
-Epitaph comes with a lot of changes (and more to come) in this release!
 
 ### ¡Here comes a new challenger!
 ![NewBars](screenshots/bars.png)
@@ -49,7 +47,7 @@ This configuration includes:
   - SSID indicator (Lemonbar Only)
   - Systray (Polybar Only)
 - Doom One colorscheme (Taken from DT's [xmobar config](https://gitlab.com/dwt1/dtos-configs/-/blob/main/etc/skel/.config/xmobar/xmobarrc))
-- Very tiny POSIX Shell power manager
+- Very tiny rust power manager
 - An integrated script for wallpaper slideshows
 
 > (Also yes, this is a King Crimson reference)
