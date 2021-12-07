@@ -1,13 +1,21 @@
 use std::fs::read_to_string;
 
 fn main() {
-    let bat_now: String =
+    let bat_now: u8 =
         read_to_string("/sys/class/power_supply/BAT1/charge_now")
-        .expect("ERROR: Cannot read battery charge").trim().to_string();
+        .expect("ERROR: Cannot read battery charge")
+        .trim()
+        .to_string()
+        .parse::<u8>()
+        .unwrap();
 
-    let bat_full: String =
+    let bat_full: u8 =
         read_to_string("/sys/class/power_supply/BAT1/charge_full")
-        .expect("ERROR: Cannot read battery full charge").trim().to_string();
+        .expect("ERROR: Cannot read battery full charge")
+        .trim()
+        .to_string()
+        .parse::<u8>()
+        .unwrap();
 
     let bat_stat: String =
         read_to_string("/sys/class/power_supply/BAT1/status")
@@ -24,6 +32,5 @@ fn main() {
     } else {
         status = '';
     }
-    print!("{} {}%", status, (bat_now.parse::<i32>().unwrap() /
-                              (bat_full.parse::<i32>().unwrap() / 100)));
+    print!("{} {}%", status, (bat_now / (bat_full / 100)));
 }
