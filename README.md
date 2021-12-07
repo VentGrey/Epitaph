@@ -2,41 +2,27 @@
 
 *Version: ROLLING - "If we make it, we can all sit back and laugh."*
 
-> Confusion, will be my epitaph...🎶 
+> Confusion, will be my epitaph...🎶
 
 Complete theme for LeftWM. Epitaph is being developed as a starting point
 for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
-aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping 
+aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping
 modularity at first.
 
 ## News :newspaper:
 
+- Epitaph has a new [wiki](https://github.com/VentGrey/Epitaph/wiki) page!
+- Heavily refactored widgets + `up` & `camel` scripts for faster loading.
+- Improved install script [Still a WIP]
 
-### ¡Here comes a new challenger!
-![NewBars](screenshots/bars.png)
-
-- Lemonbar joins the party with these super-fast C / Rust programs for you to enjoy:
-  - Battery Percentage program with icons (Rust)
-  - CPU usage program (C)
-  - RAM usage program (C)
-  - Date + Time reporting program (C)
-  - Window Manager Xworkspace tool (C)
-  - Very tiny window manager title printing tool (C)
-
-- Users can now easily switch between lemonbar and polybar by just editing one variable on the `up` script (After installing this using the `install` script).
-
-- Improved polybar icons
-- Improved `install` script
-- Manual Page for offline reference.
-- GitHub wiki for a complete reference! [WIP]
 ## Overview
 
 This configuration includes:
 - POSIX shell `up` and `down` scripts for fast loading / reloading times
 - Simple animations on windows powered by picom
 - A simple `dmenu` application menu with icons
+- A lot of script / program goodies for dmenu and leftwm!
 - Compact workspaces
-- 
 - Polybar / Lemonbar indicators for:
   - CPU use percentage
   - Memory use in GiB
@@ -49,6 +35,10 @@ This configuration includes:
 - Doom One colorscheme (Taken from DT's [xmobar config](https://gitlab.com/dwt1/dtos-configs/-/blob/main/etc/skel/.config/xmobar/xmobarrc))
 - Very tiny rust power manager
 - An integrated script for wallpaper slideshows
+
+# Polybar / Lemonbar switching
+
+![NewBars](screenshots/bars.png)
 
 > (Also yes, this is a King Crimson reference)
 
@@ -64,7 +54,7 @@ And some inspiration / patches taken from these wonderful sources:
 
 ### Lemonbar programs credits / licenses
 
-*All external programs retain their respective copyright notices* 
+*All external programs retain their respective copyright notices*
 
 - Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2 ONLY.
 - Both `wmdesk.c` and `wmtitle.c` are written by Christian Neukirchen and are licensed under the public domain.
@@ -132,6 +122,3 @@ to open requests, make suggestions and improvements, try not to get confused or 
 - Improve install script
   - Ask the user if he/she wants lemonbar or polybar and omit unnecessary steps
   - Cleanup the `install` script code.
-  - Make xworkspaces script faster / write it in C to avoid the HUGE cpu consumption when changing state quickly.
-  - Separate the camel script into more fifos for improved lemonbar output processing.
-  - Integrate a systray for lemonbar users
