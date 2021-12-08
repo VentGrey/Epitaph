@@ -44,7 +44,7 @@ if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
 
   # Lemonbar settings
-  exec $camelscript | lemonbar -g "1920x15+0+0s" -B"#282c34" -F"#FAFAFA" -f "JetBrainsMono Nerd Font"-9 -f "Noto Color Emoji"-9
+  exec $camelscript | lemonbar -g "1920x15+0+0s" -B"#282c34" -F"#FAFAFA" -f "JetBrainsMono Nerd Font"-9 -f "Symbola"-9
 else
   if [ -x "$(command -v polybar)" ]; then
     pkill polybar
