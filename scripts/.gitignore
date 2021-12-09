@@ -5,5 +5,6 @@ lemonbar/cpu_usage
 lemonbar/wmdesk
 lemonbar/wmtitle
 lemonbar/getvol
+lemonbar/get_ssid
 lemonbar/.ccls-cache/
 battery-notify
