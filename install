@@ -24,6 +24,9 @@ compile_modules() {
     # Compile volume module
     gcc scripts/lemonbar/getvol.c -O3 -lasound -o scripts/lemonbar/getvol
 
+    # Compile the SSID module
+    gcc scripts/lemonbar/get_ssid.c -O3 -o scripts/lemonbar/get_ssid
+
     # Compile wmdesk usage
     gcc scripts/lemonbar/wmdesk.c -O3 "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
 
