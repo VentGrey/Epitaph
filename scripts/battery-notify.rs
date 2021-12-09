@@ -1,5 +1,4 @@
 fn main() {
-
     /* ===== CONFIG VALUES ===== */
     let max_charge: u8 = 98; // Used to indicate max battery charge
     let low: u8 = 15; // Used to indicate a low battery
@@ -16,35 +15,43 @@ fn main() {
     // according to your system battery. If unsure run:
     // $ ls /sys/class/power_supply
 
-    let battery: u8 =
-        std::fs::read_to_string("/sys/class/power_supply/BAT1/capacity")
-        .expect("ERROR: Cannot read battery capacity").trim().to_string()
-        .parse::<u8>().unwrap();
+    let battery: u8 = std::fs::read_to_string("/sys/class/power_supply/BAT1/capacity")
+        .expect("ERROR: Cannot read battery capacity")
+        .trim()
+        .to_string()
+        .parse::<u8>()
+        .unwrap();
 
-    let status: String =
-        std::fs::read_to_string("/sys/class/power_supply/BAT1/status")
-        .expect("ERROR: Cannot read battery capacity").trim().to_string();
+    let status: String = std::fs::read_to_string("/sys/class/power_supply/BAT1/status")
+        .expect("ERROR: Cannot read battery capacity")
+        .trim()
+        .to_string();
 
     /* ===== END CONFIG VALUES ===== */
-
 
     loop {
         match status.as_str() {
             "Discharging" => {
                 if battery > critical && battery <= low && notified == false {
-                    bat_notify("Low Battery!",
-                               "Connect to power to avoid losing data",
-                               "--icon=battery-low");
+                    bat_notify(
+                        "Low Battery!",
+                        "Connect to power to avoid losing data",
+                        "--icon=battery-low",
+                    );
                     notified = true;
                 } else if battery <= critical {
-                    bat_notify("Very Low Battery!",
-                               "Connect to power immediately!",
-                               "--icon=battery-low");
+                    bat_notify(
+                        "Very Low Battery!",
+                        "Connect to power immediately!",
+                        "--icon=battery-low",
+                    );
                     notified = true;
                 } else if battery <= dead {
-                    bat_notify("Battery is about to die!",
-                               "suspending gracefully to avoid data loss",
-                               "--icon=battery-low");
+                    bat_notify(
+                        "Battery is about to die!",
+                        "suspending gracefully to avoid data loss",
+                        "--icon=battery-low",
+                    );
                     notified = true;
                     // Suspend computer
                     std::process::Command::new("systemctl")
@@ -54,22 +61,26 @@ fn main() {
                         .status()
                         .expect("Could not suspend system");
                 }
-            },
+            }
             "Charging" | "Unknown" => {
                 if battery >= max_charge && notified == false {
-                    bat_notify("Fully Charged",
-                               "Unplug to preserve battery life",
-                               "--icon=battery");
+                    bat_notify(
+                        "Fully Charged",
+                        "Unplug to preserve battery life",
+                        "--icon=battery",
+                    );
                     notified = true;
                 } else {
                     notified = false;
                 }
-            },
+            }
             "Full" => {
                 if battery == 100 && notified == false {
-                    bat_notify("Battery Full",
-                               "Already 100%, please unplug",
-                               "--icon=battery");
+                    bat_notify(
+                        "Battery Full",
+                        "Already 100%, please unplug",
+                        "--icon=battery",
+                    );
                     notified = true;
                 }
             }
@@ -79,7 +90,7 @@ fn main() {
     }
 }
 
-fn bat_notify(msg: &'static str, ext: &'static str, icon: &'static str) {
+fn bat_notify(msg: &str, ext: &str, icon: &str) {
     std::process::Command::new("notify-send")
         .arg(msg)
         .arg(ext)
