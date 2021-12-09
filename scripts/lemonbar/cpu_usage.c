@@ -7,7 +7,6 @@
  * published by the Free Software Foundation.
  *
  */
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -30,12 +29,14 @@ float cpu_usage(const struct cpu_counters *cpu_cnt_start,
 
 #endif
 
-int main() {
+int main()
+{
         struct cpu_counters cpu_cnt_start, cpu_cnt_end;
         read_cpu_counters(&cpu_cnt_start);
         int i = 1;
-        while (i--)
+        while (i--) {
                 sleep(1);
+        }
         read_cpu_counters(&cpu_cnt_end);
         printf("%3.0f%%", cpu_usage(&cpu_cnt_start, &cpu_cnt_end));
         return 0;
