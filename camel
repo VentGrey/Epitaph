@@ -10,10 +10,16 @@ _Workspaces() {
 
 _Modules() {
         while true; do
-                echo "S:$(/usr/sbin/iwgetid -r || printf '%s' 'Disconnected')"
                 echo "T:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"
                 sleep 3
         done
+}
+
+_InternetModule() {
+    while true; do
+        echo "S:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid &)"
+        sleep 5
+    done
 }
 
 _SysInfoModule() {
@@ -57,6 +63,7 @@ _BatModule > "$lemon_fifo" &
 _SysInfoModule > "$lemon_fifo" &
 _Modules > "$lemon_fifo" &
 _Wininfo > "$lemon_fifo" &
+_InternetModule > "$lemon_fifo" &
 
 _Main() {
         while read -r report; do
