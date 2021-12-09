@@ -6,8 +6,10 @@ int main()
 {
         FILE *fd = NULL;
         fd = fopen("/proc/meminfo", "r");
-        if (!fd)
+
+        if (!fd) {
                 printf("Unkown");
+        }
 
         char *line = NULL;
         size_t len = 0;
