@@ -21,7 +21,7 @@ int main()
         }
 
         strftime(buf, BUF_LEN, "%d/%m/%Y (%H:%M)", ptm);
-        puts(buf);
+        printf("%s", buf);
 
         return 0;
 }
