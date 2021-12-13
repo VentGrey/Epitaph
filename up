@@ -34,14 +34,14 @@ xset s 300 20
 xss-lock -l -- "$HOME/.config/leftwm/themes/epitaph/scripts/lock" &
 
 # Start custom power management notifications
-"$HOME"/.config/leftwm/themes/epitaph/scripts/battery-notify &
+~/.config/leftwm/themes/epitaph/scripts/battery-notify &
 
 # boot bar based on options
 if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
 
   # Lemonbar settings
-  exec "$HOME"/.config/leftwm/themes/epitaph/camel | lemonbar -g "1920x15+0+0s" -B"#282c34" -F"#FAFAFA" -f "JetBrainsMono Nerd Font"-9 -f "Symbola"-9
+  exec ~/.config/leftwm/themes/epitaph/camel | lemonbar -g "1920x15+0+0s" -B"#282c34" -F"#FAFAFA" -f "JetBrainsMono Nerd Font"-9 -f "Symbola"-9
 else
     pkill polybar
     if type "xrandr"; then
