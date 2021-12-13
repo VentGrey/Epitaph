@@ -2,9 +2,7 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
-if [ -x "$(command -v feh)" ]; then
-  feh --bg-scale "$SCRIPTPATH"/reset.jpg
-fi
+feh --bg-scale "$SCRIPTPATH"/reset.jpg
 
 echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
 pkill picom
