@@ -4,42 +4,42 @@
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
-        curr=$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk)
-        printf "%s" "$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$curr/%{R} $curr %{R}/"
+        d=$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk)
+        printf "%s" "$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$d/%{R} $d %{R}/"
 }
 
 _Modules() {
-        while true; do
-                echo "T:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"
+        while :; do
+                echo "T:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/time &)"
                 sleep 3
         done
 }
 
 _InternetModule() {
-    while true; do
-        echo "S:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid &)"
+    while :; do
+        echo "S:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid &)"
         sleep 5
     done
 }
 
 _SysInfoModule() {
-        while true; do
-                echo "C:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
-                echo "R:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
+        while :; do
+                echo "C:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
+                echo "R:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
                 sleep 5;
         done
 }
 
 _BatModule() {
-        while true; do
-            echo "B:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
+        while :; do
+            echo "B:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
             sleep 5;
         done
 }
 
 _VolModule() {
-        while true; do
-        echo "V:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
+        while :; do
+        echo "V:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
         sleep 0.2;
         done
 }
@@ -48,7 +48,7 @@ _Wininfo() {
         # Reduce the output as much as possible, while read is slow because the
         # shell has to make a syscall for every byte.
         leftwm-state -w0 -s "{{workspace.index | remove:'0'}}" | while read -r line; do
-                echo "W:$("$HOME"/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle &)"
+                echo "W:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle &)"
                 echo "K:$(_Workspaces &)"
         done
 }
