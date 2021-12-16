@@ -1,8 +1,8 @@
-# Epitaph
-
-*Version: ROLLING - "If we make it, we can all sit back and laugh."*
-
-> Confusion, will be my epitaph...🎶
+<div align="center">
+  <h1>🪦 Epitaph 🕊</h1>
+  <h2>Confusion will be my epitaph. As I crawl a cracked and broken path</h2>
+</div>
+<img src="https://user-images.githubusercontent.com/24773698/146457499-87a8edca-9701-4a67-92fd-4b383119bc38.png" align="right">
 
 Complete theme for LeftWM. Epitaph is being developed as a starting point
 for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
