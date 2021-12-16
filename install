@@ -94,6 +94,11 @@ main() {
     printf "%d of %d requirements are missing\n" "$n" "${#reqs[@]}"
     echo "The following apps are recommended:" "${recommended[@]}"
 
+    if [[ n -gt 1  ]]; then
+        echo "Missing binaries were detected! Try installing them re-run this script after that."
+        exit 1
+    fi
+
     echo "Requirements check complete."
     echo "==== BASIC SETUP COMPLETE ===="
     echo "           ! IMPORTANT !                                       "
