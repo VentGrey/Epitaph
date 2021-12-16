@@ -51,6 +51,11 @@ easy() {
     echo "Setting up Polybar instead of lemonbar..."
     sed -i 's/use_polybar=*/use_polybar=1/g' ./up
     echo "If you want to switch to lemonbar in the future please set the 'use_polybar variable to '1' in your 'up' script."
+    if [[ ! -d $HOME/.local/bin/ ]]
+    then
+        echo "$HOME/.local/bin doesn't exist. Creating it for you..."
+        mkdir -p "$HOME"/.local/bin
+    fi
     echo "Downloading a sample applist for you..."
     wget -O "$HOME"/.local/bin/applist https://raw.githubusercontent.com/VentGrey/dotfiles/master/applist
     echo "Example applist file downloaded and installed at $HOME/.local/bin/applist"
