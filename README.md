@@ -81,16 +81,6 @@ Here are some screenshots of how this will look on your machine (Screenshots are
 ### "productive" screenshot
 ![03](screenshots/03.png)
 
-## Rationale
-Window Managers are awesome (no pun intended) by design, and being well configured they can be as good (or better) as a Desktop Environment, however, setup and ricing takes time...a **LOT** of time. Being a new WM user myself I'm writing this configuration to help transitioning users get a better experience when they
-take their first steps in here.
-
-As stated before, this config's main goal is **NOT** to be minimal, it is to be modular while being complete for new users, as their (mine) experience increases with this environment they should be able to trim down these files at their liking.
-
-*But, why xDE tools?* you ask.
-
-Simple, some other tools are a hell-like experience to configure, also editing dotfiles like a madman only helps by adding fuel to this hell, so LXDE / XFCE tools are lightweight, UNIX compliant and do one thing and do it well, of course I can add alternatives or change those tools over time given the right arguments to do so.
-
 ## Installation
 
 Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
