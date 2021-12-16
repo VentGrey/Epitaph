@@ -4,7 +4,7 @@ workspaces = []
 tags = ["", "", "", "", "", "", "", "", ""]
 layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
 scratchpad = []
-disable_current_tag_swap = false
+disable_current_tag_swap = true
 focus_behaviour = "Sloppy"
 focus_new_windows = true
 
@@ -22,7 +22,19 @@ key = "m"
 
 [[keybind]]
 command = "Execute"
-value = "alacritty"
+value = "PATH=\"$HOME/.local/bin:$PATH\" ~/.local/bin/ytfzf -D"
+modifier = ["modkey"]
+key = "y"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/themes/epitaph/scripts/dmenu/power-menu"
+modifier = ["modkey"]
+key = "p"
+
+[[keybind]]
+command = "Execute"
+value = "kitty"
 modifier = ["modkey", "Shift"]
 key = "Return"
 
@@ -321,6 +333,6 @@ key = "XF86XK_MonBrightnessUp"
 
 [[keybind]]
 command = "Execute"
-value = "thunderbird"
+value = "emacs"
 modifier = []
 key = "XF86XK_Tools"
