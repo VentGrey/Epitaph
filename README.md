@@ -15,6 +15,22 @@ modularity at first.
 - Heavily refactored widgets + `up` & `camel` scripts for faster loading.
 - Improved install script [Still a WIP]
 
+## Installation
+
+Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
+
+## Screenshots
+
+### Vanilla look
+![01](screenshots/01.png)
+
+### rofi + app list (only .desktop files)
+![02](screenshots/02.png)
+
+### "productive" screenshot
+![03](screenshots/03.png)
+
+
 ## Overview
 
 This configuration includes:
@@ -67,20 +83,3 @@ And some inspiration / patches taken from these wonderful sources:
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
 - All "LeftWM" / "LeftOWO" One Dark wallpaper were made by me, from scratch. You can use those under the CC0 License (Public Domain).
-
-## Screenshots
-
-Here are some screenshots of how this will look on your machine (Screenshots are outdated but the theme hasn't changed much)
-
-### Vanilla look
-![01](screenshots/01.png)
-
-### rofi + app list (only .desktop files)
-![02](screenshots/02.png)
-
-### "productive" screenshot
-![03](screenshots/03.png)
-
-## Installation
-
-Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
