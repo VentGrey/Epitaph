@@ -3,27 +3,27 @@
 compile_modules() {
     echo "Compiling modules..."
     # Compile the battery module with rust
-    rustc  $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/battery.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native
+    rustc ./scripts/lemonbar/battery.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native
     # Strip the ELF information from this binary (we don't need it)
-    strip $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/battery
+    strip ./scripts/lemonbar/battery
     # Compile the battery-notify power manager with rust
-    rustc $HOME/.config/leftwm/themes/Epitaph/scripts/battery-notify.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native
+    rustc ./scripts/battery-notify.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native
     # Strip the ELF information from this binary (we don't need it)
-    strip $HOME/.config/leftwm/themes/Epitaph/scripts/battery-notify
+    strip ./scripts/battery-notify
     # Compile CPU usage
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/cpu_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/cpu_usage
+    gcc ./scripts/lemonbar/cpu_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/cpu_usage
     # Compile ram usage
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/ram_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/ram_usage
+    gcc ./scripts/lemonbar/ram_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/ram_usage
     # Compile time module
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
+    gcc ./scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
     # Compile volume module
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
+    gcc ./scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
     # Compile the SSID module
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
+    gcc ./scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
     # Compile wmdesk usage
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
+    gcc ./scripts/lemonbar/wmdesk.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
     # Compile wmtitle usage
-    gcc $HOME/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmtitle.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmtitle
+    gcc ./scripts/lemonbar/wmtitle.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmtitle
     echo "Done compiling modules..."
 }
 
