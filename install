@@ -27,14 +27,6 @@ compile_modules() {
     echo "Done compiling modules..."
 }
 
-case "$1" in
-    "easy") easy; main; ;;
-    "install") main;;
-    "recompile") compile_modules;;
-    "help") helpme;;
-    *) echo "Not a valid option"; exit 1
-esac
-
 helpme() {
     echo "Epitaph - Leftwm Epitaph Management Script"
     echo "Usage: epitaph [option]"
@@ -146,3 +138,11 @@ the line below and proceed..."
     leftwm-command SoftReload
     exit 0
 }
+
+case "$1" in
+    "easy") easy; main; ;;
+    "install") main;;
+    "recompile") compile_modules;;
+    "help") helpme;;
+    *) echo "Not a valid option"; exit 1
+esac
