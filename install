@@ -45,7 +45,7 @@ copyconfig() {
 easy() {
     copyconfig;
     echo "Setting up Polybar instead of lemonbar..."
-    sed -i 's/use_polybar=*/use_polybar=1/g' ./up
+    sed -i 's/use_polybar=0/use_polybar=1/g' ./up
     echo "If you want to switch to lemonbar in the future please set the 'use_polybar variable to '1' in your 'up' script."
     if [[ ! -d $HOME/.local/bin/ ]]
     then
