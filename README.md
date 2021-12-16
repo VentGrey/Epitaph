@@ -91,33 +91,6 @@ As stated before, this config's main goal is **NOT** to be minimal, it is to be 
 
 Simple, some other tools are a hell-like experience to configure, also editing dotfiles like a madman only helps by adding fuel to this hell, so LXDE / XFCE tools are lightweight, UNIX compliant and do one thing and do it well, of course I can add alternatives or change those tools over time given the right arguments to do so.
 
-## Installation:
+## Installation
 
-### Check for dependencies and compatibility + Compile rust goodies
-
-You should run the `epitaph` script, mind that it **WON'T**  install anything, we have `leftwm-theme` for that. This script will check if you have all the correct dependencies in order to install this theme.
-
-### NO! I'm too lazy, do it for me! >.<
-
-You can install using the official `leftwm-theme` tool.
-
-`leftwm-theme install "Epitaph"`
-
-**BUT** bear in mind that this won't work as expected since it is not possible to make "post-install hooks" in `leftwm-theme`, you'll have to do extra-work by yourself. Also it will install an older version of epitaph, I recommend you to install this theme manually until their PR #292 is up and running.
-
-### Manual Installation (If you want the latest git commit)
-
-This theme installation is pretty straightforward:
-
-Extract this repository to `~/.config/leftwm/themes`
-
-- Either rename it as `current` or create a symlink called `current` it to the above folder
-
-- Soft reload with:  <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>
-
-If everything is good, this theme should load up quickly if not, please check your dependencies. Feel free
-to open requests, make suggestions and improvements, try not to get confused or that'll be your epitaph.
-
-## Issues (Not worth using the issues tab up there)
-- Improve install script
-  - Ask the user if he/she wants lemonbar or polybar and omit unnecessary steps
+Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
