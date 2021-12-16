@@ -73,7 +73,7 @@ main() {
 
     c=0;
     n=0;
-    reqs=(leftwm dmenu gcc rustc xrandr lemonbar picom feh\
+    reqs=(leftwm dmenu gcc rustc xrandr pkg-config lemonbar picom feh\
     pulseaudio notify-send i3lock wget i3lock-fancy polybar lemonbar)
 
     recommended=(kitty flatpak thunar xdg-user-dirs-update mate-polkit\
