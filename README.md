@@ -95,7 +95,7 @@ Simple, some other tools are a hell-like experience to configure, also editing d
 
 ### Check for dependencies and compatibility + Compile rust goodies
 
-You should run the `install` script, mind that it **WON'T**  install anything, we have `leftwm-theme` for that. This script will check if you have all the correct dependencies in order to install this theme.
+You should run the `epitaph` script, mind that it **WON'T**  install anything, we have `leftwm-theme` for that. This script will check if you have all the correct dependencies in order to install this theme.
 
 ### NO! I'm too lazy, do it for me! >.<
 
@@ -121,4 +121,3 @@ to open requests, make suggestions and improvements, try not to get confused or 
 ## Issues (Not worth using the issues tab up there)
 - Improve install script
   - Ask the user if he/she wants lemonbar or polybar and omit unnecessary steps
-  - Cleanup the `install` script code.
