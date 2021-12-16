@@ -150,5 +150,5 @@ case "$1" in
     "install") main;;
     "recompile") compile_modules;;
     "help") helpme;;
-    *) echo "Not a valid option"; exit 1
+    *) echo "Not a valid option"; helpme;
 esac
