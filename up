@@ -26,7 +26,7 @@ echo "LoadTheme $SCRIPTPATH/theme.toml" > "$XDG_RUNTIME_DIR"/leftwm/commands.pip
 # - CHOOSE YOUR STATUSBAR
 # 0) Lemonbar
 # 1) Polybar
-use_polybar=0
+use_polybar=1
 # - LEMONBAR SETTINGS
 # Bar Dimensions: (Width x Height + xoffset + yoffset)
 dims="1920x15+0+0"
