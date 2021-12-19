@@ -38,8 +38,10 @@ helpme() {
 copyconfig() {
     # Copy the epitaph configuration
     echo "Copying the Epitaph configuration file to your leftwm configuration file"
+    cp ~/.config/leftwm/config.toml ~/.config/leftwm/config.toml.bak
     cp ./config.toml ~/.config/leftwm/config.toml
     echo "File copied successfully"
+    echo "Your previous config has been saved as ~/.config/leftwm/config.toml.bak"
 }
 
 easy() {
