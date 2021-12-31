@@ -23,33 +23,31 @@ _InternetModule() {
 }
 
 _SysInfoModule() {
-        while :; do
-                echo "C:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
-                echo "R:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
-                sleep 5;
-        done
+    while :; do
+        echo "C:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage &)"
+        echo "R:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage &)"
+        sleep 5;
+    done
 }
 
 _BatModule() {
-        while :; do
-            echo "B:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
-            sleep 5;
-        done
+    while :; do
+        echo "B:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/battery &)"
+        sleep 5;
+    done
 }
 
 _VolModule() {
-        while :; do
+    while :; do
         echo "V:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
         sleep 0.2;
-        done
+    done
 }
 
 _Wininfo() {
-        # Reduce the output as much as possible, while read is slow because the
-        # shell has to make a syscall for every byte.
-        leftwm-state -w0 -s "{{workspace.index | remove:'0'}}" | while read -r line; do
+        leftwm-state -w 0 -s "{{workspace.index | remove:'0'}}" | while read -r _; do
+                echo "K:$(_Workspaces)"
                 echo "W:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle &)"
-                echo "K:$(_Workspaces &)"
         done
 }
 
