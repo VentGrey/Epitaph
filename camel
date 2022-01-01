@@ -18,7 +18,7 @@ _Modules() {
 _InternetModule() {
     while :; do
         echo "S:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid &)"
-        sleep 5
+        sleep 10
     done
 }
 
@@ -40,7 +40,7 @@ _BatModule() {
 _VolModule() {
     while :; do
         echo "V:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol &)"
-        sleep 0.2;
+        sleep 0.3;
     done
 }
 
