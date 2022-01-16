@@ -45,7 +45,7 @@ _VolModule() {
 }
 
 _Wininfo() {
-        leftwm-state -w 0 -s "{{workspace.index | remove:'0'}}" | while read -r _; do
+        leftwm-state -s "{{workspaces[0].index | remove:'0'}}" | while read -r _; do
                 echo "K:$(_Workspaces)"
                 echo "W:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle &)"
         done
