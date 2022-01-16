@@ -13,9 +13,7 @@ modularity at first.
 
 ## News :newspaper:
 
-- Epitaph has a new [wiki](https://github.com/VentGrey/Epitaph/wiki) page!
-- Heavily refactored widgets + `up` & `camel` scripts for faster loading.
-- Improved install script [Still a WIP]
+- Updated to comply with the latest leftwm(git) release 👨‍🔧
 
 ## Installation
 
@@ -26,7 +24,7 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 ### Vanilla look
 ![01](screenshots/01.png)
 
-### rofi + app list (only .desktop files)
+### dmenu + app list (only .desktop files)
 ![02](screenshots/02.png)
 
 ### "productive" screenshot
@@ -91,5 +89,6 @@ And some inspiration / patches taken from these wonderful sources:
 This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of Katatonia and their registered trademark holders.
 
 Some bands that inspired this work are:
-- King Crimson (In The Court Of The Crimson King)
-- Camel (Mirage)
+- King Crimson (In The Court Of The Crimson King - 1969)
+- Camel (Mirage - 1974)
+- Opeth (Orchid - 1995)
