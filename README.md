@@ -9,6 +9,8 @@ for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Envi
 aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping
 modularity at first.
 
+> For credits and copyright see the bottom of this file.
+
 ## News :newspaper:
 
 - Epitaph has a new [wiki](https://github.com/VentGrey/Epitaph/wiki) page!
@@ -83,3 +85,11 @@ And some inspiration / patches taken from these wonderful sources:
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
 - All "LeftWM" / "LeftOWO" One Dark wallpaper were made by me, from scratch. You can use those under the CC0 License (Public Domain).
+
+## Other Copyright Notices
+
+This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of Katatonia and their registered trademark holders.
+
+Some bands that inspired this work are:
+- King Crimson (In The Court Of The Crimson King)
+- Camel (Mirage)
