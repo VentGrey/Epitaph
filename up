@@ -53,7 +53,7 @@ if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
 
   # Lemonbar settings
-  exec "$SCRIPTPATH"/camel | lemonbar -g $dims -B$bg -F$fg -f "$font"-9
+  exec "$SCRIPTPATH"/camel | lemonbar -g $dims -B$bg -F$fg -f "$font"-9 > /dev/null 2>&1 &
 else
     pkill polybar
     if type "xrandr"; then
