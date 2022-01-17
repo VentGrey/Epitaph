@@ -86,7 +86,7 @@ And some inspiration / patches taken from these wonderful sources:
 
 ## Other Copyright Notices
 
-This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of Katatonia and their registered trademark holders.
+This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of the bands mentioned below and their registered trademark holders.
 
 Some bands that inspired this work are:
 - King Crimson (In The Court Of The Crimson King - 1969)
