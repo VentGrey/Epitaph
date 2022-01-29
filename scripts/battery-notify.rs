@@ -36,7 +36,8 @@ fn main() {
     let dead_action: &str = "suspend"; // Action to take in case we hit "dead"
 
     let mut notified: bool = false; // DO NOT CHANGE THIS
-                                    /* ===== END CONFIG VALUES ===== */
+
+    /* ===== END CONFIG VALUES ===== */
 
     loop {
         // NOTE: Some systems might use a different battery than "BAT1", change this
