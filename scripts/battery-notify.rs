@@ -1,8 +1,30 @@
+use std::env;
 use std::fs::read_to_string;
-use std::process::{Command, Stdio};
+use std::process::{exit, Command, Stdio};
 use std::{thread, time};
 
 fn main() {
+    // Command Line Arguments hanlder
+    let args: Vec<String> = env::args().collect();
+    let mut is_debug: bool = false;
+
+    if args.is_empty() {
+        drop(args);
+    } else if args.len() > 1 && args[1] == "--help" {
+        println!("Battery Notify - Epitaph's built-in power manager\n");
+        println!("Usage: battery-notify <options>");
+        println!("Options:");
+        println!("--help: Print this message");
+        println!("--backlight: Allow epitaph to control your backlight (WIP)");
+        exit(0);
+    } else if args.len() > 1 && args[1] == "--debug" {
+        println!("Debugging mode activated! Will start logging to stderr...\n");
+        is_debug = true;
+    } else if args.len() > 1 {
+        println!("Unknown argument or number of arguments!");
+        exit(1);
+    }
+
     /* ===== CONFIG VALUES ===== */
     let max_charge: u8 = 98; // Used to indicate max battery charge
     let low: u8 = 15; // Used to indicate a low battery
@@ -57,10 +79,10 @@ fn main() {
                     );
                     notified = true;
                     // Suspend computer
-                    std::process::Command::new("systemctl")
+                    Command::new("systemctl")
                         .arg(dead_action)
-                        .stdout(std::process::Stdio::null())
-                        .stderr(std::process::Stdio::null())
+                        .stdout(Stdio::null())
+                        .stderr(Stdio::null())
                         .status()
                         .expect("Could not suspend system");
                 }
@@ -89,6 +111,16 @@ fn main() {
             }
             _ => panic!("Battery status not known"),
         }
+
+        if is_debug {
+            eprintln!("==== LOG ITERATION ====");
+            eprintln!("Battery level: {}%", battery);
+            eprintln!("Battery status: {}", status);
+            eprintln!("The user was notified: {}", notified);
+            eprintln!("--- Next iteration will run in {} seconds", sleep_time);
+            eprintln!("========================");
+        }
+
         thread::sleep(time::Duration::from_secs(sleep_time.into()));
     }
 }
