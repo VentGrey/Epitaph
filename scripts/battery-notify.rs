@@ -16,6 +16,7 @@ fn main() {
         println!("Options:");
         println!("--help: Print this message");
         println!("--backlight: Allow epitaph to control your backlight (WIP)");
+        println!("--debug: Run with debug info printed to stderr");
         exit(0);
     } else if args.len() > 1 && args[1] == "--debug" {
         println!("Debugging mode activated! Will start logging to stderr...\n");
