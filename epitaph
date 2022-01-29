@@ -2,23 +2,16 @@
 
 compile_modules() {
     echo "Compiling modules..."
-    # Compile the battery module with rust
+    # RUST MODULES
     rustc ./scripts/lemonbar/battery.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native --edition=2021
-    # Compile the battery-notify power manager with rust
     rustc ./scripts/battery-notify.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native --edition=2021
-    # Compile CPU usage
+    # C MODULES
     gcc ./scripts/lemonbar/cpu_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/cpu_usage
-    # Compile ram usage
     gcc ./scripts/lemonbar/ram_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/ram_usage
-    # Compile time module
     gcc ./scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
-    # Compile volume module
     gcc ./scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
-    # Compile the SSID module
     gcc ./scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
-    # Compile wmdesk usage
     gcc ./scripts/lemonbar/wmdesk.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
-    # Compile wmtitle usage
     gcc ./scripts/lemonbar/wmtitle.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmtitle
     echo "Done compiling modules..."
 }
@@ -30,13 +23,11 @@ helpme() {
     easy - Install all included goodies + sane defaults. (Ideal for newcomers)
     install - Checks for dependencies, installs and compiles some modules.
     recompile - Recompiles the C / Rust modules for lemonbar
-    help - Show this message
-    "
+    help - Show this message"
     exit 0
 }
 
 copyconfig() {
-    # Copy the epitaph configuration
     echo "Copying the Epitaph configuration file to your leftwm configuration file"
     cp ~/.config/leftwm/config.toml ~/.config/leftwm/config.toml.bak
     cp ./config.toml ~/.config/leftwm/config.toml
@@ -72,7 +63,7 @@ main() {
     c=0;
     n=0;
     reqs=(leftwm dmenu gcc rustc xrandr pkg-config lemonbar picom feh\
-    pulseaudio notify-send i3lock wget i3lock-fancy polybar lemonbar)
+    pulseaudio notify-send i3lock wget light i3lock-fancy polybar lemonbar)
 
     recommended=(kitty flatpak thunar xdg-user-dirs-update mate-polkit\
         gnome-keyring-daemon aa-notify blueman-applet nm-applet)
@@ -140,8 +131,7 @@ the line below and proceed..."
               - Consider giving Leftwm a star on GitHub or contribute to their work.
 
     IMPORTNT: You'll need to reload leftwm or restart your OS for changes to work properly.
-    This script will reload leftwm for you. If that doesn't work, try logging out and back in, if that doesn't work try your system. If that doesn't work either, please open a GitHub Issue because I did something clearly wrong.
-              "
+    This script will reload leftwm for you. If that doesn't work, try logging out and back in, if that doesn't work try your system. If that doesn't work either, please open a GitHub Issue because I did something clearly wrong."
     read -n 1 -s -r -p "Press any key to restart LeftWM"
     leftwm-command SoftReload
     exit 0
