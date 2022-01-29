@@ -1,3 +1,7 @@
+use std::fs::read_to_string;
+use std::process::{Command, Stdio};
+use std::{thread, time};
+
 fn main() {
     /* ===== CONFIG VALUES ===== */
     let max_charge: u8 = 98; // Used to indicate max battery charge
@@ -5,34 +9,33 @@ fn main() {
     let critical: u8 = 5; // Used to indicate a critically low battery
     let dead: u8 = 2; // A practically dead battery
 
-    let mut notified: bool = false; // DO NOT CHANGE THIS
-
-    let sleep_time: u8 = 5; // Time (in seconds) to wait
+    let sleep_time: u8 = 10; // Time (in seconds) to wait
 
     let dead_action: &str = "suspend"; // Action to take in case we hit "dead"
 
-    // NOTE: Some systems might use a different battery than "BAT1", change this
-    // according to your system battery. If unsure run:
-    // $ ls /sys/class/power_supply
-
-    let battery: u8 = std::fs::read_to_string("/sys/class/power_supply/BAT1/capacity")
-        .expect("ERROR: Cannot read battery capacity")
-        .trim()
-        .to_string()
-        .parse::<u8>()
-        .unwrap();
-
-    let status: String = std::fs::read_to_string("/sys/class/power_supply/BAT1/status")
-        .expect("ERROR: Cannot read battery capacity")
-        .trim()
-        .to_string();
-
-    /* ===== END CONFIG VALUES ===== */
+    let mut notified: bool = false; // DO NOT CHANGE THIS
+                                    /* ===== END CONFIG VALUES ===== */
 
     loop {
+        // NOTE: Some systems might use a different battery than "BAT1", change this
+        // according to your system battery. If unsure run:
+        // $ ls /sys/class/power_supply
+
+        let battery: u8 = read_to_string("/sys/class/power_supply/BAT1/capacity")
+            .expect("ERROR: Cannot read battery capacity")
+            .trim()
+            .to_string()
+            .parse::<u8>()
+            .unwrap();
+
+        let status: String = read_to_string("/sys/class/power_supply/BAT1/status")
+            .expect("ERROR: Cannot read battery capacity")
+            .trim()
+            .to_string();
+
         match status.as_str() {
             "Discharging" => {
-                if battery > critical && battery <= low && notified == false {
+                if (battery > critical) && (battery <= low) && notified == false {
                     bat_notify(
                         "Low Battery!",
                         "Connect to power to avoid losing data",
@@ -86,17 +89,17 @@ fn main() {
             }
             _ => panic!("Battery status not known"),
         }
-        std::thread::sleep(std::time::Duration::from_secs(sleep_time.into()));
+        thread::sleep(time::Duration::from_secs(sleep_time.into()));
     }
 }
 
 fn bat_notify(msg: &str, ext: &str, icon: &str) {
-    std::process::Command::new("notify-send")
+    Command::new("notify-send")
         .arg(msg)
         .arg(ext)
         .arg(icon)
-        .stdout(std::process::Stdio::null())
-        .stderr(std::process::Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
         .status()
         .expect("Could not run notify-send");
 }
