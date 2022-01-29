@@ -13,7 +13,9 @@ modularity at first.
 
 ## News :newspaper:
 
-- Updated to comply with the latest leftwm(git) release 👨‍🔧
+- Battery notify got some awesome enhancements (CLI arguments + debuginfo)
+- Reduced install script
+- Add new compilation instructions for Rust goodies
 
 ## Installation
 
