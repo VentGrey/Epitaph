@@ -118,6 +118,17 @@ fn main() {
             eprintln!("==== LOG ITERATION ====");
             eprintln!("Battery level: {}%", battery);
             eprintln!("Battery status: {}", status);
+            eprintln!("Maximum charge value: {}%", max_charge);
+            eprintln!("Battery is considered low when it reaches: {}%", low);
+            eprintln!(
+                "Battery is considered critical when it reaches: {}%",
+                critical
+            );
+            eprintln!("Battery is considered dead when it reaches: {}%", dead);
+            eprintln!(
+                "If the battery reaches 'dead' level, the system will {} itself",
+                dead_action
+            );
             eprintln!("The user was notified: {}", notified);
             eprintln!("--- Next iteration will run in {} seconds", sleep_time);
             eprintln!("========================");
