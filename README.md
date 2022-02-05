@@ -13,9 +13,12 @@ modularity at first.
 
 ## News :newspaper:
 
-- Battery notify got some awesome enhancements (CLI arguments + debuginfo)
-- Reduced install script
-- Add new compilation instructions for Rust goodies
+- Updated `up` script to send scripts to the background (and disown them). This will save us unnecessary reloading if things are already running.
+- Remove unnecessary ampersand in `camel`.
+- Pipe lemonbar to `sh` to allow command execution on click
+- Added powermenu to lemonbar!
+
+- Special thanks to [@Dai-BW](https://github.com/Dai-BW) for inspiring this release :star:
 
 ## Installation
 
