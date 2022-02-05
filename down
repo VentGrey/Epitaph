@@ -4,7 +4,9 @@ SCRIPTPATH="$( cd "$(dirname "$0")" || exit; pwd -P )"
 
 feh --bg-scale "$SCRIPTPATH"/reset.jpg
 
-echo "UnloadTheme" > "$XDG_RUNTIME_DIR"/leftwm/commands.pipe
+leftwm-command "UnloadTheme"
+
 pkill picom
 pkill battery-notify
 pkill wallpaper
+pkill lemonbar
