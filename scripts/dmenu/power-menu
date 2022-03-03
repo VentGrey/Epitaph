@@ -3,10 +3,12 @@
 option=$(printf " Shutdown\n Reboot\n鈴 Suspend\n Logout\n" \
     | dmenu -l 10 -p "Power Menu: ")
 
+
+
 case $option in
-    " Shutdown") systemctl poweroff ;;
-    " Reboot") systemctl reboot ;;
-    "鈴 Suspend") systemctl suspend;;
+    " Shutdown") pkexec poweroff ;;
+    " Reboot") pkexec reboot ;;
+    "鈴 Suspend") pkexec zzz;;
     " Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
     "") exit 0;;
     *) notify-send "What are you trying to do?"\

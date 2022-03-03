@@ -4,42 +4,42 @@
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
-        d=$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk)
-        printf "%s" "$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$d/%{R} $d %{R}/"
+        d=$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk)
+        printf "%s" "$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$d/%{R} $d %{R}/"
 }
 
 _Modules() {
     while :; do
-        echo "T:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/time)"
+        echo "T:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/time)"
         sleep 3
     done
 }
 
 _InternetModule() {
     while :; do
-        echo "S:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/get_ssid)"
+        echo "S:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/get_ssid)"
         sleep 10
     done
 }
 
 _SysInfoModule() {
     while :; do
-        echo "C:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/cpu_usage)"
-        echo "R:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/ram_usage)"
+        echo "C:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/cpu_usage)"
+        echo "R:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/ram_usage)"
         sleep 5;
     done
 }
 
 _BatModule() {
     while :; do
-        echo "B:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/battery)"
+        echo "B:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/battery)"
         sleep 5;
     done
 }
 
 _VolModule() {
     while :; do
-        echo "V:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/getvol)"
+        echo "V:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/getvol)"
         sleep 0.3;
     done
 }
@@ -47,7 +47,7 @@ _VolModule() {
 _Wininfo() {
     leftwm-state -s "{{workspaces[0].index | remove:'0'}}" | while read -r _; do
             echo "K:$(_Workspaces)"
-            echo "W:$(~/.config/leftwm/themes/epitaph/scripts/lemonbar/wmtitle)"
+            echo "W:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmtitle)"
     done
 }
 
@@ -76,7 +76,7 @@ _Main() {
             W*) wname="$(echo "${report##*:}")";;
         esac
         sleep 0.1s
-        printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/epitaph/scripts/dmenu/power-menu:}  %{A}%{B#282c34}"
+        printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/Epitaph/scripts/dmenu/power-menu:}  %{A}%{B#282c34}"
     done
 }
 
