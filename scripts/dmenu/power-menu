@@ -3,8 +3,6 @@
 option=$(printf " Shutdown\n Reboot\n鈴 Suspend\n Logout\n" \
     | dmenu -l 10 -p "Power Menu: ")
 
-
-
 case $option in
     " Shutdown") pkexec poweroff ;;
     " Reboot") pkexec reboot ;;
