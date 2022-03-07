@@ -4,9 +4,9 @@ option=$(printf " Shutdown\n Reboot\n鈴 Suspend\n Logout\n" \
     | dmenu -l 10 -p "Power Menu: ")
 
 case $option in
-    " Shutdown") dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop ;;
-    " Reboot") dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart ;;
-    "鈴 Suspend") dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend;;
+    " Shutdown") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true ;;
+    " Reboot") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true ;;
+    "鈴 Suspend") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true ;;
     " Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
     "") exit 0;;
     *) notify-send "What are you trying to do?"\
