@@ -11,14 +11,14 @@ _Workspaces() {
 _Modules() {
     while :; do
         echo "T:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/time)"
-        sleep 3
+        sleep 10
     done
 }
 
 _InternetModule() {
     while :; do
         echo "S:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/get_ssid)"
-        sleep 10
+        sleep 15
     done
 }
 
@@ -40,7 +40,7 @@ _BatModule() {
 _VolModule() {
     while :; do
         echo "V:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/getvol)"
-        sleep 0.3;
+        sleep 0.5s;
     done
 }
 
