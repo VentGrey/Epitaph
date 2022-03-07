@@ -53,12 +53,6 @@ bg="#282c34"
 fg="#FAFAFA"
 
 # ====[ AUTOSTART ] ====
-# Screensaver timeout
-xset s 300 20 &
-
-# Setup xss-lock
-xss-lock -l -- "$SCRIPTPATH/scripts/lock" &
-
 # Start custom power management notifications
 if ! pgrep -x "battery-notify" > /dev/null
 then
