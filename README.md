@@ -13,12 +13,10 @@ modularity at first.
 
 ## News :newspaper:
 
-- Updated `up` script to send scripts to the background (and disown them). This will save us unnecessary reloading if things are already running.
-- Remove unnecessary ampersand in `camel`.
-- Pipe lemonbar to `sh` to allow command execution on click
-- Added powermenu to lemonbar!
-
-- Special thanks to [@Dai-BW](https://github.com/Dai-BW) for inspiring this release :star:
+- Added 5 brand new wallpapers, with prog rock references :D
+- Removed lock script
+- Handle power menu from dbus in case our system doesn't use systemd
+- Made lemonbar update tresholds higher to prevent high CPU usage
 
 ## Installation
 
@@ -97,3 +95,5 @@ Some bands that inspired this work are:
 - King Crimson (In The Court Of The Crimson King - 1969)
 - Camel (Mirage - 1974)
 - Opeth (Orchid - 1995)
+
+Emojis used in the wallpapers are the googlefonts/noto-emoji project. Which it's under the Apache License 2.0
