@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   Window root;
   Atom netcurrentdesktop, netdesktopnames, real;
 
-  int format, all;
+  int format;
   unsigned long extra, n, desktop;
   unsigned char *data, *name;
   
