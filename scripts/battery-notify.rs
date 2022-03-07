@@ -27,14 +27,14 @@ fn main() {
     }
 
     /* ===== CONFIG VALUES ===== */
-    let max_charge: u8 = 98; // Used to indicate max battery charge
-    let low: u8 = 15; // Used to indicate a low battery
-    let critical: u8 = 5; // Used to indicate a critically low battery
-    let dead: u8 = 2; // A practically dead battery
+    const max_charge: u8 = 98; // Used to indicate max battery charge
+    const low: u8 = 15; // Used to indicate a low battery
+    const critical: u8 = 5; // Used to indicate a critically low battery
+    const dead: u8 = 2; // A practically dead battery
 
-    let sleep_time: u8 = 10; // Time (in seconds) to wait
+    const sleep_time: u8 = 10; // Time (in seconds) to wait
 
-    let dead_action: &str = "suspend"; // Action to take in case we hit "dead"
+    const dead_action: &'static str = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Suspend\" boolean:true"; // Action to take in case we hit "dead"
 
     let mut notified: bool = false; // DO NOT CHANGE THIS
 
@@ -81,8 +81,7 @@ fn main() {
                     );
                     notified = true;
                     // Suspend computer
-                    Command::new("systemctl")
-                        .arg(dead_action)
+                    Command::new(dead_action)
                         .stdout(Stdio::null())
                         .stderr(Stdio::null())
                         .status()
