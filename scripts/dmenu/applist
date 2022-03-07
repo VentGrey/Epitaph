@@ -9,8 +9,8 @@ TERMINAL="kitty"
 TERMINAL_TITLE="-T"
 
 flrun() {
-    branch="stable"
-    arch="x86_64"
+    local branch="stable"
+    local arch="x86_64"
 
     if [ "$1" = "org.signal.Signal" ]; then
         flatpak run --branch=$branch --arch=$arch "$1" --use-tray-icon
