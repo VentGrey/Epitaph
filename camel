@@ -4,7 +4,7 @@
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
-        local d=$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk)
+        d="$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk)"
         printf "%s" "$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$d/%{R} $d %{R}/"
 }
 
@@ -75,7 +75,7 @@ _Main() {
             V*) vol="$(echo "${report##*:}")";;
             W*) wname="$(echo "${report##*:}")";;
         esac
-        sleep 0.1s
+        sleep 0.2s
         printf "%s" "%{F#FAFAFA}%{R} $wm %{R} $wname %{r}%{B#282c34}%{F#E06c75}%{R}%{F#282c34} 龍 cpu: $cpu %{F#E5C07B}%{B#E06c75}%{R}%{F#282c34}  ram: $ram %{B#E5C07B}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/Epitaph/scripts/dmenu/power-menu:}  %{A}%{B#282c34}"
     done
 }
