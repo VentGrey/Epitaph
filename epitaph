@@ -3,8 +3,8 @@
 compile_modules() {
     echo "Compiling modules..."
     # RUST MODULES
-    rustc ./scripts/lemonbar/battery.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native --edition=2021
-    rustc ./scripts/battery-notify.rs -C opt-level=3 -C lto -C panic=abort -C target-cpu=native --edition=2021
+    rustc ./scripts/lemonbar/battery.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
+    rustc ./scripts/battery-notify.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
     # C MODULES
     gcc ./scripts/lemonbar/cpu_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/cpu_usage
     gcc ./scripts/lemonbar/ram_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/ram_usage
