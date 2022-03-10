@@ -20,17 +20,17 @@ int main(int argc, char **argv)
   int format;
   unsigned long extra, n, desktop;
   unsigned char *data, *name;
-  
+
   if (argc > 2 || (argc == 2 && strcmp(argv[1], "-h") == 0)) {
     printf("wmdesk      display the currently active desktop\n");
     printf("wmdesk -a   display all desktops, current is marked with *\n");
     printf("wmdesk -n   display the index of the current desktop\n");
     exit(0);
   }
-  
+
   if (!(dpy = XOpenDisplay(0)))
     exit(1);
-  
+
   root = XDefaultRootWindow(dpy);
   netcurrentdesktop = XInternAtom(dpy, "_NET_CURRENT_DESKTOP", False);
   netdesktopnames = XInternAtom(dpy, "_NET_DESKTOP_NAMES", False);
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
                         AnyPropertyType, &real, &format, &n, &extra,
                         &data) != Success && data != 0)
     exit(2);
-    
+
   desktop = *(unsigned long *) data;
   XFree (data);
 
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     while (desktop > 0)
       if (*name++ == 0)
         desktop--;
-    printf("%s", name);
+    printf("%s - %ld", name, desktop);
   }
 
 
