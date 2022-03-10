@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     while (desktop > 0)
       if (*name++ == 0)
         desktop--;
-    printf("%s - %ld", name, desktop);
+    printf("%s", name);
   }
 
 
