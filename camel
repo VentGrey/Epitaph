@@ -4,21 +4,20 @@
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Workspaces() {
-        d="$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk)"
-        printf "%s" "$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk -a)" | sed -e "s/$d/%{R} $d %{R}/"
+    printf "%s" "$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/wmdesk)"
 }
 
 _Modules() {
     while :; do
         echo "T:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/time)"
-        sleep 10
+        sleep 10s;
     done
 }
 
 _InternetModule() {
     while :; do
         echo "S:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/get_ssid)"
-        sleep 15
+        sleep 15s
     done
 }
 
@@ -26,14 +25,14 @@ _SysInfoModule() {
     while :; do
         echo "C:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/cpu_usage)"
         echo "R:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/ram_usage)"
-        sleep 5;
+        sleep 5s;
     done
 }
 
 _BatModule() {
     while :; do
         echo "B:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/battery)"
-        sleep 5;
+        sleep 30s;
     done
 }
 
