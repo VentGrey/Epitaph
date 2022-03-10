@@ -11,8 +11,6 @@ compile_modules() {
     gcc ./scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
     gcc ./scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
     gcc ./scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
-    gcc ./scripts/lemonbar/wmdesk.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmdesk
-    gcc ./scripts/lemonbar/wmtitle.c -O3 -march=native -mtune=native "$(pkg-config --cflags --libs x11)" -o scripts/lemonbar/wmtitle
     echo "Done compiling modules..."
 }
 
