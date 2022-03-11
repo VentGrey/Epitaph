@@ -25,14 +25,13 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 ## Screenshots
 
 ### Vanilla look
-![01](screenshots/01.png)
+<img src="screenshots/01.png" width="800"/>
 
 ### dmenu + app list (only .desktop files)
-![02](screenshots/02.png)
+<img src="screenshots/02.png" width="800"/>
 
 ### "productive" screenshot
-![03](screenshots/03.png)
-
+<img src="screenshots/03.png" width="800"/>
 
 ## Overview
 
@@ -41,10 +40,10 @@ This configuration includes:
 - Simple animations on windows powered by picom
 - A simple `dmenu` application menu with icons
 - A lot of script / program goodies for dmenu and leftwm!
-- Compact workspaces
+- Superfast lemonbar
 - Polybar / Lemonbar indicators for:
-  - CPU use percentage
-  - Memory use in GiB
+  - CPU use percentage (Polybar only)
+  - Memory use in GiB (Polybar only)
   - Calendar + Hour in a simple format
   - Battery / AC Adapter indicator
   - Pulseaudio indicator
@@ -76,16 +75,14 @@ And some inspiration / patches taken from these wonderful sources:
 *All external programs retain their respective copyright notices*
 
 - Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2 ONLY.
-- Both `wmdesk.c` and `wmtitle.c` are written by Christian Neukirchen and are licensed under the public domain.
-- The `cpu-usage.c` program is written by Cosmin Cojocar under the terms of the GPL version 2.
-- The `ram-usage.c` program was written by me and later improved by @Suavesito-Olimpiada, you can use it under the GPL-v2 or later.
 - The `getvol.c` program is written by hvod2000. This has no license file but it's a public repository, will assume "UNLICENSE" here.
 
 ## Wallpaper artists credit
 
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
-- All "LeftWM" / "LeftOWO" One Dark wallpaper were made by me, from scratch. You can use those under the CC0 License (Public Domain).
+- Erina the cat was made by AreliDrews.
+- All of the other wallpapers can be used freely with proper attribution to original sources (not me, the ones below this notice)
 
 ## Other Copyright Notices
 
