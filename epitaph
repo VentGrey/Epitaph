@@ -2,12 +2,8 @@
 
 compile_modules() {
     echo "Compiling modules..."
-    # RUST MODULES
     rustc ./scripts/lemonbar/battery.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
     rustc ./scripts/battery-notify.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
-    # C MODULES
-    gcc ./scripts/lemonbar/cpu_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/cpu_usage
-    gcc ./scripts/lemonbar/ram_usage.c -O3 -march=native -mtune=native -o scripts/lemonbar/ram_usage
     gcc ./scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
     gcc ./scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
     gcc ./scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
@@ -31,6 +27,16 @@ copyconfig() {
     cp ./config.toml ~/.config/leftwm/config.toml
     echo "File copied successfully"
     echo "Your previous config has been saved as ~/.config/leftwm/config.toml.bak"
+    echo "Copying the Epitaph's rofi configuration file to your configuration directory"
+
+    if [ ! -d "$HOME"/.config/rofi ]; then
+        mkdir -p "$HOME"/.config/rofi
+    fi
+
+    cp ./config.rasi "$HOME"/.config/rofi/config.rasi
+    echo "Copying fonts to local dir..."
+    cp -R ./fonts "$HOME"/.local/share/fonts
+    fc-cache -fv
 }
 
 easy() {
@@ -38,14 +44,6 @@ easy() {
     echo "Setting up Polybar instead of lemonbar..."
     sed -i 's/use_polybar=0/use_polybar=1/g' ./up
     echo "If you want to switch to lemonbar in the future please set the 'use_polybar variable to '1' in your 'up' script."
-    if [[ ! -d $HOME/.local/bin/ ]]
-    then
-        echo "$HOME/.local/bin doesn't exist. Creating it for you..."
-        mkdir -p "$HOME"/.local/bin
-    fi
-    echo "Downloading a sample applist for you..."
-    wget -O "$HOME"/.local/bin/applist https://raw.githubusercontent.com/VentGrey/dotfiles/master/applist
-    echo "Example applist file downloaded and installed at $HOME/.local/bin/applist"
     echo "Easy setup complete!"
 }
 
@@ -60,8 +58,8 @@ main() {
 
     c=0;
     n=0;
-    reqs=(leftwm dmenu gcc rustc xrandr pkg-config lemonbar picom feh\
-    pulseaudio notify-send i3lock wget light i3lock-fancy polybar lemonbar)
+    reqs=(leftwm rofi gcc rustc xrandr pkg-config lemonbar picom feh\
+    pulseaudio notify-send wget polybar lemonbar)
 
     recommended=(kitty flatpak thunar xdg-user-dirs-update mate-polkit\
         gnome-keyring-daemon aa-notify blueman-applet nm-applet)
