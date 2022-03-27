@@ -1,6 +1,6 @@
 configuration {
-/*	modi: "window,run,ssh";*/
-	font: "hack 10";
+	modi: "window,run,ssh,combi";
+	font: "JetBrainsMono Nerd Font 10";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -14,7 +14,7 @@ configuration {
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "wmctrl -i -R {window}";*/
 /*	window-match-fields: "all";*/
-	icon-theme: "Papirus";
+	icon-theme: "Newaita-reborn-dark";
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-show-actions: false;*/
@@ -145,10 +145,10 @@ configuration {
       sorting-method:    "name";
   }
   combi {
-      modi: "window,drun,ssh";
+      modi: "window,drun,ssh,combi";
   }
   icon {
-      theme: "Papirus";
+      theme: "Newaita-reborn-dark";
   }
 }
-@theme "solarized"
+@theme "Monokai"
