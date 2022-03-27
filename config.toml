@@ -10,15 +10,15 @@ focus_new_windows = true
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/Epitaph/scripts/dmenu/applist"
+value = "~/.config/leftwm/themes/Epitaph/scripts/rofi/applist"
 modifier = ["modkey"]
 key = "space"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/Epitaph/scripts/dmenu/manpages"
-modifier = ["modkey"]
-key = "m"
+value = "maim $HOME/Imágenes/\"$(date)\""
+modifier = []
+key = "Print"
 
 [[keybind]]
 command = "Execute"
@@ -28,7 +28,7 @@ key = "y"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/Epitaph/scripts/dmenu/power-menu"
+value = "~/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu"
 modifier = ["modkey"]
 key = "p"
 
