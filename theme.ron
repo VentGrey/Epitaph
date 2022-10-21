@@ -1,0 +1,14 @@
+#![enable(implicit_some)]
+(
+    border_width: 1,
+    margin: 3,
+    workspace_margin: None,
+    default_width: None,
+    default_height: None,
+    always_float: None,
+    gutter: None,
+    default_border_color: "#c678dd",
+    floating_border_color: "#ECBE7B",
+    focused_border_color: "#61AFEF",
+    on_new_window: None,
+)
