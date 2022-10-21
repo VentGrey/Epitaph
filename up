@@ -34,7 +34,7 @@ else
     feh --bg-scale "$SCRIPTPATH"/background.png 2>&1 &
 fi
 
-leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
+leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
 # ==== [ SETTINGS ] ====
 # - CHOOSE YOUR STATUSBAR
