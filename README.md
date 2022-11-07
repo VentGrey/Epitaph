@@ -6,6 +6,14 @@
 
 **:warning: As of 2022. I can consider this theme "feature-complete" which means I'll just add a few wallpaper goodies, bug-fixes in the installation script and migrations to newer versions of leftwm. The theme itself is NOT dead, it's on "Maintenance" mode until someone requests a new feature or a new shiny thing arrives to leftwm  :warning:**
 
+Things to be truly "feature complete" feel free to add PR's or wait until ready:
+- Implement the `--backlight` flag in `battery-notify` either using `light` or writing directly to the device.
+- Make the installation script smaller / faster or help the LeftWM devs with #292 [here](https://github.com/leftwm/leftwm/pull/292) :)
+- Make more original wallpapers.
+- Add instructions on how to fix the `gnome-keyring-daemon`. Even the gnome team knows that tool is garbage x.x
+- Add a GitHub page to the project.
+
+
 Complete theme for LeftWM. Epitaph is being developed as a starting point
 for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
 aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping
@@ -28,9 +36,6 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 ### Vanilla look
 <img src="screenshots/01.png" width="800"/>
 
-### dmenu + app list (only .desktop files)
-<img src="screenshots/02.png" width="800"/>
-
 ### "productive" screenshot
 <img src="screenshots/03.png" width="800"/>
 
@@ -39,8 +44,6 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 This configuration includes:
 - POSIX shell `up` and `down` scripts for fast loading / reloading times
 - Simple animations on windows powered by picom
-- A simple `dmenu` application menu with icons
-- A lot of script / program goodies for dmenu and leftwm!
 - Superfast lemonbar
 - Polybar / Lemonbar indicators for:
   - CPU use percentage (Polybar only)
@@ -55,11 +58,11 @@ This configuration includes:
 - Very tiny rust power manager
 - An integrated script for wallpaper slideshows
 
-# Polybar / Lemonbar switching
+# Easy Polybar / Lemonbar switching!
 
 ![NewBars](screenshots/bars.png)
 
-> (Also yes, this is a King Crimson reference)
+> (Also yes, this repository is plagued with Prog Rock references!)
 
 ## Credit / Sources
 
@@ -75,7 +78,7 @@ And some inspiration / patches taken from these wonderful sources:
 
 *All external programs retain their respective copyright notices*
 
-- Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2 ONLY.
+- Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2.
 - The `getvol.c` program is written by hvod2000. This has no license file but it's a public repository, will assume "UNLICENSE" here.
 
 ## Wallpaper artists credit
