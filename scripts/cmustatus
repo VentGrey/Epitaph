@@ -1,9 +1,9 @@
 #!/bin/sh
 
-artist=$(cmus-remote -C status | awk '/ artist / {for(i=3;i<=NF;++i)printf $i" "}')
+artist=$(cmus-remote -Q | awk '/ artist / {for(i=3;i<=NF;++i)printf $i" "}')
 
 if [ -n "$artist" ]; then
-    song=$(cmus-remote -C status |\
+    song=$(cmus-remote -Q |\
         awk '/title/ {for(i=3;i<=NF;++i)printf $i" "}')
     printf "%s- %s\n" "$artist" "$song"
 else
