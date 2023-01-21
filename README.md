@@ -4,7 +4,7 @@
 </div>
 <img src="https://user-images.githubusercontent.com/24773698/146457499-87a8edca-9701-4a67-92fd-4b383119bc38.png" align="right">
 
-**:warning: As of 2022. I can consider this theme "feature-complete" which means I'll just add a few wallpaper goodies, bug-fixes in the installation script and migrations to newer versions of leftwm. The theme itself is NOT dead, it's on "Maintenance" mode until someone requests a new feature or a new shiny thing arrives to leftwm  :warning:**
+**:warning: As of 2023. I can consider this theme "feature-complete" which means I'll just add a few wallpaper goodies, bug-fixes in the installation script and migrations to newer versions of leftwm. The theme itself is NOT dead, it's on "Maintenance" mode until someone requests a new feature or a new shiny thing arrives to leftwm  :warning:**
 
 Things to be truly "feature complete" feel free to add PR's or wait until ready:
 - Implement the `--backlight` flag in `battery-notify` either using `light` or writing directly to the device.
