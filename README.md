@@ -4,28 +4,34 @@
 </div>
 <img src="https://user-images.githubusercontent.com/24773698/146457499-87a8edca-9701-4a67-92fd-4b383119bc38.png" align="right">
 
-**:warning: As of 2023. I can consider this theme "feature-complete" which means I'll just add a few wallpaper goodies, bug-fixes in the installation script and migrations to newer versions of leftwm. The theme itself is NOT dead, it's on "Maintenance" mode until someone requests a new feature or a new shiny thing arrives to leftwm  :warning:**
+"Complete" progressive-rock inspired theme for LeftWM. Epitaph is being developed as a starting point
+for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a great WM, this theme does not
+aim to be "simple" or "minimalistic", it aims to be complete and user friendly as I can make it.
 
-Things to be truly "feature complete" feel free to add PR's or wait until ready:
-- Implement the `--backlight` flag in `battery-notify` either using `light` or writing directly to the device.
-- Make the installation script smaller / faster or help the LeftWM devs with #292 [here](https://github.com/leftwm/leftwm/pull/292) :)
-- Make more original wallpapers.
-- Add instructions on how to fix the `gnome-keyring-daemon`. Even the gnome team knows that tool is garbage x.x
-- Add a GitHub page to the project.
-
-
-Complete theme for LeftWM. Epitaph is being developed as a starting point
-for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a minimalist WM, this theme does not
-aim to be "simple" or "minimalistic", it aims to be complete and user friendly while keeping
-modularity at first.
+Suggestions, ideas or requests are always welcome, feel free to open an issue.
 
 > For credits and copyright see the bottom of this file.
 
 ## News :newspaper:
 
-- Updated included fonts with more glyphs
-- Slightly optimized wallpapers
-- Migrate theme to new RON syntax
+**EPITAPH IS BACK ON TRACK! (2023)**
+
+As of February 2023 I've resumed the development of Epitaph to further expand the LeftWM community (or just get progressive rock / metal lovers into window-managers).
+
+I'm trasitioning this theme to use some "new" features I had in mind. Please be patient here are some of the few *new* features you can expect in the next commits:
+
+- New catppuccin (mocha) colorscheme.
+- Updated Nerd Fonts for more icons support.
+- New wallpapers (old ones will be deleted, you can backup them now or find them in previous commits).
+  - All of the new wallpapers will be progressive rock / metal related (Will add a copyright notice).
+- Systray support for lemonbar (using trayer).
+- Improvements to liquid template for lemonbar.
+- Improved wiki.
+- New screenshots.
+- New GitHub thumbnail.
+- Improve epitaph installation script.
+- Improve polybar configuration just in case lemonbar goes haywire.
+- Improvements on battery-notify and battery programs in Rust.
 
 ## Installation
 
