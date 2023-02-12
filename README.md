@@ -23,7 +23,7 @@ I'm trasitioning this theme to use some "new" features I had in mind. Please be 
 - New catppuccin (mocha) colorscheme.
 - Updated Nerd Fonts for more icons support.
 - New wallpapers (old ones will be deleted, you can backup them now or find them in previous commits).
-  - All of the new wallpapers will be progressive rock / metal related (Will add a copyright notice).
+  - All of the new wallpapers will be progressive rock / metal related. (Will add a copyright notice).
 - Systray support for lemonbar (using trayer).
 - Improvements to liquid template for lemonbar.
 - Improved wiki.

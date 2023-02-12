@@ -45,14 +45,14 @@ fn main() {
         // according to your system battery. If unsure run:
         // $ ls /sys/class/power_supply
 
-        let battery: u8 = read_to_string("/sys/class/power_supply/BAT1/capacity")
+        let battery: u8 = read_to_string("/sys/class/power_supply/BAT0/capacity")
             .expect("ERROR: Cannot read battery capacity")
             .trim()
             .to_string()
             .parse::<u8>()
             .unwrap();
 
-        let status: String = read_to_string("/sys/class/power_supply/BAT1/status")
+        let status: String = read_to_string("/sys/class/power_supply/BAT0/status")
             .expect("ERROR: Cannot read battery capacity")
             .trim()
             .to_string();

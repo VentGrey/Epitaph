@@ -46,7 +46,6 @@ mkfifo "$lemon_fifo"
 
 _VolModule > "$lemon_fifo" &
 _BatModule > "$lemon_fifo" &
-_SysInfoModule > "$lemon_fifo" &
 _Modules > "$lemon_fifo" &
 _Wininfo > "$lemon_fifo" &
 _InternetModule > "$lemon_fifo" &
@@ -61,7 +60,7 @@ _Main() {
             V*) vol="$(echo "${report##*:}")";;
         esac
         sleep 0.2s
-        printf "%s" "%{F#FAFAFA}%{R}$wm %{R} %{r}%{B#282c34}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu:}  %{A}%{B#282c34}"
+        printf "%s" "%{F#CDD6F4}%{R}$wm %{R} %{r}%{B#282c34}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu:}  %{A}%{B#282c34}"
     done
 }
 

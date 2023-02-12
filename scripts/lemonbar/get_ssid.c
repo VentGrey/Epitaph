@@ -9,7 +9,7 @@
 
 int main() {
         // Change this to your desired interface name:
-        static const char *interface = "wlp2s0";
+        static const char *interface = "wlp4s0";
 
         struct iwreq req;
         strcpy(req.ifr_ifrn.ifrn_name, interface);

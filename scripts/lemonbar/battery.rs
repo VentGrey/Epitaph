@@ -7,7 +7,7 @@ fn main() {
     // If you wish to change the monitores battery make sure to change the
     // "BAT1" text for your system battery. In most cases it's only
     // BAT0 or BAT1. Dual Battery systems are not supported.
-    let battery: u8 = read_to_string("/sys/class/power_supply/BAT1/capacity")
+    let battery: u8 = read_to_string("/sys/class/power_supply/BAT0/capacity")
         .expect("ERROR: Cannot read battery capacity")
         .trim()
         .to_string()
@@ -21,7 +21,7 @@ fn main() {
     // If you wish to change the monitores battery make sure to change the
     // "BAT1" text for your system battery. In most cases it's only
     // BAT0 or BAT1. Dual Battery systems are not supported.
-    let bat_stat: String = read_to_string("/sys/class/power_supply/BAT1/status")
+    let bat_stat: String = read_to_string("/sys/class/power_supply/BAT0/status")
         .expect("ERROR: Cannot read battery status")
         .trim()
         .to_string();

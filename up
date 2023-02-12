@@ -43,7 +43,7 @@ leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 use_polybar=0
 # - LEMONBAR SETTINGS
 # Bar Dimensions: (Width x Height + xoffset + yoffset)
-dims="1920x15+0+0"
+dims="1840x16+0+0"
 # Font (A Nerd Font is recommended)
 font="JetBrainsMono Nerd Font"
 # Lemonbar Colours
@@ -65,7 +65,9 @@ fi
 # ==== [ BAR CONFIGURATIONS ] ====
 if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
+  pkill trayer;
   # Lemonbar settings
+  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 2 --transparent true --alpha 0 --tint 0x292d3e --height 15 &
   exec "$SCRIPTPATH"/camel | lemonbar -g $dims -B$bg -F$fg -f "$font"-9 | sh > /dev/null 2>&1 &
 else
     pkill polybar;
