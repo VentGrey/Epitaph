@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#stop processes on kill
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 _Modules() {
