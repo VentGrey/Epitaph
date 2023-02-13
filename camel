@@ -10,14 +10,6 @@ _Modules() {
     done
 }
 
-_InternetModule() {
-    while :; do
-        echo "S:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/get_ssid)"
-        sleep 15s
-    done
-}
-
-
 _BatModule() {
     while :; do
         echo "B:$(~/.config/leftwm/themes/Epitaph/scripts/lemonbar/battery)"
@@ -34,7 +26,7 @@ _VolModule() {
 
 _Wininfo() {
     leftwm-state -s "{{workspaces[0].index | remove:'0'}}" | while read -r _; do
-        get_tags=$(leftwm-state -w0 -q -s "{% for tag in workspace.tags %}{% if tag.mine %}%{R} {{tag.name}} %{R}{% elsif tag.visible %} {{tag.name}} {% elsif tag.busy %} {{tag.name}} {% else %} {{tag.name}}{% endif %}{% endfor %} | {{window_title}}")
+        get_tags=$(leftwm-state -w0 -q -s "{% for tag in workspace.tags %}{% if tag.mine %}%{R} {{tag.name}} %{R}{% elsif tag.visible %} {{tag.name}} {% elsif tag.busy %} {{tag.name}} {% else %} {{tag.name}}{% endif %}{% endfor %} | {{window_title | truncate: 30 }}")
         echo "K:$get_tags"
     done
 }
@@ -48,19 +40,17 @@ _VolModule > "$lemon_fifo" &
 _BatModule > "$lemon_fifo" &
 _Modules > "$lemon_fifo" &
 _Wininfo > "$lemon_fifo" &
-_InternetModule > "$lemon_fifo" &
 
 _Main() {
     while read -r report; do
         case $report in
             B*) batt="$(echo "${report##*:}")";;
             K*) wm="$(echo "${report##*:}")";;
-            S*) ssid="$(echo "${report##*:}")";;
             T*) time="$(echo "${report#*:}")";;
             V*) vol="$(echo "${report##*:}")";;
         esac
         sleep 0.2s
-        printf "%s" "%{F#CDD6F4}%{R}$wm %{R} %{r}%{B#282c34}%{F#61AFEF}%{R}%{F#282c34}  $time %{B#61AFEF}%{F#98C379}%{R}%{F#282c34} $batt %{B#98C379}%{F#DA8548}%{R}%{F#282c34} 墳 $vol %{B#DA8548}%{F#c678dd}%{R}%{F#282c34}  $ssid %{B#282c34}%{B#c678dd}%{F#56B6C2}%{R}%{F#282c34}%{A: $HOME/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu:}  %{A}%{B#282c34}"
+        printf "%s" "%{F#CDD6F4}%{R}$wm %{R} %{r}%{B#1e1e2e}%{F#89B4FA}%{R}%{F#1e1e2e}  $time %{B#89b4fa}%{F#a6e3a1}%{R}%{F#1e1e2e} $batt %{B#a6e3a1}%{F#f38ba8}%{R}%{F#1e1e2e} 墳 $vol %{B#f38ba8}%{F#c678dd}%{B#1e1e2e}"
     done
 }
 

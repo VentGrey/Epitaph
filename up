@@ -67,7 +67,7 @@ if [ $use_polybar -eq 0 ]; then
   pkill lemonbar;
   pkill trayer;
   # Lemonbar settings
-  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 2 --transparent true --alpha 0 --tint 0x292d3e --height 15 &
+  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x1e1e2e --height 15 &
   exec "$SCRIPTPATH"/camel | lemonbar -g $dims -B$bg -F$fg -f "$font"-9 | sh > /dev/null 2>&1 &
 else
     pkill polybar;
