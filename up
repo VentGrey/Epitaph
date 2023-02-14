@@ -31,7 +31,7 @@ if [ -d "$SCRIPTPATH"/wallpapers ]; then
     fi
 
 else
-    feh --bg-scale "$SCRIPTPATH"/background.png 2>&1 &
+    feh --bg-scale "$SCRIPTPATH"/background.jpeg 2>&1 &
 fi
 
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"

@@ -20,11 +20,8 @@ As of February 2023 I've resumed the development of Epitaph to further expand th
 
 I'm trasitioning this theme to use some "new" features I had in mind. Please be patient here are some of the few *new* features you can expect in the next commits:
 
-- New wallpapers (old ones will be deleted, you can backup them now or find them in previous commits).
-  - All of the new wallpapers will be progressive rock / metal related. (Will add a copyright notice).
 - Improvements to liquid template for lemonbar.
 - Improved wiki.
-- New screenshots.
 - New GitHub thumbnail.
 - Improve epitaph installation script.
 - Improvements on battery-notify and battery programs in Rust.
@@ -62,9 +59,9 @@ This configuration includes:
 
 # Easy Polybar / Lemonbar switching!
 
-![NewBars](screenshots/bars.png)
+**:warning: This feature is to be deprecated soon.**
 
-> (Also yes, this repository is plagued with Prog Rock references!)
+If you are concerned with the code of the deprecated modules, I keep a copy at my [dotfiles](https://github.com/VentGrey/debdotfiles) repository or you can visit my [blog](https://ventgrey.github.io) to learn how to setup your own lemonbar from scratch.
 
 ## Credit / Sources
 
@@ -76,6 +73,10 @@ And some inspiration / patches taken from these wonderful sources:
 
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
+- @Catppucchin [RoFi config](https://github.com/catppuccin/rofi) - MIT License
+
+- Polybar style inspiration taken from: [ArchCraft](https://archcraft.io/), [DT](https://gitlab.com/dtos/dtos) & [ChadWM](https://github.com/siduck/chadwm).
+
 ### Lemonbar programs credits / licenses
 
 *All external programs retain their respective copyright notices*
@@ -83,14 +84,21 @@ And some inspiration / patches taken from these wonderful sources:
 - Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2.
 - The `getvol.c` program is written by hvod2000. This has no license file but it's a public repository, will assume "UNLICENSE" here.
 
-## Wallpaper artists credit
+## Current wallpaper artists credit
+
+- Erina the cat, Camel, Steven Wilson and King Crimson wallpapers were made by [AreliSuleima](https://github.com/arelisuleima).
+- The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
+
+## Legacy wallpaper artists credit
+
+These credits here are to preserve the copyright / attribution to people who contributed to the look and feel of Epitaph in the past.
 
 - Battery 0% was made by lowelllewolfe, please support her work by giving her a :heart: [here](https://www.instagram.com/lowelllewolfe/)
-- The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
-- Erina the cat was made by AreliDrews.
-- All of the other wallpapers can be used freely with proper attribution to original sources (not me, the ones below this notice)
+- Emojis used in the wallpapers are the googlefonts/noto-emoji project. Which it's under the Apache License 2.0
 
-## Other Copyright Notices
+## Music Copyright Notices
+
+I do not own any of the ideas of the songs referenced here, neither the name, nor the album art. This code does not pretend nor seek to harm or violate any copyright laws, not use any of the artists material in harmful ways.
 
 This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of the bands mentioned below and their registered trademark holders.
 
@@ -98,5 +106,4 @@ Some bands that inspired this work are:
 - King Crimson (In The Court Of The Crimson King - 1969)
 - Camel (Mirage - 1974)
 - Opeth (Orchid - 1995)
-
-Emojis used in the wallpapers are the googlefonts/noto-emoji project. Which it's under the Apache License 2.0
+- Steven Wilson (The Raven That Refused To Sing - 2013)
