@@ -1,2 +1,2 @@
 #!/bin/sh
-rofi -combi-modi drun -show-icons -display-drun "" -show combi
+rofi -show drun
