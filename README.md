@@ -21,10 +21,8 @@ As of February 2023 I've resumed the development of Epitaph to further expand th
 I'm trasitioning this theme to use some "new" features I had in mind. Please be patient here are some of the few *new* features you can expect in the next commits:
 
 - New catppuccin (mocha) colorscheme.
-- Updated Nerd Fonts for more icons support.
 - New wallpapers (old ones will be deleted, you can backup them now or find them in previous commits).
   - All of the new wallpapers will be progressive rock / metal related. (Will add a copyright notice).
-- Systray support for lemonbar (using trayer).
 - Improvements to liquid template for lemonbar.
 - Improved wiki.
 - New screenshots.
@@ -76,7 +74,7 @@ Built on top of [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by 
 
 And some inspiration / patches taken from these wonderful sources:
 
-- @Suavesito-Olimpiada [dotfiles](https://github.com/Suavesito-Olimpiada/dotfiles) - No license but author [states](https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/README.md?plain=1#L26) that his code can be used free as in freedom.
+- @Suavesito-Olimpiada [dotfiles](https://github.com/Suavesito-Olimpiada/dotfiles) - No license but author [states](https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/README.md?plain=1#L26) that his code can be used free as in freedom. I would argue this is for the good of humanity 
 
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
