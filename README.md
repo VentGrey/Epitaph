@@ -20,7 +20,6 @@ As of February 2023 I've resumed the development of Epitaph to further expand th
 
 I'm trasitioning this theme to use some "new" features I had in mind. Please be patient here are some of the few *new* features you can expect in the next commits:
 
-- New catppuccin (mocha) colorscheme.
 - New wallpapers (old ones will be deleted, you can backup them now or find them in previous commits).
   - All of the new wallpapers will be progressive rock / metal related. (Will add a copyright notice).
 - Improvements to liquid template for lemonbar.
@@ -28,7 +27,6 @@ I'm trasitioning this theme to use some "new" features I had in mind. Please be 
 - New screenshots.
 - New GitHub thumbnail.
 - Improve epitaph installation script.
-- Improve polybar configuration just in case lemonbar goes haywire.
 - Improvements on battery-notify and battery programs in Rust.
 
 ## Installation
