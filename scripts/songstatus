@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Check with playerctl if chromium, Spotify or Cmus are running. in a single line.
+# Taking in mind that chromium appends a .instance with a random string.
+if playerctl -l | grep -q "spotify\|cmus"; then
+    playerctl metadata --format "{{ artist }} - {{ title }}"
+else
+    echo "Not Playing"
+fi
