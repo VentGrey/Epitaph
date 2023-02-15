@@ -11,6 +11,8 @@ fi
 
 ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 
+dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+
 if ! pgrep -x "picom" > /dev/null
 then
     nohup picom --config "$SCRIPTPATH"/picom/picom.conf > /dev/null 2>&1 &
