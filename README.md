@@ -14,17 +14,11 @@ Suggestions, ideas or requests are always welcome, feel free to open an issue.
 
 ## News :newspaper:
 
-**EPITAPH IS BACK ON TRACK! (2023)**
-
-As of February 2023 I've resumed the development of Epitaph to further expand the LeftWM community (or just get progressive rock / metal lovers into window-managers).
-
-I'm trasitioning this theme to use some "new" features I had in mind. Please be patient here are some of the few *new* features you can expect in the next commits:
-
-- Improvements to liquid template for lemonbar.
-- Improved wiki.
-- New GitHub thumbnail.
-- Improve epitaph installation script.
-- Improvements on battery-notify and battery programs in Rust.
+- Lemonbar completely dropped.
+- W.I.P `lxsession` integration for a more solid environment.
+- Brand new wallpapers by [arelisuleima](https://github.com/arelisuleima)
+- Improvements to the wiki
+- Improvements to the Epitaph install script
 
 ## Installation
 
@@ -40,28 +34,15 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 
 ## Overview
 
-This configuration includes:
-- POSIX shell `up` and `down` scripts for fast loading / reloading times
-- Simple animations on windows powered by picom
-- Superfast lemonbar
-- Polybar / Lemonbar indicators for:
-  - CPU use percentage (Polybar only)
-  - Memory use in GiB (Polybar only)
-  - Calendar + Hour in a simple format
-  - Battery / AC Adapter indicator
-  - Pulseaudio indicator
-  - Music indicator (Polybar Only)
-  - SSID indicator (Lemonbar Only)
-  - Systray (Polybar Only)
-- Doom One colorscheme (Taken from DT's [xmobar config](https://gitlab.com/dwt1/dtos-configs/-/blob/main/etc/skel/.config/xmobar/xmobarrc))
-- Very tiny rust power manager
-- An integrated script for wallpaper slideshows
-
-# Easy Polybar / Lemonbar switching!
-
-**:warning: This feature is to be deprecated soon.**
-
-If you are concerned with the code of the deprecated modules, I keep a copy at my [dotfiles](https://github.com/VentGrey/debdotfiles) repository or you can visit my [blog](https://ventgrey.github.io) to learn how to setup your own lemonbar from scratch.
+This theme includes:
+- POSIX shell `up` and `down` scripts for fast loading / reloading times.
+- Simple animations on windows powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
+- Beautifully configured polybar.
+- Extensive documentation.
+  - [W.I.P] Steps with lxsession to make LeftWM + Epitaph your own Desktop Environment.
+- Catppucchin Mocha colorscheme.
+- Very tiny rust power manager.
+- An integrated script for wallpaper slideshows.
 
 ## Credit / Sources
 
