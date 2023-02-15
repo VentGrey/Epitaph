@@ -11,8 +11,6 @@ fi
 
 ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 
-dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-
 if ! pgrep -x "picom" > /dev/null
 then
     nohup picom --config "$SCRIPTPATH"/picom/picom.conf > /dev/null 2>&1 &
@@ -23,7 +21,6 @@ fi
 
 #set background using the wallpaper script
 if [ -d "$SCRIPTPATH"/wallpapers ]; then
-
     if ! pgrep -x "wallpaper" > /dev/null
     then
         nohup "$SCRIPTPATH"/scripts/wallpaper 2>&1 &
@@ -31,28 +28,11 @@ if [ -d "$SCRIPTPATH"/wallpapers ]; then
         pkill wallpaper
         nohup "$SCRIPTPATH"/scripts/wallpaper 2>&1 &
     fi
-
 else
     feh --bg-scale "$SCRIPTPATH"/background.jpeg 2>&1 &
 fi
 
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
-
-# ==== [ SETTINGS ] ====
-# - CHOOSE YOUR STATUSBAR
-# 0) Lemonbar
-# 1) Polybar
-use_polybar=1
-# - LEMONBAR SETTINGS
-# Bar Dimensions: (Width x Height + xoffset + yoffset)
-dims="1840x16+0+0"
-# Font (A Nerd Font is recommended)
-font="JetBrainsMono Nerd Font"
-# Lemonbar Colours
-# Background Color
-bg="#1e1e2e"
-# Foreground Color
-fg="#cdd6f4"
 
 # ====[ AUTOSTART ] ====
 # Start custom power management notifications
@@ -65,20 +45,11 @@ else
 fi
 
 # ==== [ BAR CONFIGURATIONS ] ====
-if [ $use_polybar -eq 0 ]; then
-  pkill lemonbar;
-  pkill trayer;
-  # Lemonbar settings
-  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x1e1e2e --height 16 &
-  exec "$SCRIPTPATH"/camel | lemonbar -g $dims -B$bg -F$fg -f "$font"-9 | sh > /dev/null 2>&1 &
+pkill polybar;
+if type "xrandr"; then
+    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+    done
 else
-    pkill trayer;
-    pkill polybar;
-    if type "xrandr"; then
-        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-            MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-        done
-    else
-        polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-   fi
+    polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
 fi
