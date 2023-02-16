@@ -15,10 +15,17 @@ Suggestions, ideas or requests are always welcome, feel free to open an issue.
 ## News :newspaper:
 
 - Lemonbar completely dropped.
-- W.I.P `lxsession` integration for a more solid environment.
 - Brand new wallpapers by [arelisuleima](https://github.com/arelisuleima)
 - Improvements to the wiki
 - Improvements to the Epitaph install script
+
+## TODO for a more "desktop" experience:
+
+- Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock)
+- Integrate `lxsession` for a more solid environment.
+- Setup default apps
+- Make thunar use tilix by default
+- Fix the mpris script sometimes showing what's being played in the browser
 
 ## Installation
 
@@ -55,15 +62,9 @@ And some inspiration / patches taken from these wonderful sources:
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
 - @Catppucchin [RoFi config](https://github.com/catppuccin/rofi) - MIT License
+- @Catppucchin [Colorscheme](https://github.com/catppuccin/) - MIT License
 
 - Polybar style inspiration taken from: [ArchCraft](https://archcraft.io/), [DT](https://gitlab.com/dtos/dtos) & [ChadWM](https://github.com/siduck/chadwm).
-
-### Lemonbar programs credits / licenses
-
-*All external programs retain their respective copyright notices*
-
-- Both `battery.rs` and `time.c` programs are written by me and you can use them under the terms of the GPL-v2.
-- The `getvol.c` program is written by hvod2000. This has no license file but it's a public repository, will assume "UNLICENSE" here.
 
 ## Current wallpaper artists credit
 

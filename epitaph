@@ -1,34 +1,38 @@
 #!/bin/bash
+set -euo pipefail
 
 compile_modules() {
-    echo "Compiling modules..."
-    rustc ./scripts/lemonbar/battery.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
-    rustc ./scripts/battery-notify.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021
-    gcc ./scripts/lemonbar/time.c -O3 -march=native -mtune=native -o scripts/lemonbar/time
-    gcc ./scripts/lemonbar/getvol.c -O3 -march=native -mtune=native -lasound -o scripts/lemonbar/getvol
-    gcc ./scripts/lemonbar/get_ssid.c -O3 -march=native -mtune=native -o scripts/lemonbar/get_ssid
-    echo "Done compiling modules..."
+    echo "Compiling utilities..."
+    rustc ./scripts/battery-notify.rs -C codegen-units=1 -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021 -o ./scripts/battery-notify
 }
 
 helpme() {
-    echo "Epitaph - Leftwm Epitaph Management Script"
-    echo "Usage: epitaph [option]"
-    echo "Options:
-    easy - Install all included goodies + sane defaults. (Ideal for newcomers)
-    install - Checks for dependencies, installs and compiles some modules.
-    recompile - Recompiles the C / Rust modules for lemonbar
+    echo "Epitaph - Leftwm Epitaph Install Script
+    Usage: epitaph [option]
+    Options:
+    install - Checks for dependencies and installs Epitaph.
+    recompile - Recompiles the power manager (battery-notify).
     help - Show this message"
     exit 0
 }
 
-copyconfig() {
-    echo "Copying the Epitaph configuration file to your leftwm configuration file"
-    cp ~/.config/leftwm/config.toml ~/.config/leftwm/config.toml.bak
-    cp ./config.toml ~/.config/leftwm/config.toml
-    echo "File copied successfully"
-    echo "Your previous config has been saved as ~/.config/leftwm/config.toml.bak"
-    echo "Copying the Epitaph's rofi configuration file to your configuration directory"
+main() {
+    local FILE="$HOME/.config/leftwm/themes/Epitaph/.installed"
 
+    if [[ -f "$FILE" ]]; then
+        echo "Epitaph is already installed. If you want to rebuild the
+power manager please invoke this script with the 'recompile' option. Or
+at your own risk, you can remove the '.installed' file in your Epitaph theme"
+        exit 0
+    fi
+
+    echo "Copying the Epitaph configuration file to your leftwm configuration file"
+    cp ~/.config/leftwm/config.ron ~/.config/leftwm/config.ron.bak
+    cp ./config.ron ~/.config/leftwm/config.ron
+    echo "File copied successfully"
+    echo "Your previous config has been saved as ~/.config/leftwm/config.ron.bak"
+
+    echo "Copying the Epitaph's rofi configuration file to your configuration directory"
     if [ ! -d "$HOME"/.config/rofi ]; then
         mkdir -p "$HOME"/.config/rofi
     fi
@@ -37,32 +41,14 @@ copyconfig() {
     echo "Copying fonts to local dir..."
     cp -R ./fonts "$HOME"/.local/share/fonts
     fc-cache -fv
-}
-
-easy() {
-    copyconfig;
-    echo "Setting up Polybar instead of lemonbar..."
-    sed -i 's/use_polybar=0/use_polybar=1/g' ./up
-    echo "If you want to switch to lemonbar in the future please set the 'use_polybar variable to '1' in your 'up' script."
-    echo "Easy setup complete!"
-}
-
-main() {
-    local FILE="$HOME/.config/leftwm/themes/Epitaph/.installed"
-
-    if [[ -f "$FILE" ]]; then
-        echo "Epitaph is already installed. If you want to rebuild any modules
-        please invoke this script with the 'recompile' option."
-        exit 0
-    fi
 
     c=0;
     n=0;
-    reqs=(leftwm rofi gcc rustc xrandr pkg-config lemonbar picom feh\
-    pulseaudio notify-send wget polybar lemonbar)
+    reqs=(leftwm rofi i3lock i3lock-fancy tilix rustc picom feh mate-polkit\
+    pulseaudio notify-send gnome-keyring polybar playerctl pamixer thunar\
+    tumbler ffmpegthumbnailer)
 
-    recommended=(kitty flatpak thunar xdg-user-dirs-update mate-polkit\
-        gnome-keyring-daemon aa-notify blueman-applet nm-applet)
+    recommended=(flatpak xdg-user-dirs-gtk mate-polkit blueman-applet)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null
@@ -83,58 +69,33 @@ main() {
         echo "Missing binaries were detected! Try installing them re-run this script after that."
         exit 1
     fi
-
-    echo "Requirements check complete."
-    echo "==== BASIC SETUP COMPLETE ===="
-    echo "           ! IMPORTANT !                                       "
-    echo "   ! Leave this terminal open and read instructions carefully !"
-    echo "Unless you are running this using the 'easy' option, lemonbar will be your default bar"
-    echo "Some lemonbar modules require compilation, however most of them were built
-using the suckless philosophy in mind, which means no input / configuration files
-whatsoever. Please go to the scripts/lemonbar folder and carefully read the
-source code for all scripts and modify them to your needs. Most of them should
-work out of the box but it is wise to check first, also you'll need to modify
-them if you want another kind of output, for example, floating points in the
-CPU percentage module.
-
-To build some modules you'll have to install some dependencies. Due to linux
-packaging in various distros, I won't include the official package names just
-a hint, it is recommended that you install:
-
-- libx11-dev
-- devscripts
-
-If you've read all of these instructions and already customized everything, read
-the line below and proceed..."
-
-    read -n 1 -s -r -p "Press any key to continue with the module compilation"
     compile_modules;
-    echo "==== MODULE COMPILATION COMPLETE ===="
     touch "$FILE"
     echo "==== INSTALLATION COMPLETE ===="
-    echo "If you did the installation correctly there are a few additional
-              steps you must follow to get Epitaph up and running:
+    echo "If you did the installation correctly there are a few additional steps\
+        you must follow to get Epitaph up and running:
 
-              1 - [Optional] Install the recommended packages printed down here for a better out of the box experience. If you installed this using the 'easy' option you may omit this step.
+              1 - [Optional] Install the recommended packages printed down here for a better out of the box experience.
               2 - Read the Wiki for full customization options: https://github.com/VentGrey/Epitaph/wiki
-              3 - Customize/Write your applist
-              4 - Try polybar/lemonbar and find which one suits you best! :D
-              5 - Help me improve this script by giving me your suggestions, ideas are always welcome!
-              6 - Confusion will be your epitaph (https://www.youtube.com/watch?v=vXrpFxHfppI)
+              3 - Help me improve this script by giving me your suggestions, ideas are always welcome!
+              4 - Confusion will be your epitaph (https://www.youtube.com/watch?v=vXrpFxHfppI)
 
               EXTRAS:
               - Consider sponsoring this theme or giving it a star. Your help means a lot to me! <3
               - Consider giving Leftwm a star on GitHub or contribute to their work.
 
-    IMPORTNT: You'll need to reload leftwm or restart your OS for changes to work properly.
+    IMPORTANT: You'll need to reload leftwm or restart your OS for changes to work properly.
     This script will reload leftwm for you. If that doesn't work, try logging out and back in, if that doesn't work try your system. If that doesn't work either, please open a GitHub Issue because I did something clearly wrong."
     read -n 1 -s -r -p "Press any key to restart LeftWM"
     leftwm-command SoftReload
     exit 0
 }
 
+if [ $# -eq 0 ]; then
+    helpme
+fi
+
 case "$1" in
-    "easy") easy; main; ;;
     "install") main;;
     "recompile") compile_modules;;
     "help") helpme;;
