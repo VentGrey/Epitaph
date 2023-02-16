@@ -18,6 +18,7 @@ Suggestions, ideas or requests are always welcome, feel free to open an issue.
 - Brand new wallpapers by [arelisuleima](https://github.com/arelisuleima)
 - Improvements to the wiki
 - Improvements to the Epitaph install script
+- `battery-notify` improved version
 
 ## TODO for a more "desktop" experience:
 
