@@ -14,19 +14,18 @@ Suggestions, ideas or requests are always welcome, feel free to open an issue.
 
 ## News :newspaper:
 
-- Lemonbar completely dropped.
-- Brand new wallpapers by [arelisuleima](https://github.com/arelisuleima)
-- Improvements to the wiki
-- Improvements to the Epitaph install script
-- `battery-notify` improved version
+- Improvements to polybar look and feel!
+- `battery-notify` now exits if there is another daemon already running.
+- Reduced the number of steps for installation on Epitaph.
+- Improved wiki
 
 ## TODO for a more "desktop" experience:
 
 - Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock)
 - Integrate `lxsession` for a more solid environment.
-- Setup default apps
-- Make thunar use tilix by default
-- Fix the mpris script sometimes showing what's being played in the browser
+- Make thunar use tilix by default.
+- Allow users to configure the badge in polybar.
+- Copy thunar custom action file and backup user's custom actions.
 
 ## Installation
 
@@ -44,15 +43,16 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 
 This theme includes:
 - POSIX shell `up` and `down` scripts for fast loading / reloading times.
-- Simple animations on windows powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
+- Simple animations on windows. Powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
 - Beautifully configured polybar.
 - Extensive documentation.
-  - [W.I.P] Steps with lxsession to make LeftWM + Epitaph your own Desktop Environment.
 - Catppucchin Mocha colorscheme.
 - Very tiny rust power manager.
 - An integrated script for wallpaper slideshows.
 
 ## Credit / Sources
+
+:warning: If you want your source / mention & material to be removed from here, please send an email and read the copyright notice at the end of this file :) :warning:
 
 Built on top of [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376.
 
@@ -71,6 +71,7 @@ And some inspiration / patches taken from these wonderful sources:
 
 - Erina the cat, Camel, Steven Wilson and King Crimson wallpapers were made by [AreliSuleima](https://github.com/arelisuleima).
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
+- Added wallpapers taken from [Linkin Park - Lost](https://www.youtube.com/watch?v=7NK_JOkuSVY) music video. Credits are too long, see the copyright notice below for full credit.
 
 ## Legacy wallpaper artists credit
 
@@ -90,3 +91,4 @@ Some bands that inspired this work are:
 - Camel (Mirage - 1974)
 - Opeth (Orchid - 1995)
 - Steven Wilson (The Raven That Refused To Sing - 2013)
+- (For the "Linkin Park - Lost" wallpapers): Alasdair Willson, Andrew Hawryluk, Colby Beckett, Daniels Gulbis, Egor Mark, Kim Ho, Torell Vowles, Toros Kose, Maciej Kuciara, pplpleasr, jun._.ka & Anthony Scott Burns
