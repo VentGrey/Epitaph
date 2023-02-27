@@ -1,13 +1,17 @@
 use std::env;
 use std::fs::{read_to_string, read_dir};
 use std::process::{exit, Command, Stdio};
-use std::{thread, time};
+use std::time::{Duration, Instant};
+
+/* Enum used to handle notification status */
+#[derive(PartialEq)]
+enum NotificationStatus {
+    NotNotified,
+    LowBatteryNotified,
+    VeryLowBatteryNotified,
+}
 
 fn main() {
-    /* Check if another process is already running (idk if reading from FS)
-     * is faster than using the Command::() function. I would suppose it is.
-     *
-     * TODO: Investigate further.*/
     if already_running() {
         eprintln!("Another instance of this program is already running.");
         exit(1);
@@ -16,7 +20,6 @@ fn main() {
     /* Command Line Arguments hanlder */
     let args: Vec<String> = env::args().collect();
 
-    // Only allow one argument to be passed
     if args.len() > 2 {
         eprintln!("Too many arguments! Only one argument is allowed.\
                    That argument is --help");
@@ -44,84 +47,88 @@ fn main() {
 
     const DEAD_ACTION: &'static str = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Suspend\" boolean:true"; // Action to take in case we hit "dead"
 
-    let mut notified: bool = false; // DO NOT CHANGE THIS
+    let mut notified = NotificationStatus::NotNotified; // DO NOT CHANGE THIS
+    let mut timer = Instant::now();
 
     /* ===== END CONFIG VALUES ===== */
 
     loop {
-        // NOTE: Some systems might use a different battery than "BAT0", change this
-        // according to your system battery. If unsure run:
-        // $ ls /sys/class/power_supply
+        if timer.elapsed() >= Duration::from_secs(SLEEP_TIME.into()) {
+            timer = Instant::now();
+            // NOTE: Some systems might use a different battery than "BAT0", change this
+            // according to your system battery. If unsure run:
+            // $ ls /sys/class/power_supply/
 
-        let battery: u8 = if let Ok(capacity) = read_to_string("/sys/class/power_supply/BAT0/capacity") {
-            capacity.trim().parse().unwrap()
-        } else {
-            eprintln!("Failed to read battery capacity!");
-            exit(1);
-        };
+            let battery: u8 = if let Ok(capacity) = read_to_string("/sys/class/power_supply/BAT0/capacity") {
+                capacity.trim().parse().unwrap()
+            } else {
+                eprintln!("Failed to read battery capacity!");
+                exit(1);
+            };
 
-        let status: String = read_to_string("/sys/class/power_supply/BAT0/status")
-            .expect("ERROR: Cannot read battery capacity")
-            .trim()
-            .to_string();
+            let status: String = read_to_string("/sys/class/power_supply/BAT0/status")
+                .expect("ERROR: Cannot read battery capacity")
+                .trim()
+                .to_string();
 
-        match status.as_str() {
-            "Discharging" => {
-                if (battery > CRITICAL) && (battery <= LOW) && notified == false {
-                    bat_notify(
-                        "Low Battery!",
-                        "Connect to power to avoid losing data",
-                        "--icon=battery-low",
-                    );
-                    notified = true;
-                } else if battery <= CRITICAL {
-                    bat_notify(
-                        "Very Low Battery!",
-                        "Connect to power immediately!",
-                        "--icon=battery-low",
-                    );
-                    notified = true;
-                } else if battery <= DEAD {
-                    bat_notify(
-                        "Battery is about to die!",
-                        "suspending gracefully to avoid data loss",
-                        "--icon=battery-low",
-                    );
-                    notified = true;
-                    // Suspend computer
-                    Command::new(DEAD_ACTION)
-                        .stdout(Stdio::null())
-                        .stderr(Stdio::null())
-                        .status()
-                        .expect("Could not suspend system");
+            match status.as_str() {
+                "Discharging" => {
+                    if (battery > CRITICAL) && (battery <= LOW) && notified != NotificationStatus::LowBatteryNotified {
+                        bat_notify(
+                            "Low Battery!",
+                            "Connect to power to avoid losing data",
+                            "--icon=battery-low",
+                        );
+                        notified = NotificationStatus::LowBatteryNotified;
+                    } else if battery <= CRITICAL {
+                        bat_notify(
+                            "Very Low Battery!",
+                            "Connect to power immediately!",
+                            "--icon=battery-low",
+                        );
+                        notified = NotificationStatus::VeryLowBatteryNotified;
+                    } else if battery <= DEAD {
+                        bat_notify(
+                            "Battery is about to die!",
+                            "suspending gracefully to avoid data loss",
+                            "--icon=battery-low",
+                        );
+                        notified = NotificationStatus::VeryLowBatteryNotified;
+                        // Suspend computer
+                        Command::new(DEAD_ACTION)
+                            .stdout(Stdio::null())
+                            .stderr(Stdio::null())
+                            .status()
+                            .expect("Could not suspend system");
+                    }
                 }
-            }
-            "Charging" | "Unknown" => {
-                if battery >= MAX_CHARGE && notified == false {
-                    bat_notify(
-                        "Fully Charged",
-                        "Unplug to preserve battery life",
-                        "--icon=battery",
-                    );
-                    notified = true;
-                } else {
-                    notified = false;
+
+                "Charging" | "Unknown" => {
+                    if battery >= MAX_CHARGE && notified != NotificationStatus::NotNotified {
+                        bat_notify(
+                            "Fully Charged",
+                            "Unplug to preserve battery life",
+                            "--icon=battery",
+                        );
+                        notified = NotificationStatus::NotNotified;
+                    } else {
+                        notified = NotificationStatus::NotNotified;
+                    }
                 }
-            }
-            "Full" => {
-                if battery == 100 && notified == false {
-                    bat_notify(
-                        "Battery Full",
-                        "Already 100%, please unplug",
-                        "--icon=battery",
-                    );
-                    notified = true;
+
+                "Full" => {
+                    if battery == 100 && notified != NotificationStatus::NotNotified {
+                        bat_notify(
+                            "Battery Full",
+                            "Already 100%, please unplug",
+                            "--icon=battery",
+                        );
+                        notified = NotificationStatus::NotNotified;
+                    }
                 }
+                _ => panic!("Battery status not known"),
             }
-            _ => panic!("Battery status not known"),
         }
-
-        thread::sleep(time::Duration::from_secs(SLEEP_TIME.into()));
     }
 }
 
