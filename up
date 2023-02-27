@@ -8,14 +8,14 @@ SCRIPTPATH="$(dirname "$(readlink -f "$0")")"
 ln -s "$SCRIPTPATH/down" "/tmp/leftwm-theme-down"
 
 pgrep -x "picom" && pkill picom
-nohup picom --config "$SCRIPTPATH"/picom/picom.conf >/dev/null 2>&1 &
+nohup picom --config "$SCRIPTPATH"/picom/picom.conf > /dev/null 2>&1 &
 
 #set background using the wallpaper script
 if [ -d "$SCRIPTPATH"/wallpapers ]; then
     pgrep -x "wallpaper" && pkill wallpaper
-    nohup "$SCRIPTPATH"/scripts/wallpaper >/dev/null 2>&1 &
+    nohup "$SCRIPTPATH"/scripts/wallpaper > /dev/null 2>&1 &
 else
-    feh --bg-scale "$SCRIPTPATH"/background.jpeg >/dev/null 2>&1 &
+    feh --bg-scale "$SCRIPTPATH"/background.jpeg > /dev/null 2>&1 &
 fi
 
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"

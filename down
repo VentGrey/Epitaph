@@ -9,4 +9,3 @@ leftwm-command "UnloadTheme"
 pkill picom
 pkill battery-notify
 pkill wallpaper
-pkill lemonbar
