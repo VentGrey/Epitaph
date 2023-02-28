@@ -50,7 +50,7 @@
     single_window_border: true,
     sloppy_mouse_follows_focus: true,
     keybind: [
-        (command: Execute, value: "~/.config/leftwm/themes/Epitaph/scripts/rofi/applist", modifier: ["modkey"], key: "space"),
+        (command: Execute, value: "rofi -show drun", modifier: ["modkey"], key: "space"),
         (command: Execute, value: "maim $HOME/Imágenes/\"$(date)\"", modifier: [], key: "Print"),
         (command: Execute, value: "PATH=\"$HOME/.local/bin:$PATH\" ~/.local/bin/ytfzf -D", modifier: ["modkey"], key: "y"),
         (command: Execute, value: "~/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu", modifier: ["modkey"], key: "p"),
