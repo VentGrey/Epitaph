@@ -21,25 +21,19 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
         exit 0
     fi
 
-    echo "Copying the Epitaph configuration file to your leftwm configuration file"
+    echo "Copying the Epitaph configuration file to your leftwm configuration\
+        file all of your previous config files will be copied with the same name and a .bak extension."
     cp ~/.config/leftwm/config.ron ~/.config/leftwm/config.ron.bak
     cp ./config.ron ~/.config/leftwm/config.ron
-    echo "File copied successfully"
-    echo "Your previous config has been saved as ~/.config/leftwm/config.ron.bak"
-
-    echo "Copying the Epitaph's rofi configuration file to your configuration directory"
     mkdir -p "$HOME"/.config/rofi
-
     cp ./config.rasi "$HOME"/.config/rofi/config.rasi
-    echo "Copying fonts to local dir..."
     cp -R ./fonts "$HOME"/.local/share/fonts
     fc-cache -fv
 
     c=0;
     n=0;
-    reqs=(leftwm rofi i3lock i3lock-fancy tilix rustc picom feh mate-polkit\
-    pulseaudio notify-send gnome-keyring polybar playerctl pamixer thunar\
-    tumbler ffmpegthumbnailer xdg-user-dirs mate-polkit blueman-applet)
+    reqs=(leftwm rofi i3lock i3lock-fancy tilix rustc picom feh mate-polkit pulseaudio notify-send gnome-keyring\
+        polybar playerctl pamixer thunar tumbler ffmpegthumbnailer xdg-user-dirs mate-polkit blueman-applet)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null
@@ -59,6 +53,7 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
         echo "Missing binaries were detected! Try installing them re-run this script after that."
         exit 1
     fi
+
     compile_modules;
     touch "$FILE"
     echo "==== INSTALLATION COMPLETE ===="
@@ -70,13 +65,10 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
     IMPORTANT: You'll need to reload leftwm or restart your OS for changes to work properly.
     This script will reload leftwm for you. If that doesn't work, try logging out and back in, if that doesn't work try your system. If that doesn't work either, please open a GitHub Issue because I did something clearly wrong."
     read -n 1 -s -r -p "Press any key to restart LeftWM"
-    leftwm-command SoftReload
-    exit 0
+    leftwm-command SoftReload && exit 0
 }
 
-if [ $# -eq 0 ]; then
-    helpme
-fi
+[ $# -eq 0 ] && helpme
 
 case "$1" in
     "install") main;;
