@@ -1,5 +1,4 @@
 #!/bin/bash
-
 compile_modules() {
     rustc ./scripts/battery-notify.rs -C codegen-units=1 -C strip=symbols -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021 -o ./scripts/battery-notify
 }
@@ -15,9 +14,7 @@ helpme() {
 }
 
 main() {
-    local FILE="$HOME/.config/leftwm/themes/Epitaph/.installed"
-
-    if [[ -f "$FILE" ]]; then
+    if [[ -f "$HOME/.config/leftwm/themes/Epitaph/.installed" ]]; then
         echo "Epitaph is already installed. If you want to rebuild the
 power manager please invoke this script with the 'recompile' option. Or
 at your own risk, you can remove the '.installed' file in your Epitaph theme"
@@ -31,9 +28,7 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
     echo "Your previous config has been saved as ~/.config/leftwm/config.ron.bak"
 
     echo "Copying the Epitaph's rofi configuration file to your configuration directory"
-    if [ ! -d "$HOME"/.config/rofi ]; then
-        mkdir -p "$HOME"/.config/rofi
-    fi
+    mkdir -p "$HOME"/.config/rofi
 
     cp ./config.rasi "$HOME"/.config/rofi/config.rasi
     echo "Copying fonts to local dir..."
@@ -71,7 +66,6 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
 
               1 - [Optional] Install the recommended packages listed on the wiki for a better out of the box experience.
               2 - Read the Wiki for full customization options: https://github.com/VentGrey/Epitaph/wiki
-              3 - Help me improve this script by giving me your suggestions, ideas are always welcome!
 
     IMPORTANT: You'll need to reload leftwm or restart your OS for changes to work properly.
     This script will reload leftwm for you. If that doesn't work, try logging out and back in, if that doesn't work try your system. If that doesn't work either, please open a GitHub Issue because I did something clearly wrong."
