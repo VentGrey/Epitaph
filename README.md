@@ -1,37 +1,47 @@
 <div align="center">
   <h1>🪦 Epitaph 🕊</h1>
-  <h2>Confusion will be my epitaph. As I crawl a cracked and broken path</h2>
+  <h2>The wall on which the prophets wrote...</h2>
 </div>
 <img src="https://user-images.githubusercontent.com/24773698/146457499-87a8edca-9701-4a67-92fd-4b383119bc38.png" align="right">
 
-"Complete" progressive-rock inspired theme for LeftWM. Epitaph is being developed as a starting point
-for Gnu/Linux :penguin: users who are transitioning from a complete Desktop Environment to a great WM, this theme does not
-aim to be "simple" or "minimalistic", it aims to be complete and user friendly as I can make it.
+# 🌟 A complete, progressive-rock inspired theme for LeftWM. 🌟
 
-Suggestions, ideas or requests are always welcome, feel free to open an issue.
+<p align="center"> 
+  <a href="https://github.com/VentGrey/Epitaph/wiki">Installation Guide</a> | 
+  <a href="https://github.com/VentGrey/Epitaph#-screenshots">Screenshots</a> | 
+  <a href="https://github.com/VentGrey/Epitaph#music-copyright-notices">Music Copyright Notice</a> 
+</p>
 
-> For credits and copyright see the bottom of this file.
+<p align="center"> 
+  <img alt="License" src="https://img.shields.io/github/license/VentGrey/Epitaph?color=success&label=License&style=for-the-badge">
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/VentGrey/Epitaph?style=for-the-badge">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/VentGrey/Epitaph?style=for-the-badge">
+</p>
 
-## News :newspaper:
+Epitaph is being developed as a starting point for Gnu/Linux 🐧 users who are transitioning from a complete Desktop Environment to a great WM. This theme does not aim to be "simple" or "minimalistic", it aims to be complete and user-friendly as I can make it. I try to make Epitaph carefully crafted to provide you with all the tools you need to personalize your workspace and streamline your workflow. So why settle for less when you can have it all *just work* (kinda) with Epitaph?
 
-- Improvements to polybar look and feel!
-- `battery-notify` now exits if there is another daemon already running.
-- Reduced the number of steps for installation on Epitaph.
-- Improved wiki
+Suggestions, ideas, or requests are always welcome! Please feel free to open an issue.
 
-## TODO for a more "desktop" experience:
+## :newspaper: News
 
-- Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock)
-- Integrate `lxsession` for a more solid environment.
-- Make thunar use tilix by default.
-- Allow users to configure the badge in polybar.
-- Copy thunar custom action file and backup user's custom actions.
+- Improvements to polybar look and feel! 🎨
+- `battery-notify` now exits if there is another daemon already running. 🚫
+- Reduced the number of steps for installation on Epitaph. 🛠️
+- Improved wiki 📚
 
-## Installation
+## 💡 TODO for a more "desktop" experience:
+
+- Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock) 🔒
+- Integrate `lxsession` for a more solid environment.  🤝
+- Make thunar use tilix by default. 📝
+- Allow users to configure the badge in polybar. 🔍
+- Copy thunar custom action file and backup user's custom actions. 📂
+
+## :rocket: Installation
 
 Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
 
-## Screenshots
+## 📷 Screenshots
 
 ### Vanilla look
 <img src="screenshots/01.png" width="800"/>
@@ -42,38 +52,40 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 ## Overview
 
 This theme includes:
-- POSIX shell `up` and `down` scripts for fast loading / reloading times.
-- Simple animations on windows. Powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
-- Beautifully configured polybar.
-- Extensive documentation.
-- Catppucchin Mocha colorscheme.
-- Very tiny rust power manager.
-- An integrated script for wallpaper slideshows.
+- 🐚 POSIX shell `up` and `down` scripts for fast loading / reloading times.
+- 🌪️ Simple animations on windows. Powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
+- 🌟 Beautifully configured polybar.
+- 📚 Extensive documentation.
+- 🎨 Catppucchin Mocha colorscheme.
+- :battery: Very tiny rust power manager.
+- 🖼️ An integrated script for wallpaper slideshows.
 
 ## Credit / Sources
 
-:warning: If you want your source / mention & material to be removed from here, please send an email and read the copyright notice at the end of this file :) :warning:
+🚨 If you want your source / mention & material to be removed from here, please send an email or open an issue and read the copyright notice at the end of this file. 🚨
 
-Built on top of [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376.
+This project is built on top of the [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376.
 
-And some inspiration / patches taken from these wonderful sources:
+I drew inspiration and patches from the following sources:
 
-- @Suavesito-Olimpiada [dotfiles](https://github.com/Suavesito-Olimpiada/dotfiles) - No license but author [states](https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/README.md?plain=1#L26) that his code can be used free as in freedom. I would argue this is for the good of humanity 
+- @Suavesito-Olimpiada [dotfiles](https://github.com/Suavesito-Olimpiada/dotfiles) - No license but author [states](https://github.com/Suavesito-Olimpiada/dotfiles/blob/master/README.md?plain=1#L26) that his code can be used free as in freedom. I would debate if this is for the good of humanity.
 
 - @AethanFoot [leftwm-theme-dracula-rounded](https://github.com/AethanFoot/leftwm-theme-dracula-rounded) - No license as well. Author doesn't state permissions on code, will update as neccessary.
 
 - @Catppucchin [RoFi config](https://github.com/catppuccin/rofi) - MIT License
 - @Catppucchin [Colorscheme](https://github.com/catppuccin/) - MIT License
 
-- Polybar style inspiration taken from: [ArchCraft](https://archcraft.io/), [DT](https://gitlab.com/dtos/dtos) & [ChadWM](https://github.com/siduck/chadwm).
+- Polybar style inspiration taken from: [ArchCraft](https://archcraft.io/), [DT](https://gitlab.com/dtos/dtos) and [ChadWM](https://github.com/siduck/chadwm).
 
-## Current wallpaper artists credit
+## 🖼️ Current wallpaper artists credit
 
 - Erina the cat, Camel, Steven Wilson and King Crimson wallpapers were made by [AreliSuleima](https://github.com/arelisuleima).
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
-- Added wallpapers taken from [Linkin Park - Lost](https://www.youtube.com/watch?v=7NK_JOkuSVY) music video. Credits are too long, see the copyright notice below for full credit.
+- Added wallpapers taken from [Linkin Park - Lost](https://www.youtube.com/watch?v=7NK_JOkuSVY) music video. 
 
-## Legacy wallpaper artists credit
+Credits are too long, see the copyright notice below for full credit.
+
+## 🎨  Legacy wallpaper artists credit
 
 These credits here are to preserve the copyright / attribution to people who contributed to the look and feel of Epitaph in the past.
 
@@ -82,9 +94,9 @@ These credits here are to preserve the copyright / attribution to people who con
 
 ## Music Copyright Notices
 
-I do not own any of the ideas of the songs referenced here, neither the name, nor the album art. This code does not pretend nor seek to harm or violate any copyright laws, not use any of the artists material in harmful ways.
+To be clear, I do not claim ownership of any of the ideas, names, or album art associated with the songs referenced here. I do not intend to harm or violate any copyright laws or use any of the artists' material in harmful ways.
 
-This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to, the original idea + artwork concept and registered trademarks are property of the bands mentioned below and their registered trademark holders.
+This software name and pictures don't intend to infringe copyright laws by illegally copying or claiming content that is not mine. This is made solely as a tribute to the band(s) I love and listen to. I respect the original idea, artwork concept, and registered trademarks, which are the property of the bands mentioned below and their registered trademark holders.
 
 Some bands that inspired this work are:
 - King Crimson (In The Court Of The Crimson King - 1969)
