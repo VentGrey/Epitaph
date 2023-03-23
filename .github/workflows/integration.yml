@@ -1,0 +1,16 @@
+name: TestComponents
+on: 
+  push:
+    branches:
+      - "master"
+  pull_request:
+    branches:
+      - "master"
+
+jobs:
+  TestComponents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build-battery-notify
+        run: rustc ./scripts/battery-notify.rs -C codegen-units=1 -C strip=symbols -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021 -o ./scripts/battery-notify
