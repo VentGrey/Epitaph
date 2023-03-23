@@ -2,7 +2,7 @@
   <h1>🪦 Epitaph 🕊</h1>
   <h2>The wall on which the prophets wrote...</h2>
 </div>
-<img src="https://user-images.githubusercontent.com/24773698/146457499-87a8edca-9701-4a67-92fd-4b383119bc38.png" align="right">
+<img src="https://m.media-amazon.com/images/I/61r34SB-E2L._AC_SX425_.jpg" align="right">
 
 # 🌟 A complete, progressive-rock inspired theme for LeftWM. 🌟
 
