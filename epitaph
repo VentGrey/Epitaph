@@ -4,12 +4,14 @@ compile_modules() {
 }
 
 helpme() {
-    echo "Epitaph - Leftwm Epitaph Install Script
-    Usage: epitaph [option]
+    echo "Epitaph - Leftwm + EpitaphWM Installation Script
+
+    Usage: ./epitaph [option]
+
     Options:
-    install - Checks for dependencies and installs Epitaph.
-    recompile - Recompiles the power manager (battery-notify).
-    help - Show this message"
+    install     Checks for dependencies and installs Epitaph.
+    recompile   Recompiles the power manager (battery-notify).
+    help        Show this message"
     exit 0
 }
 
@@ -33,7 +35,8 @@ at your own risk, you can remove the '.installed' file in your Epitaph theme"
     c=0;
     n=0;
     reqs=(leftwm rofi i3lock i3lock-fancy tilix rustc picom feh mate-polkit pulseaudio notify-send gnome-keyring\
-        polybar playerctl pamixer thunar tumbler ffmpegthumbnailer xdg-user-dirs mate-polkit blueman-applet)
+        polybar playerctl pamixer thunar tumbler ffmpegthumbnailer xdg-user-dirs mate-polkit blueman-applet
+         xss-lock)
 
     for p in "${reqs[@]}"; do
         if command -v "$p" &>/dev/null

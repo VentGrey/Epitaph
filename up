@@ -34,3 +34,7 @@ if type "xrandr"; then
 else
     polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
 fi
+
+# ==== [ SCREEN CONFIGURATIONS ] ====
+xset s 120 5
+xss-lock -l -- i3lock-fancy -p
