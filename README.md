@@ -29,6 +29,8 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
 - Reduced the number of steps for installation on Epitaph. 🛠️
 - Improved wiki 📚
 
+- Added `xss-lock` support, modify values in your `up` file accordingly.
+
 ## 💡 TODO for a more "desktop" experience:
 
 - Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock) 🔒
