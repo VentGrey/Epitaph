@@ -22,21 +22,18 @@ Epitaph is being developed as a starting point for Gnu/Linux 🐧 users who are 
 
 Suggestions, ideas, or requests are always welcome! Please feel free to open an issue.
 
+> Epitaph is again in maintenance-mode. Only a few features are needed for it to be as stable as I want it. This DOES NOT mean i'll leave it unmaintained. This means I won't add more features, but I will make sure it works with the latest LeftWM available for everyone. If you need a new feature feel free to open an issue :)
+
 ## :newspaper: News
 
-- Improvements to polybar look and feel! 🎨
-- `battery-notify` now exits if there is another daemon already running. 🚫
-- Reduced the number of steps for installation on Epitaph. 🛠️
-- Improved wiki 📚
-
-- Added `xss-lock` support, modify values in your `up` file accordingly.
+- i3lock-fancy is the new lockscreen manager
+- Add a new wallpaper
+- Replaced Epitaph script in favour of a makefile
 
 ## 💡 TODO for a more "desktop" experience:
 
-- Find a way to auto-lock screen with i3-lock-fancy. (You'll have to manually lock) 🔒
 - Integrate `lxsession` for a more solid environment.  🤝
-- Make thunar use tilix by default. 📝
-- Allow users to configure the badge in polybar. 🔍
+- Allow users to configure the badge in polybar. 🔍 
 - Copy thunar custom action file and backup user's custom actions. 📂
 
 ## :rocket: Installation
