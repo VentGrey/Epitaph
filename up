@@ -15,12 +15,14 @@ if [ -d "$SCRIPTPATH"/wallpapers ]; then
     pgrep -x "wallpaper" && pkill wallpaper
     nohup "$SCRIPTPATH"/scripts/wallpaper > /dev/null 2>&1 &
 else
-    feh --bg-scale "$SCRIPTPATH"/background.jpeg > /dev/null 2>&1 &
+    nohup feh --bg-scale "$SCRIPTPATH"/background.jpeg > /dev/null 2>&1 &
 fi
 
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
 # ====[ AUTOSTART ] ====
+nohup dunst -config "$HOME/.config/leftwm/themes/Epitaph/dunstrc" &
+
 # Start custom power management notifications
 pgrep -x "battery-notify" && pkill battery-notify
 nohup "$SCRIPTPATH"/scripts/battery-notify >/dev/null 2>&1 &
@@ -32,7 +34,7 @@ if type "xrandr"; then
         MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
     done
 else
-    polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+    nohup polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
 fi
 
 # ==== [ SCREEN CONFIGURATIONS ] ====

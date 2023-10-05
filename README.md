@@ -22,19 +22,16 @@ Epitaph is being developed as a starting point for Gnu/Linux 🐧 users who are 
 
 Suggestions, ideas, or requests are always welcome! Please feel free to open an issue.
 
-> Epitaph is again in maintenance-mode. Only a few features are needed for it to be as stable as I want it. This DOES NOT mean i'll leave it unmaintained. This means I won't add more features, but I will make sure it works with the latest LeftWM available for everyone. If you need a new feature feel free to open an issue :)
-
 ## :newspaper: News
 
-- i3lock-fancy is the new lockscreen manager
-- Add a new wallpaper
-- Replaced Epitaph script in favour of a makefile
+- Makefile improvements
+- Dunst configuration for notifications!
 
 ## 💡 TODO for a more "desktop" experience:
 
-- Integrate `lxsession` for a more solid environment.  🤝
-- Allow users to configure the badge in polybar. 🔍 
-- Copy thunar custom action file and backup user's custom actions. 📂
+- ~~Integrate `lxsession` for a more solid environment~~ (Cancelled, `lxsession` messes up LeftWM workspaces)
+- [ ] Allow users to configure the badge in polybar. 🔍 
+- [ ] Integrate correctly the fucking `gnome-keyring-daemon` or another reliable secrets manager (f-word gnome-devs)
 
 ## :rocket: Installation
 
@@ -81,6 +78,7 @@ I drew inspiration and patches from the following sources:
 - Erina the cat, Camel, Steven Wilson and King Crimson wallpapers were made by [AreliSuleima](https://github.com/arelisuleima).
 - The Orchid wallpaper is a personal modification I made based on the "Orchid" album from the band *Opeth*
 - Added wallpapers taken from [Linkin Park - Lost](https://www.youtube.com/watch?v=7NK_JOkuSVY) music video. 
+- Catppucchin variants of wallpapers extracted from Alcest & Camel
 
 Credits are too long, see the copyright notice below for full credit.
 

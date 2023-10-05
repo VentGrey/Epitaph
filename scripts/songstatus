@@ -1,7 +1,11 @@
 #!/bin/sh
+# Try to get the song title from Spotify or CMUS
+song_title=$(playerctl metadata -f '{{title}}' -p spotify,cmus 2>/dev/null)
 
-if playerctl -p spotify,cmus status >/dev/null 2>&1; then
-    playerctl metadata -f '{{title}}' -p spotify,cmus
+# Check if we got a song title
+if [ -n "$song_title" ]; then
+    echo "$song_title"
 else
+    # If no song is playing, display a music icon
     echo ""
 fi
