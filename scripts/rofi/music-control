@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Obtener la lista de reproductores de música disponibles
+players=$(playerctl -l)
+
+# Función para mostrar el menú de selección de reproductor
+show_menu() {
+    selected_player=$(echo "$players" | rofi -dmenu -i -p "󰎄 Selecciona un reproductor:")
+
+    if [ -n "$selected_player" ]; then
+        control_music "$selected_player"
+    fi
+}
+
+# Función para controlar la música en el reproductor seleccionado
+control_music() {
+    player="$1"
+
+    # Usando íconos de Font Awesome.
+    options=" play-pause
+ next
+ previous
+ stop"
+
+    selected_option=$(echo "$options" | rofi -dmenu -i -p "Controlar $player:" | awk '{print $2}')
+
+    if [ -n "$selected_option" ]; then
+        playerctl -p "$player" "$selected_option"
+    fi
+}
+
+# Mostrar el menú principal
+show_menu
