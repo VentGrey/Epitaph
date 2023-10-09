@@ -1,0 +1,43 @@
+#!/bin/sh
+
+CONFIG_FILE="$HOME/.config/leftwm/themes/Epitaph/polybar.config"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    dunstify -a "Epitaph" "Error! $CONFIG_FILE was not found!"
+fi
+
+# Emblems list
+OPTIONS="󱘗
+󱞧
+
+󰮢
+
+󰌠
+󰟓
+󰀵
+󱄛
+
+Paste your own symbol"
+
+CHOICE=$(echo "$OPTIONS" | rofi -dmenu -mesg "You need to have any recent Nerd Font installed in your system" -p "Choose an emblem:")
+
+if [ $? -ne 0 ]; then
+    dunstify -a "Epitaph" "User selection cancelled."
+fi
+
+if [ "$CHOICE" = "Paste your own symbol" ]; then
+    CHOICE=$(rofi -dmenu -mesg "Control + v works here!" -p "Paste your emblem here:")
+
+    if [ $? -ne 0 ]; then
+        dunstify -a "Epitaph" "User selection cancelled."
+    fi
+fi
+
+sed -i '/\[module\/badge\]/!b;n;n;s/content = " %{T3}.*%{T-} "/content = " %{T3}'"$CHOICE"'%{T-} "/' "$CONFIG_FILE"
+
+if [ $? -eq 0 ]; then
+    dunstify -a "Epitaph" "Emblema actualizado con éxito."
+else
+    dunstify -a "Epitaph" "Error al actualizar el emblema."
+    exit 1
+fi

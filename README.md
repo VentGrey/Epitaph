@@ -22,16 +22,16 @@ Epitaph is being developed as a starting point for Gnu/Linux 🐧 users who are 
 
 Suggestions, ideas, or requests are always welcome! Please feel free to open an issue.
 
+> **DISCLAIMER**: I do not recommend you to use Epitaph and follow it's updates, it changes a lot. It's best for you to install Epitaph and then freeze it to use it as a starting ground for your own LeftWM theme.
+
 ## :newspaper: News
 
-- Makefile improvements
-- Dunst configuration for notifications!
-
-## 💡 TODO for a more "desktop" experience:
-
-- ~~Integrate `lxsession` for a more solid environment~~ (Cancelled, `lxsession` messes up LeftWM workspaces)
-- [ ] Allow users to configure the badge in polybar. 🔍 
-- [ ] Integrate correctly the fucking `gnome-keyring-daemon` or another reliable secrets manager (f-word gnome-devs)
+- Polybar cleanup
+- Update provided config.ron file
+- New RoFi scripts!
+  - Screenshot tool (Depends on `maim`, `xdg-user-dirs` and `dunst`)
+  - Polybar badge changing tool
+  - Music control tool
 
 ## :rocket: Installation
 
@@ -73,6 +73,9 @@ I drew inspiration and patches from the following sources:
 
 - Polybar style inspiration taken from: [ArchCraft](https://archcraft.io/), [DT](https://gitlab.com/dtos/dtos) and [ChadWM](https://github.com/siduck/chadwm).
 
+- Assets in this theme include:
+  - A picture icon taken from [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+
 ## 🖼️ Current wallpaper artists credit
 
 - Erina the cat, Camel, Steven Wilson and King Crimson wallpapers were made by [AreliSuleima](https://github.com/arelisuleima).
@@ -100,4 +103,7 @@ Some bands that inspired this work are:
 - Camel (Mirage - 1974)
 - Opeth (Orchid - 1995)
 - Steven Wilson (The Raven That Refused To Sing - 2013)
+- Alcest
+  - Kodama (2016)
+  - Ecailles de Lune (2010)
 - (For the "Linkin Park - Lost" wallpapers): Alasdair Willson, Andrew Hawryluk, Colby Beckett, Daniels Gulbis, Egor Mark, Kim Ho, Torell Vowles, Toros Kose, Maciej Kuciara, pplpleasr, jun._.ka & Anthony Scott Burns
