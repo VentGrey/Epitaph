@@ -26,12 +26,14 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
 
 ## :newspaper: News
 
-- Polybar cleanup
+- Polybar prettify
 - Update provided config.ron file
 - New RoFi scripts!
   - Screenshot tool (Depends on `maim`, `xdg-user-dirs` and `dunst`)
   - Polybar badge changing tool
   - Music control tool
+  - Keyboard layout tool
+  - Tiny calendar application [WIP] written in Perl + Gtk3
 
 ## :rocket: Installation
 

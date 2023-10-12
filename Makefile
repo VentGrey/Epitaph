@@ -20,7 +20,7 @@ freeze:
 
 check_dependencies:
 	@echo "Checking dependencies..."
-	reqs=("leftwm" "rofi" "i3lock" "i3lock-fancy" "tilix" "rustc" "picom" "feh" "lxpolkit" "pulseaudio" "notify-send" "gnome-keyring" "polybar" "playerctl" "pamixer" "nemo" "tumbler" "ffmpegthumbnailer" "xdg-user-dirs" "dunst" "blueman-applet" "xss-lock");
+	reqs=("leftwm" "rofi" "i3lock" "i3lock-fancy" "tilix" "rustc" "picom" "feh" "lxpolkit" "pulseaudio" "notify-send" "gnome-keyring" "polybar" "playerctl" "pamixer" "perl" "nemo" "tumbler" "ffmpegthumbnailer" "xdg-user-dirs" "dunst" "blueman-applet" "xss-lock");
 	c=0;
 	n=0;
 	for p in $${reqs[@]}; do \

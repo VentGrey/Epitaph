@@ -7,6 +7,11 @@ OPTIONS="\
 
 CHOICE=$(echo "$OPTIONS" | rofi -dmenu -p "Select your keyboard distribution" | awk '{print $2}')
 
+if [ -z "$CHOICE" ]; then
+  notify-send "No keyboard selection made."
+  exit 0
+fi
+
 case $CHOICE in
   latam)
     setxkbmap latam
