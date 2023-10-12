@@ -1,0 +1,24 @@
+#!/bin/sh
+
+OPTIONS="\
+🌎 latam
+🇪🇸 es
+🇬🇧 en (intl)"
+
+CHOICE=$(echo "$OPTIONS" | rofi -dmenu -p "Select your keyboard distribution" | awk '{print $2}')
+
+case $CHOICE in
+  latam)
+    setxkbmap latam
+    ;;
+  es)
+    setxkbmap es
+    ;;
+  "en (intl)")
+    setxkbmap us -variant intl
+    ;;
+  *)
+    notify-send "Invalid keyboard selection!"
+    exit 1
+    ;;
+esac
