@@ -25,6 +25,10 @@ $box->add($calendar);
 my $reminders_label = Gtk3::Label->new("");
 $box->add($reminders_label);
 
+my $delete_button = Gtk3::Button->new_with_label('Delete Reminders');
+$delete_button->signal_connect(clicked => \&delete_reminders);
+$box->pack_start($delete_button, 0, 0, 0);
+
 my $close_button = Gtk3::Button->new_with_label('Close');
 $close_button->signal_connect(clicked => sub {
     Gtk3->main_quit;
@@ -114,4 +118,41 @@ sub show_reminders_for_date {
     close $fh;
 
     $reminders_label->set_text(join("\n", @reminders_for_day));
+}
+
+sub delete_reminders {
+    my $dialog = Gtk3::Dialog->new('Delete Reminders', $window, 'modal',
+        'Delete All'    => 'delete_all',
+        'Delete Old'    => 'delete_old',
+        'gtk-cancel'    => 'cancel',
+    );
+    
+    $dialog->set_default_size(150, 100);
+    my $label = Gtk3::Label->new("Do you want to delete all reminders or only old ones?");
+    $dialog->get_content_area()->add($label);
+    $dialog->show_all;
+
+    my $response = $dialog->run();
+    if ($response eq 'delete_all') {
+        open(my $fh, '>', $reminders_file) or die "Could not open file '$reminders_file' $!";
+        close $fh;
+    } elsif ($response eq 'delete_old') {
+        my @current_reminders;
+        my $current_datetime = DateTime->now();
+        open(my $fh, '<', $reminders_file) or die "Could not open file '$reminders_file' $!";
+        while (my $line = <$fh>) {
+            chomp $line;
+            my ($date, $time, $reminder) = split /:/, $line, 3;
+            my ($year, $month, $day) = split /-/, $date;
+            my ($hour, $minute, $second) = split /:/, $time;
+            my $reminder_datetime = DateTime->new(year => $year, month => $month, day => $day, hour => $hour, minute => $minute, second => $second);
+            push @current_reminders, $line if $reminder_datetime >= $current_datetime;
+        }
+        close $fh;
+        
+        open($fh, '>', $reminders_file) or die "Could not open file '$reminders_file' $!";
+        print $fh join("\n", @current_reminders);
+        close $fh;
+    }
+    $dialog->destroy;
 }
