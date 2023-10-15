@@ -32,6 +32,8 @@ if ($pid && $pid != $$) {
     die "Another instance of this script is already running.";
 }
 
+reprogram_reminders();
+
 my $reminders_file = "$ENV{HOME}/.config/leftwm/themes/Epitaph/calendar/reminders";
 
 my $reminders_dir = "$ENV{HOME}/.config/leftwm/themes/Epitaph/calendar";
@@ -126,7 +128,8 @@ sub add_reminder {
         if ($dialog->run eq 'accept') {
             my $reminder = $entry->get_text;
             open(my $fh, '>>', $reminders_file) or die "Could not open file '$reminders_file' $!";
-            print $fh "$year-$month-$day:$hour:$minute:00:$reminder\n";
+            # En la función add_reminder
+            print $fh sprintf("%04d-%02d-%02d:%02d:%02d:00:%s\n", $year, $month, $day, $hour, $minute, $reminder);
             close $fh;
 
             # Calculate the time remaining until the reminder
@@ -150,6 +153,15 @@ sub add_reminder {
                     system("notify-send 'Reminder' '$reminder'");
                 });
             }
+            my $message_dialog = Gtk3::MessageDialog->new(
+                $window, 
+                'destroy-with-parent',
+                'info', 
+                'ok',
+                "Recordatorio añadido con éxito para el $day/$month/$year a las $hour:$minute"
+           );
+            $message_dialog->run;
+            $message_dialog->destroy;
         }
         $dialog->destroy;
     }
@@ -212,4 +224,56 @@ sub delete_reminders {
         close $fh;
     }
     $dialog->destroy;
+}
+
+# Spawn in another process.
+sub run_as_daemon {
+    my ($command) = @_;
+
+    my $pid = fork();
+    if ($pid) {
+        # En el proceso padre
+        exit 0;
+    } else {
+        # En el proceso hijo
+        setsid();
+        exec($command);
+    }    
+}
+
+# Function to reprogram reminders at startup
+sub reprogram_reminders {
+    my $reminders_file = "$ENV{HOME}/.config/leftwm/themes/Epitaph/calendar/reminders";
+
+    open(my $fh, '<', $reminders_file) or die "Could not open file '$reminders_file' $!";
+    while (my $line = <$fh>) {
+        chomp $line;
+        my ($date, $time, $reminder) = split /:/, $line;
+
+        my ($year, $month, $day) = split /-/, $date;
+        my ($hour, $minute, $second) = split /:/, $time;
+
+        my $now = DateTime->now;
+        my $reminder_datetime = DateTime->new(
+            year   => $year,
+            month  => $month,
+            day    => $day,
+            hour   => $hour,
+            minute => $minute,
+            second => $second
+        );
+
+        my $duration = $reminder_datetime->subtract_datetime($now);
+        my $seconds_until_reminder = $duration->in_units('seconds');
+
+        if ($seconds_until_reminder > 0) {
+            my $at_time = sprintf("%02d:%02d %02d/%02d/%04d", $hour, $minute, $day, $month, $year);
+            my $notification_command = "| at $at_time";
+            open(my $pipe, $notification_command) or die "Failed to open pipe: $!";
+            print $pipe "notify-send 'Reminder' '$reminder'";
+            close $pipe;
+            run_as_daemon($notification_command);
+        }
+    }
+    close $fh;
 }
