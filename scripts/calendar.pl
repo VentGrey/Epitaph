@@ -144,7 +144,11 @@ sub add_reminder {
             # Use the 'at' command to schedule a notification
             if ($seconds_until_reminder > 0) {
                 my $notification_command = "notify-send 'Reminder' '$reminder'";
-                system("at now + ${seconds_until_reminder} seconds -f <(echo '$notification_command')");
+
+                run_as_daemon(sub {
+                    sleep($seconds_until_reminder);
+                    system("notify-send 'Reminder' '$reminder'");
+                });
             }
         }
         $dialog->destroy;
