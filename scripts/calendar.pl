@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
-# Epitaph Calendar
+# Epitaph Calendar. Small perl 5 script to make a simple calendar with reminders
+# using GTK3. The reminders file is stored as a .txt, use at your discretion.
+#
 #
 # Copyright (C) [2023] [VentGrey]
 #
@@ -23,7 +25,19 @@ use Gtk3 '-init';
 use DateTime;
 use Time::Local;
 
-my $reminders_file = 'reminders.txt';
+# Ensure only one instance is running
+my $pid = `pgrep -f $0`;
+chomp $pid;
+if ($pid && $pid != $$) {
+    die "Another instance of this script is already running.";
+}
+
+my $reminders_file = "$ENV{HOME}/.config/leftwm/themes/Epitaph/calendar/reminders";
+
+my $reminders_dir = "$ENV{HOME}/.config/leftwm/themes/Epitaph/calendar";
+unless (-d $reminders_dir) {
+    mkdir $reminders_dir or die "Failed to create directory: $!";
+}
 
 my $window = Gtk3::Window->new('popup');
 $window->set_decorated(0);
@@ -35,23 +49,28 @@ my ($x, $y) = split /,/, `xdotool getmouselocation --shell 2>/dev/null | grep -E
 $window->move($x, $y);
 
 my $calendar = Gtk3::Calendar->new();
-my $box = Gtk3::Box->new('vertical', 5);
-$box->set_can_focus(1);
-$box->grab_focus();
-$box->add($calendar);
+$calendar->signal_connect('map' => \&show_reminders_for_date);
 
 my $reminders_label = Gtk3::Label->new("");
-$box->add($reminders_label);
 
 my $delete_button = Gtk3::Button->new_with_label('Delete Reminders');
 $delete_button->signal_connect(clicked => \&delete_reminders);
-$box->pack_start($delete_button, 0, 0, 0);
 
 my $close_button = Gtk3::Button->new_with_label('Close');
 $close_button->signal_connect(clicked => sub {
     Gtk3->main_quit;
 });
-$box->pack_end($close_button, 0, 0, 0);
+
+my $buttons_box = Gtk3::Box->new('horizontal', 5);
+$buttons_box->pack_start($delete_button, 1, 1, 0);
+$buttons_box->pack_end($close_button, 1, 1, 0);
+
+my $box = Gtk3::Box->new('vertical', 5);
+$box->set_can_focus(1);
+$box->grab_focus();
+$box->add($calendar);
+$box->add($reminders_label);
+$box->add($buttons_box);
 
 $window->add($box);
 
@@ -110,16 +129,32 @@ sub add_reminder {
             print $fh "$year-$month-$day:$hour:$minute:00:$reminder\n";
             close $fh;
 
+            # Calculate the time remaining until the reminder
+            my $now = DateTime->now;
+            my $reminder_datetime = DateTime->new(
+                year   => $year,
+                month  => $month,
+                day    => $day,
+                hour   => $hour,
+                minute => $minute
+            );
+            my $duration = $reminder_datetime->subtract_datetime($now);
+            my $seconds_until_reminder = $duration->in_units('seconds');
+
             # Use the 'at' command to schedule a notification
-            my $datetime = DateTime->new(year => $year, month => $month + 1, day => $day, hour => $hour, minute => $minute);
-            my $timestamp = $datetime->epoch();
-            system("at -t ${timestamp}00 -f <(echo 'notify-send \"Reminder\" \"$reminder\"') &");
+            if ($seconds_until_reminder > 0) {
+                my $notification_command = "notify-send 'Reminder' '$reminder'";
+                system("at now + ${seconds_until_reminder} seconds -f <(echo '$notification_command')");
+            }
         }
         $dialog->destroy;
     }
     $time_dialog->destroy;
+
+    # Show the reminders for the selected date
     show_reminders_for_date();
 }
+
 
 sub show_reminders_for_date {
     my ($year, $month, $day) = $calendar->get_date;
