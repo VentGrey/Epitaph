@@ -3,14 +3,9 @@
 OPTIONS="\
 🌎 latam
 🇪🇸 es
-🇬🇧 en (intl)"
+🇬🇧 us"
 
-CHOICE=$(echo "$OPTIONS" | rofi -dmenu -p "Select your keyboard distribution" | awk '{print $2}')
-
-if [ -z "$CHOICE" ]; then
-  notify-send "No keyboard selection made."
-  exit 0
-fi
+CHOICE=$(echo "$OPTIONS" | rofi -dmenu -p "Select your keyboard distribution" | awk '{print $2 $3}')
 
 case $CHOICE in
   latam)
@@ -19,11 +14,11 @@ case $CHOICE in
   es)
     setxkbmap es
     ;;
-  "en (intl)")
+  us)
     setxkbmap us -variant intl
     ;;
   *)
-    notify-send "Invalid keyboard selection!"
+    notify-send "Invalid keyboard selection or exited script"
     exit 1
     ;;
 esac
