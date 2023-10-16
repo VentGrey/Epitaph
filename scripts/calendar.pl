@@ -43,38 +43,33 @@ my ($x, $y) = split /,/,
     || (0, 0) ;
 $window->move($x, $y) ;
 
-my $calendar = Gtk3::Calendar->new() ;
+my $calendar = Gtk3::Calendar->new();
+my $box = Gtk3::Box->new('vertical', 0);
+$box->set_can_focus(1);
+$box->grab_focus();
 
-my $close_button = Gtk3::Button->new_with_label('Close') ;
-$close_button->signal_connect(
-    clicked => sub {
-        Gtk3->main_quit ;
+# Adding a Close button
+my $close_button = Gtk3::Button->new_with_label('Close');
+$close_button->signal_connect(clicked => sub {
+    Gtk3->main_quit;
+});
+
+$box->pack_start($close_button, 0, 0, 0);
+$box->add($calendar);
+
+$window->add($box);
+
+
+$window->signal_connect(key_press_event => sub {
+    my ($widget, $event) = @_;
+    if ($event->keyval == Gtk3::Gdk::KEY_Escape) {
+        Gtk3->main_quit;
+        return 1;
     }
-) ;
+    return 0;
+});
 
-my $buttons_box = Gtk3::Box->new('horizontal', 5) ;
-$buttons_box->pack_end($close_button, 1, 1, 0) ;
+$window->signal_connect(delete_event => sub { Gtk3->main_quit });
+$window->show_all;
 
-my $box = Gtk3::Box->new('vertical', 1) ;
-$box->set_can_focus(1) ;
-$box->grab_focus() ;
-$box->add($calendar) ;
-$box->add($buttons_box) ;
-
-$window->add($box) ;
-
-$window->signal_connect(
-    key_press_event => sub {
-        my ($widget, $event) = @_ ;
-        if ($event->keyval == Gtk3::Gdk::KEY_Escape) {
-            Gtk3->main_quit ;
-            return 1 ;
-        }
-        return 0 ;
-    }
-) ;
-
-$window->signal_connect(delete_event => sub { Gtk3->main_quit  }) ;
-$window->show_all ;
-
-Gtk3->main ;
+Gtk3->main;
