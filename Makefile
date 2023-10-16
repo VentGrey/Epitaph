@@ -51,3 +51,7 @@ copy_configs:
 compile_modules:
 	@echo "Compiling modules..."
 	rustc ./scripts/battery-notify.rs -C codegen-units=1 -C strip=symbols -C opt-level=z -C lto -C panic=abort -C target-cpu=native --edition=2021 -o ./scripts/battery-notify
+
+format_perl:
+	@echo "Formatting perl scripts..."
+	perltidy -b --profile=scripts/.perltidyrc ./scripts/calendar.pl ./scripts/calendar-daemon.pl

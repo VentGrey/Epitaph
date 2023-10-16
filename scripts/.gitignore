@@ -8,3 +8,5 @@ lemonbar/getvol
 lemonbar/get_ssid
 lemonbar/.ccls-cache/
 battery-notify
+*.bak
+*.tdy

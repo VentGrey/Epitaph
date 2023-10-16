@@ -1,0 +1,31 @@
+# .perltidyrc - default configuration file for perltidy
+# See 'perltidy --help' and 'perltidy --help n' for information on
+# how to modify this file to customize perltidy's behavior.
+
+# General formatting options
+--indent-columns=4
+--maximum-line-length=80
+--continuation-indentation=4
+
+# Brace formatting
+--brace-tightness=2
+--brace-vertical-tightness=1
+
+# Comment formatting
+--line-up-parentheses
+
+# Operator formatting
+--no-space-for-semicolon
+--space-terminal-semicolon
+
+# Whitespace formatting
+--no-blanks-before-comments
+--no-opening-brace-on-new-line
+
+# Other formatting options
+--no-outdent-long-quotes
+--paren-tightness=2
+--square-bracket-tightness=2
+--cuddled-else
+--no-space-for-semicolon
+--format-skipping
