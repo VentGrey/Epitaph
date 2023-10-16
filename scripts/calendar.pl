@@ -36,7 +36,8 @@ my $window = Gtk3::Window->new('popup') ;
 $window->set_decorated(0) ;
 $window->set_keep_above(1) ;
 $window->set_title('Epitaph Tiny Calendar') ;
-$window->set_default_size(300, 300) ;
+#$window->set_default_size(200, 200) ;
+$window->signal_connect( destroy => sub { Gtk3->main_quit } );
 
 my ($x, $y) = split /,/,
     `xdotool getmouselocation --shell 2>/dev/null | grep -E 'X|Y' | cut -d= -f2 | paste -sd "," -`
@@ -54,8 +55,9 @@ $close_button->signal_connect(clicked => sub {
     Gtk3->main_quit;
 });
 
-$box->pack_start($close_button, 0, 0, 0);
+
 $box->add($calendar);
+$box->pack_end($close_button, 0, 0, 0);
 
 $window->add($box);
 
