@@ -33,7 +33,9 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
   - Polybar badge changing tool
   - Music control tool
   - Keyboard layout tool
-  - Tiny calendar application [WIP] written in Perl + Gtk3
+- New perl + Gtk3 scripts for a comfy-er experience!
+  - Minimalistic calendar available clicking on your polybar!
+  - Cmus music control with emojis + basic music control!
 
 ## :rocket: Installation
 

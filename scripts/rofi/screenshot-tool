@@ -22,7 +22,7 @@ show_opts() {
 take_screenshot() {
     case "$1" in
         "$menu1")
-            $maim_path "$save_path/$file_name"
+            $maim_path -d 1 "$save_path/$file_name"
             ;;
         "$menu2")
             $maim_path -s "$save_path/$file_name"
