@@ -54,4 +54,4 @@ compile_modules:
 
 format_perl:
 	@echo "Formatting perl scripts..."
-	perltidy -b --profile=scripts/.perltidyrc ./scripts/calendar.pl ./scripts/calendar-daemon.pl
+	perltidy -b --profile=scripts/.perltidyrc ./scripts/calendar.pl ./scripts/cmuscontrol.pl
