@@ -42,12 +42,7 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
 Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
 
 ## 📷 Screenshots
-
-### Vanilla look
-<img src="screenshots/01.png" width="800"/>
-
-### "productive" screenshot
-<img src="screenshots/03.png" width="800"/>
+![01](https://github.com/VentGrey/Epitaph/assets/24773698/93f5787b-5104-4767-8be5-e707e7c1aa23)
 
 ## Overview
 
