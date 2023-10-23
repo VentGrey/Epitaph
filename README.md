@@ -68,6 +68,9 @@ Beautifully configured polybar with clickable areas and useful RoFi scripts for 
 ### Lemonbar 👾 (A reliable bar managed by a reliable language)
 Beautifully configured async lemonbar with clickable areas and useful RoFi scripts for a better experience! Genesis includes:
 
+![Screenshot_2023-10-23](https://github.com/VentGrey/Epitaph/assets/24773698/b555b86a-12cc-467b-ad6b-4aea9c83b4b6)
+
+
 - Darker color than Polybar without rounded edges (more adequate for lemonbar)
 - Better colors
 - To read more about Genesis modules shown in the bar, please [read the wiki](https://github.com/VentGrey/Epitaph/wiki/Genesis:-core).
