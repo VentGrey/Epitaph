@@ -6,6 +6,6 @@ feh --bg-scale "$SCRIPTPATH"/reset.jpg
 
 leftwm-command "UnloadTheme"
 
-for process in picom battery-notify wallpaper lxpolkit dunst; do
+for process in picom battery-notify wallpaper dunst; do
     pgrep -x "$process" > /dev/null && pkill "$process"
 done

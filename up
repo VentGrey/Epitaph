@@ -27,16 +27,57 @@ nohup dunst -config "$HOME/.config/leftwm/themes/Epitaph/dunstrc" &
 pgrep -x "battery-notify" && pkill battery-notify
 nohup "$SCRIPTPATH"/scripts/battery-notify >/dev/null 2>&1 &
 
-# ==== [ BAR CONFIGURATIONS ] ====
-pkill polybar;
-if type "xrandr"; then
-    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-    done
-else
-    nohup polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
-fi
-
 # ==== [ SCREEN CONFIGURATIONS ] ====
 xset s 120 5
 xss-lock -l -- i3lock-fancy -p
+
+
+# ==== [ BAR CONFIGURATIONS ] ====
+# - CHOOSE YOUR STATUSBAR
+# 0) Lemonbar (Using Genesis.pl)
+# 1) Polybar
+bar_opt=0
+# - LEMONBAR SETTINGS
+# Bar Dimensions: (Width x Height + xoffset + yoffset)
+dims="1840x16+0+0"
+# Font (A Nerd Font is recommended)
+font="JetBrainsMono Nerd Font:size=9"
+font2="Noto Color Emoji:size=9"
+# Lemonbar Colours
+# Background Color
+bg="#11111b"
+# Foreground Color
+fg="#cdd6f4w"
+
+if [ $bar_opt -eq 0 ]; then
+  pkill lemonbar;
+  pkill trayer;
+  # Add systray support
+  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 0 --tint 0x11111b --height 15 &
+
+  # Lemonbar FIFO with information
+  FIFO="/tmp/lemonbar-fifo"
+  [ -p "$FIFO" ] && rm "$FIFO"  # If FIFO exists, delete it.
+  mkfifo "$FIFO"
+
+  # Init the genesis daemon
+  pkill -f 'genesis.pl'
+  perl "$SCRIPTPATH"/scripts/lemonbar/genesis.pl &
+
+
+  
+  # Monitorea el FIFO para cambios y actualiza lemonbar cuando hay datos
+tail -f "$FIFO" | while IFS= read -r line; do
+    echo "$line"
+done | lemonbar -g "$dims" -B"$bg" -F"$fg" -f "$font" -f "$font2" &
+ 
+else
+    pkill polybar;
+    if type "xrandr"; then
+        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+            MONITOR=$m polybar -c "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+        done
+    else
+        nohup polybar --reload "$SCRIPTPATH/polybar.config" mainbar > /dev/null &
+    fi
+fi

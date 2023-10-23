@@ -32,7 +32,7 @@ sub listen_cmus {
         cb => sub {
             my $current_song = $get_song->();
             if ($current_song ne $last_song) {
-                $callback->(" [ $current_song ]  󰒮 󰐎 󰒭");
+                $callback->("%{F#f38ba8} %{F#74c7ec}[%{F#cdd6f4} $current_song %{F#74c7ec}] %{F#313244} %{F#74c7ec}󰒮 %{F#a6e3a1}󰐎 %{F#f9e2af}󰒭%{F#cdd6f4}");
                 $last_song = $current_song;
             }
         }
