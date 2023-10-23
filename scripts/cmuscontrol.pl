@@ -24,6 +24,7 @@ use v5.36;
 use Gtk3 '-init' ;
 use Glib ('TRUE', 'FALSE');
 
+$0="CmusControl";
 # Ensure only one instance is running
 my $pid = `pgrep -f $0`;
 chomp $pid;
@@ -100,11 +101,11 @@ sub update_song_info {
     }
 }
 
-my $cmus_check = `pgrep cmus`;
-if (!$cmus_check) {
-    system("notify-send", "Cmus is not running!");
-    die "cmus is not running.\n";
-}
+#my $cmus_check = `pgrep cmus`;
+#if (!$cmus_check) {
+#    system("notify-send", "Cmus is not running!");
+#    die "cmus is not running.\n";
+#}
 
 my $window = Gtk3::Window->new('popup');
 $window->set_decorated(0);

@@ -22,6 +22,13 @@ use BatteryModule;
 # Change process name to make tracking easy.
 $0="Genesis";
 
+# Ensure only one instance is running
+my $pid = `pgrep -f $0` ;
+chomp $pid ;
+if ($pid && $pid != $$) {
+    die "Another instance of this script is already running." ;
+}
+
 # fifo path for UNIX mkfifo
 my $pipe = "/tmp/lemonbar-fifo";
 
@@ -59,7 +66,7 @@ sub print_bar {
                . "%{c} " . join(" %{F#313244}%{F#cdd6f4w} ", @{$modules{middle}})
                . "%{r} " . join(" %{F#313244}%{F#cdd6f4w} ", @{$modules{end}});
     print "DEBUG: Constructed output for bar: $output\n";
-    print_pipe($output)}
+    print_pipe("$output")}
 
 ########Modules#################################################################
 # Modules listed here are any .pl files present in ./modules, to make this     #
@@ -82,29 +89,29 @@ my $leftwm_state_handle = WorkspaceModule::listen_leftwm_state(sub {
 #===== CMUS Bar =====
 my $music_values = MusicModule::listen_cmus(sub {
     my $music = shift;
-    print "DEBUG: Received CMUS values: $music/n";
-    update_module('middle', 0, $music);
+    print "DEBUG: Received CMUS values: $music\n";
+    update_module('middle', 0, "%{A:perl ~/.config/leftwm/themes/Epitaph/scripts/cmuscontrol.pl:}$music%{A}");
 });
 
 #===== Keyboard Distribution =====
 my $keyboard_handle = KeyboardModule::listen_keyboard(sub {
     my $layout = shift;
     print "DEBUG: Received keyboard layout: $layout\n";
-    update_module('end', 0, $layout);
+    update_module('end', 0, "%{A:bash ~/.config/leftwm/themes/Epitaph/scripts/rofi/keyboardlayout:}$layout%{A}");
 });
 
 #===== Wifi Connection =====
 my $wifi_handle = WifiModule::listen_wifi(sub {
     my $wifi = shift;
     print "DEBUG: Received wireless info: $wifi\n";
-    update_module('end', 1, $wifi);
+    update_module('end', 1, "%{A:tilix -e nmtui:}$wifi%{A}");
 });
 
 #===== Date & Time =====
 my $date_handle = DateModule::listen_date(sub {
     my $date = shift;
     print "DEBUG: Received date: $date\n";
-    update_module('end', 2, $date);
+    update_module('end', 2, "%{A:perl ~/.config/leftwm/themes/Epitaph/scripts/calendar.pl:}$date%{A}");
 });
 
 # ===== Battery =====
@@ -113,7 +120,7 @@ my $date_handle = DateModule::listen_date(sub {
 my $battery_handle = BatteryModule::listen_battery("BAT0", sub {
     my $info = shift;
     print "DEBUG: Received from BatteryModule: $info\n";
-    update_module('end', 3, $info);
+    update_module('end', 3, "$info");
     print_bar();
 });
 
@@ -122,7 +129,7 @@ my $battery_handle = BatteryModule::listen_battery("BAT0", sub {
 my $volume_handle = VolumeModule::listen_volume(sub {
     my $volume = shift;
     print "DEBUG: Received volume: $volume\n";
-    update_module('end', 4, $volume);
+    update_module('end', 4, "%{A:pavucontrol:}$volume%{A}");
     print_bar();
 });
 

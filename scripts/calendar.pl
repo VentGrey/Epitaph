@@ -25,6 +25,7 @@ use Gtk3 '-init' ;
 use DateTime ;
 use Time::Local ;
 
+$0="EpitaphCalendar";
 # Ensure only one instance is running
 my $pid = `pgrep -f $0` ;
 chomp $pid ;
