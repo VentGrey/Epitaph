@@ -75,7 +75,7 @@ my $leftwm_state_handle = WorkspaceModule::listen_leftwm_state(sub {
     my $line = shift;
     print "DEBUG: Received from leftwm-state: $line\n";
     chomp $line;
-    update_module('start', 0, "Camel %{F#fab387}%{F#cdd6f4}|$line");
+    update_module('start', 0, "%{A:/usr/bin/rofi -show drun:}Camel %{F#fab387}%{F#cdd6f4}%{A}|$line");
     print_bar();
 });
 

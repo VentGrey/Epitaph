@@ -36,20 +36,48 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
 - New perl + Gtk3 scripts for a comfy-er experience!
   - Minimalistic calendar available clicking on your polybar!
   - Cmus music control with emojis + basic music control!
+- Async lemonbar managed by perl [Usabe but still W.I.P]
+- Better documentation
+  - WIP Wiki to PDF distribution.
 
 ## :rocket: Installation
 
 Installation instructions can be found on the [wiki](https://github.com/VentGrey/Epitaph/wiki)
 
 ## 📷 Screenshots
+
+### Polybar 👽 (As modern as I knew)
+Beautifully configured polybar with clickable areas and useful RoFi scripts for a better experience! Polybar includes:
+
+- A clickable `applist` menu changeable with the [select badge](https://github.com/VentGrey/Epitaph/blob/master/scripts/rofi/select-badge) script, use <kbd>Ctrl<kbd/><kbd>+<kbd/><kbd>Tab<kbd/> to navigate between `rofi` tabs. `This script must be run manually.`
+
+- EWMH (xworkspaces) list, the current tag is colored blue, occupied tags are yellow, available tags are FG color and urgent tags are colored red. You can navigate between workspaces with clicks oy your scrollwheel.
+
+- Spotify/Cmus song indicator. Buttons send playerctl signals to manipulate the current player. Clicking it will open a small GTK3 popup with CMUS only controls + song information.
+
+- Keyboard layout indicator, clicking it will run the [keyboard selection script](https://github.com/VentGrey/Epitaph/blob/master/scripts/rofi/keyboardlayout).
+
+- Wifi status icon + singal intensity (%)
+- Date & Time. Clicking it will open the [Tiny Epitaph Calendar](https://github.com/VentGrey/Epitaph/wiki/Goodie:-epitaph-calendar) script.
+- Animated battery indicator
+- Volume indicator. You can click on it to mute audio or use your scrollwheel to control the volume there.
+- Systray (Dynamically sized)
+
 ![01](https://github.com/VentGrey/Epitaph/assets/24773698/93f5787b-5104-4767-8be5-e707e7c1aa23)
+
+### Lemonbar 👾 (A reliable bar managed by a reliable language)
+Beautifully configured async lemonbar with clickable areas and useful RoFi scripts for a better experience! Genesis includes:
+
+- Darker color than Polybar without rounded edges (more adequate for lemonbar)
+- Better colors
+- To read more about Genesis modules shown in the bar, please [read the wiki](https://github.com/VentGrey/Epitaph/wiki/Genesis:-core).
 
 ## Overview
 
 This theme includes:
 - 🐚 POSIX shell `up` and `down` scripts for fast loading / reloading times.
 - 🌪️ Simple animations on windows. Powered by picom. No heavy blurs, rounded corners or anything that can be considered *GPU wasting*.
-- 🌟 Beautifully configured polybar.
+- 🌟 Beautifully configured polybar/lemonbar.
 - 📚 Extensive documentation.
 - 🎨 Catppucchin Mocha colorscheme.
 - :battery: Very tiny rust power manager.
