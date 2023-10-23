@@ -5,6 +5,26 @@ use AnyEvent;
 use AnyEvent::Handle;
 use IPC::Open3;
 
+=head1 NAME
+
+WifiModule - Consult and format a resulting string from the command-line utility iwconfig.
+
+TODO: Make this use a dbus approach or a constant stream of data.
+
+=head1 DESCRIPTION
+
+This module dynamically tries to get the current wifi connection and signal.
+
+=head1 METHODS
+
+=head2 listen_wifi
+
+Gets and formats the current network status, finally, it registers
+a callback to process changes.
+
+=cut
+
+
 sub listen_wifi {
     my $callback = shift;
 

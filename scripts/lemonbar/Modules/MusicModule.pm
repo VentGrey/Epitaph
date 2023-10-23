@@ -5,6 +5,26 @@ use AnyEvent;
 use AnyEvent::Handle;
 use IPC::Open3;
 
+=head1 NAME
+
+MusicModule - Consult and format a resulting string from the command-line utility cmus listener.
+
+TODO: Make this use the cmus socket or a constant stream.
+
+=head1 DESCRIPTION
+
+This module dynamically tries to get the current cmus playing song.
+
+=head1 METHODS
+
+=head2 listen_cmus
+
+Gets and formats the current cmus playing song, finally, it registers
+a callback to process changes.
+
+=cut
+
+
 sub listen_cmus {
     my $callback = shift;
 
