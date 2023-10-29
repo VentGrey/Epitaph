@@ -38,7 +38,7 @@ sub listen_leftwm_state {
 {% for tag in workspace.tags %}
 %{A:leftwm-command 'GoToTag {{ tag.index | plus:'1' }} false':}
 {% if tag.mine %}
- %{F#eba0ac}{{tag.name | lstrip | rstrip}}%{F#cdd6f4w}
+ %{F#74c7ec}{{tag.name | lstrip | rstrip}}%{F#cdd6f4w}
 {% elsif tag.visible %}
  {{tag.name | lstrip | rstrip}}
 {% elsif tag.busy %}
@@ -48,7 +48,7 @@ sub listen_leftwm_state {
 {% endif %}
 %{A}
 {% endfor %}
- %{F#313244}%{F#cdd6f4w} {{window_title | truncate: 30 }}"
+ %{F#313244}%{F#cdd6f4w} %{F#a6e3a1} {{ workspace.layout }}%{F#cdd6f4w} %{F#313244}%{F#cdd6f4w} {{window_title | truncate: 30 }}"
         );
 
     my ($wtr, $rdr, $err)  = (undef, undef, undef);

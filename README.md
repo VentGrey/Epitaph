@@ -49,7 +49,7 @@ Installation instructions can be found on the [wiki](https://github.com/VentGrey
 ### Polybar 👽 (As modern as I knew)
 Beautifully configured polybar with clickable areas and useful RoFi scripts for a better experience! Polybar includes:
 
-- A clickable `applist` menu changeable with the [select badge](https://github.com/VentGrey/Epitaph/blob/master/scripts/rofi/select-badge) script, use <kbd>Ctrl<kbd/><kbd>+<kbd/><kbd>Tab<kbd/> to navigate between `rofi` tabs. `This script must be run manually.`
+- A clickable `applist` menu changeable with the [select badge](https://github.com/VentGrey/Epitaph/blob/master/scripts/rofi/select-badge) script, use <kbd>Ctrl<kbd/> <kbd>+<kbd/> <kbd>Tab<kbd/> to navigate between `rofi` tabs. `TODO: Keybind this.`
 
 - EWMH (xworkspaces) list, the current tag is colored blue, occupied tags are yellow, available tags are FG color and urgent tags are colored red. You can navigate between workspaces with clicks oy your scrollwheel.
 
@@ -91,6 +91,8 @@ This theme includes:
 🚨 If you want your source / mention & material to be removed from here, please send an email or open an issue and read the copyright notice at the end of this file. 🚨
 
 This project is built on top of the [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376.
+
+> As of 2023, Blue Coffee link is down, It seems the author deleted both account and repository. If someone has a fork 
 
 I drew inspiration and patches from the following sources:
 

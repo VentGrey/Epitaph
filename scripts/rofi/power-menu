@@ -1,14 +1,36 @@
 #!/bin/sh
 
-option=$(printf " Shutdown\n Reboot\n鈴 Suspend\n Logout\n" \
-    | rofi -dmenu)
+mesg=""
+
+kill_genesis() {
+    pkill pactl
+    pkill tail
+    pkill perl
+    pkill Genesis
+    pkill -f 'genesis.pl'
+    pkill lemonbar
+    rm /tmp/lemonbar-fifo
+}
+
+# Verifica si Lemonbar está corriendo
+if pgrep -x "lemonbar" > /dev/null; then
+    mesg=" Lemonbar actions added..."
+    options=" Shutdown\n󰜉 Reboot\n󱄊 Suspend\n󱩊 Logout\n Kill Genesis & lemonbar\n󰑓 Soft Reload LeftWM\n󱄋 Hard Reload LeftWM\n"
+else
+    mesg=""
+    options=" Shutdown\n󰜉 Reboot\n󱄊 Suspend\n󱩊 Logout"
+fi
+
+option=$(printf "$options" | rofi -dmenu -mesg "$mesg")
 
 case $option in
     " Shutdown") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true ;;
-    " Reboot") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true ;;
-    "鈴 Suspend") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true ;;
-    " Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
-    "") exit 0;;
+    "󰜉 Reboot") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true ;;
+    "󱄊 Suspend") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true ;;
+    "󱩊 Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
+    " Kill Genesis & lemonbar") kill_genesis ;;
+    "󰑓 Soft Reload LeftWM") leftwm-command SoftReload ;;
+    "󱄋 Hard Reload LeftWM") leftwm-command HardReload ;;
     *) notify-send "What are you trying to do?"\
         "Son, this is a power menu" --icon=face-worried
 esac

@@ -72,6 +72,8 @@ sub listen_volume {
         on_error => sub {
             warn "Error with pactl: $!";
             $handle->destroy;
+            close $wtr;  # Cerrar el proceso pactl
+            close $rdr;
         }
     );
 

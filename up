@@ -39,10 +39,10 @@ xss-lock -l -- i3lock-fancy -p
 bar_opt=0
 # - LEMONBAR SETTINGS
 # Bar Dimensions: (Width x Height + xoffset + yoffset)
-dims="1844x26+0+0"
+dims="1844x24+0+0"
 # Font (A Nerd Font is recommended)
-font="JetBrainsMono Nerd Font:size=9"
-font2="Noto Color Emoji:size=9"
+font="JetBrainsMono Nerd Font:size=8"
+font2="Noto Color Emoji:size=8"
 # Lemonbar Colours
 # Background Color
 bg="#11111b"
@@ -53,7 +53,7 @@ if [ $bar_opt -eq 0 ]; then
   pkill lemonbar;
   pkill trayer;
   # Add systray support
-  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 0 --tint 0x11111b --height 26 &
+  trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 0 --tint 0x11111b --height 24 &
 
   # Lemonbar FIFO with information
   FIFO="/tmp/lemonbar-fifo"
@@ -65,10 +65,8 @@ if [ $bar_opt -eq 0 ]; then
   pkill 'Genesis'
   perl "$SCRIPTPATH"/scripts/lemonbar/genesis.pl >/dev/null 2>&1 &
  
-  # Monitorea el FIFO para cambios y actualiza lemonbar cuando hay datos
-tail -f "$FIFO" | while IFS= read -r line; do
-    echo "$line"
-done | lemonbar -g "$dims" -B"$bg" -F"$fg" -f "$font" -f "$font2" | sh &
+  # Always print the last line of the FIFO file.
+tail -f "$FIFO" | lemonbar -g "$dims" -B"$bg" -F"$fg" -f "$font" -f "$font2" | sh &
  
 else
     pkill polybar;

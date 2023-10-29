@@ -3,14 +3,13 @@ use strict;
 use warnings;
 use v5.36; # Modern perl
 
-
 use AnyEvent; # Make this script async
 use POSIX; # Use handy posix functions
+use Fcntl ':flock'; # Locking constants
 
 use FindBin;
 use lib "$FindBin::Bin/Modules/";
 
-# Print current tag + active window
 use WorkspaceModule;
 use MusicModule;
 use KeyboardModule;
@@ -19,15 +18,11 @@ use DateModule;
 use VolumeModule;
 use BatteryModule;
 
+open(my $lock_fh, '>', "/tmp/genesis.lock") or die "Could not create lock file: $!";
+flock($lock_fh, LOCK_EX | LOCK_NB) or die "Another instance of this script is already running.";
+
 # Change process name to make tracking easy.
 $0="Genesis";
-
-# Ensure only one instance is running
-my $pid = `pgrep -f $0` ;
-chomp $pid ;
-if ($pid && $pid != $$) {
-    die "Another instance of this script is already running." ;
-}
 
 # fifo path for UNIX mkfifo
 my $pipe = "/tmp/lemonbar-fifo";
@@ -47,26 +42,29 @@ sub print_pipe {
   close $fh;
 }
 
-# Hash para almacenar los contenidos de los módulos
 my %modules = (
     start  => [],
     middle => [],
     end    => []
 );
 
-# Función para actualizar un módulo en una posición específica
 sub update_module {
     my ($position, $index, $content) = @_;
     $modules{$position}->[$index] = $content;
 }
 
-# Función para consolidar y enviar la salida al FIFO
 sub print_bar {
     my $output = "%{l} " . join(" %{F#313244}%{F#cdd6f4w} ", @{$modules{start}})
                . "%{c} " . join(" %{F#313244}%{F#cdd6f4w} ", @{$modules{middle}})
                . "%{r} " . join(" %{F#313244}%{F#cdd6f4w} ", @{$modules{end}});
     print "DEBUG: Constructed output for bar: $output\n";
-    print_pipe("$output")}
+    print_pipe("$output %{F#313244}%{F#cdd6f4w} %{A:~/.config/leftwm/themes/Epitaph/scripts/rofi/power-menu:}⏻%{A}")
+}
+
+# Subroutine for bar refresh.
+sub update_bar {
+    print_bar();
+}
 
 ########Modules#################################################################
 # Modules listed here are any .pl files present in ./modules, to make this     #
@@ -77,12 +75,22 @@ sub print_bar {
 #   - If you wish to contribute a module please do so                          #
 ################################################################################
 
+#===== Bar printer =====
+# This module re-prints the bar every few seconds (timer) to ensure a constant
+# output to prevent bugs if lemonbar were to experience a bad formatter.
+my $barprinter = AnyEvent->timer(
+    after => 0,
+    interval => 2,
+    cb => \&update_bar
+);
+
+ 
 #===== Leftwm-state =====
 my $leftwm_state_handle = WorkspaceModule::listen_leftwm_state(sub {
     my $line = shift;
     print "DEBUG: Received from leftwm-state: $line\n";
     chomp $line;
-    update_module('start', 0, "%{A:/usr/bin/rofi -show drun:}Camel %{F#fab387}%{F#cdd6f4}%{A}|$line");
+    update_module('start', 0, "%{A:/usr/bin/rofi -show drun:}Perl %{F#74c7ec}%{F#cdd6f4}%{A}|$line");
     print_bar();
 });
 

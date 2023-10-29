@@ -21,16 +21,15 @@ a callback to process changes.
 
 =cut
 
-
 sub listen_date {
   my $callback = shift;
   my $timer = AnyEvent->timer(
-      after => 0,
-      interval=>1,
-      cb => sub {
-            my $date = get_formatted_date();
-            $callback->("%{F#89b4fa}󰃭 $date%{F#cdd6f4}");
-      }
+    after => 0,
+    interval => 1,
+    cb => sub {
+      my $date = get_formatted_date();
+      $callback->("%{F#89b4fa}󰃭 $date%{F#cdd6f4}");
+    }
   );
   return $timer;
 }

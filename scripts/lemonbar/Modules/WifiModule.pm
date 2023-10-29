@@ -37,7 +37,7 @@ sub listen_wifi {
                 my $bitrate = $1;
                 return "%{F#cba6f7}󰤨 $bitrate%{F#cdd6f4}";  # Nerd font icon for WiFi connected with BitRate
             }
-            return "%{F#cba6f7}󰤨%{F#cdd6f4}";  # Nerd font icon for WiFi connected without BitRate
+            return "%{F#cba6f7}󰤭%{F#cdd6f4}";  # Nerd font icon for WiFi connected without BitRate
         }
         return "%{F#f38ba8}󰤭%{F#cdd6f4}";  # Nerd font icon for WiFi disconnected
     };

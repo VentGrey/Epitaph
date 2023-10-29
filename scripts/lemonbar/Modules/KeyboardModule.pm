@@ -4,6 +4,7 @@ use v5.36;
 use AnyEvent;
 use AnyEvent::Handle;
 use IPC::Open3;
+
 =head1 NAME
 
 KeyboardModule - Consult and format a resulting string from the command-line utility setxkbmap.
