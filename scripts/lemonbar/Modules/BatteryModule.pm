@@ -34,45 +34,52 @@ sub listen_battery {
     my $watcher = File::ChangeNotify->instantiate_watcher(
         directories => [ "/sys/class/power_supply/$battery/" ],
         filter      => qr/^(?:$status_path|$capacity_path)$/,
-        );
+       );
 
     my $previous_output = '';
 
-    my $check_and_notify = sub {
-        my ($status, $capacity) = @_;
+    my $check_and_notify = sub($status, $capacity) {
         my $icon = "";
-        my %battery_icons = (
-                             'Charging' => { 100 => '󰄌%{F#cdd6f4w}', default => '%{F#cdd6f4w}' },
-                             'Discharging' => {
-                                               0   => '%{F#f38ba8}󰂃%{F#cdd6f4w}',   # Suspend now!
-                                               10  => '%{F#f38ba8}󰁺%{F#cdd6f4w}',   # Save your files panicking
-                                               20  => '󰁻%{F#cdd6f4w}',              # Things can go ugly if you ignore these
-                                               30  => '%{F#eba0ac}󰁼%{F#cdd6f4w}',   # Hey, wanna recharge?
-                                               40  => '%{F#fab387}󰁽%{F#cdd6f4w}',   # I mean, just a few more minutes...right
-                                               50  => '%{F#f9e2af}󰁾%{F#cdd6f4w}',
-                                               60  => '%{F#f9e2af}󰁿%{F#cdd6f4w}',
-                                               70  => '%{F#f9e2af}󰂀%{F#cdd6f4w}',
-                                               80  => '%{F#a6e3a1}󰂁%{F#cdd6f4w}',
-                                               90  => '%{F#94e2d5}󰂂%{F#cdd6f4w}',    # Advertencia
-                                               default => '%{F#b4befe}󰂑%{F#cdd6f4w}',
-                                              },
-                             'Full' => '%{F#a6e3a1}󱈏%{F#cdd6f4w}',
-                            );
-
-        if (exists $battery_icons{$status}) {
-          if (ref($battery_icons{$status}) eq 'HASH') {
-            $icon = $battery_icons{$status}{$capacity} || $battery_icons{$status}{default};
-          } else {
-            $icon = $battery_icons{$status};
-          }
+        if ($status eq 'Charging') {
+            if ($capacity == 100) {
+                $icon = '󰄌%{F#cdd6f4w}';
+            } else {
+                $icon = '%{F#cdd6f4w}';
+            }
+        } elsif ($status eq 'Discharging' || $status eq 'Not charging') {
+            if ($capacity <= 5) {
+                $icon = '%{F#f38ba8}󰂃%{F#cdd6f4w}'; # Suspend now!
+            } elsif ($capacity <= 10) {
+                $icon = '%{F#f38ba8}󰁺%{F#cdd6f4w}'; # Save your files panicking
+            } elsif ($capacity <= 20) {
+                $icon = '%{F#eba0ac}󰁻%{F#cdd6f4w}'; # Things can go ugly if you ignore these
+            } elsif ($capacity <= 30) {
+                $icon = '%{F#eba0ac}󰁼%{F#cdd6f4w}'; # Hey, wanna recharge?
+            } elsif ($capacity <= 40) {
+                $icon = '%{F#fab387}󰁽%{F#cdd6f4w}' # I mean, just a few more minutes...right/
+            } elsif ($capacity <= 50) {
+                $icon = '%{F#f9e2af}󰁾%{F#cdd6f4w}';
+            } elsif ($capacity <= 60) {
+                $icon = '%{F#f9e2af}󰁿%{F#cdd6f4w}';
+            } elsif ($capacity <= 70) {
+                $icon = '%{F#f9e2af}󰂀%{F#cdd6f4w}';
+            } elsif ($capacity <= 80) {
+                $icon = '%{F#a6e3a1}󰂁%{F#cdd6f4w}';
+            } elsif ($capacity <= 90) {
+                $icon = '%{F#94e2d5}󰂂%{F#cdd6f4w}'; # Advertencia
+            } else {
+                $icon = '%{F#b4befe}󰂑%{F#cdd6f4w}';
+            }
+        } elsif ($status eq 'Full') {
+            $icon = '%{F#a6e3a1}󱈏%{F#cdd6f4w}';
         }
 
         my $output = "$icon $capacity";
         if ($output ne $previous_output) {
             $callback->($output);
             $previous_output = $output;
-        }
-    };
+          }
+      };
 
     # Non-blocking check for new events
     my $timer = AnyEvent->timer(

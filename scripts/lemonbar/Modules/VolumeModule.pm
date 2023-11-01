@@ -12,11 +12,14 @@ VolumeModule - Consult and format a volume string. Report every second.
 
 =head1 DESCRIPTION
 
-This module relies on pactl subscribe to monitor volume changes.
+This module relies on pactl subscribe to monitor volume changes reading from
+the command's stdout.
+
+TODO: Figure out a way to reuse or daemonize pactl output (maybe a fifo?)
 
 =head1 METHODS
 
-=head2 listen_state
+=head2 listen_volume
 
 Gets and formats the current date, finally, it registers
 a callback to process changes.
@@ -27,20 +30,14 @@ a callback to process changes.
 sub listen_volume {
     my $callback = shift;
 
-    # Command to get volume updates in real-time
     my @cmd = ('pactl', 'subscribe');
 
     my ($wtr, $rdr, $err)  = (undef, undef, undef);
     my $pid = open3($wtr, $rdr, $err, @cmd);
 
-    my $last_output;  # to store the last output and prevent processing duplicates
-
+    my $last_output;
     my $update_volume = sub {
-        my $volume = `pamixer --get-volume`;
-        chomp $volume;
-
-        my $mute = `pamixer --get-mute`;
-        chomp $mute;
+    my ($mute, $volume) = split /\s+/, `pamixer --get-volume --get-mute`;
 
         if ($mute eq 'true') {
             return "%{F#74c7ec}󰖁%{F#cdd6f4} Muted";

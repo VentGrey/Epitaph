@@ -34,9 +34,8 @@ unless (-p $pipe) {
 my $cv = AnyEvent->condvar;
 
 # Print any given message into the FIFO file.
-sub print_pipe {
+sub print_pipe($message) {
   open my $fh, ">", $pipe or die "No se puede abrir el pipe: $!";
-  my $message = $_[0];
   print "DEBUG: Sending to FIFO: $message\n";
   say $fh $message;
   close $fh;
@@ -48,8 +47,7 @@ my %modules = (
     end    => []
 );
 
-sub update_module {
-    my ($position, $index, $content) = @_;
+sub update_module($position, $index, $content) {
     $modules{$position}->[$index] = $content;
 }
 

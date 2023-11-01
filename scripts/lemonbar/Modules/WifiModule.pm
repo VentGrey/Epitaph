@@ -31,7 +31,7 @@ sub listen_wifi {
     my $last_status;
 
     my $update_wifi = sub {
-        my $output = `/sbin/iwconfig wlp4s0 2>&1`;  # Usamos el path completo para iwconfig
+        my $output = `/sbin/iwconfig wlan0 2>&1`;  # Usamos el path completo para iwconfig
         if ($output !~ /no wireless extensions/) {
             if ($output =~ /Bit Rate=([\d\.]+ Mb\/s)/) {
                 my $bitrate = $1;
