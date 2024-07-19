@@ -18,6 +18,10 @@
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/VentGrey/Epitaph?style=for-the-badge">
 </p>
 
+> [!IMPORTANT]
+> This repository is still alive. However, since `leftwm` development is stable enough. Not many changes are or will be made unless that involves a breaking change in leftwm
+> Use the issues tab to request features.
+
 Epitaph is being developed as a starting point for Gnu/Linux 🐧 users who are transitioning from a complete Desktop Environment to a great WM. This theme does not aim to be "simple" or "minimalistic", it aims to be complete and user-friendly as I can make it. I try to make Epitaph carefully crafted to provide you with all the tools you need to personalize your workspace and streamline your workflow. So why settle for less when you can have it all *just work* (kinda) with Epitaph?
 
 Suggestions, ideas, or requests are always welcome! Please feel free to open an issue.
