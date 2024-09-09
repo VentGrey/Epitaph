@@ -1,6 +1,21 @@
 package BatteryModule;
 
-use v5.36;
+# Copyright (C) [2023-2024] [VentGrey]
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+use v5.40;
 use AnyEvent;
 use File::ChangeNotify;
 
@@ -66,7 +81,7 @@ sub listen_battery {
             } elsif ($capacity <= 80) {
                 $icon = '%{F#a6e3a1}󰂁%{F#cdd6f4w}';
             } elsif ($capacity <= 90) {
-                $icon = '%{F#94e2d5}󰂂%{F#cdd6f4w}'; # Advertencia
+                $icon = '%{F#94e2d5}󰂂%{F#cdd6f4w}';
             } else {
                 $icon = '%{F#b4befe}󰂑%{F#cdd6f4w}';
             }
@@ -96,7 +111,7 @@ sub listen_battery {
             chomp $capacity;
             close $capacity_fh;
 
-            print "DEBUG: Status: $status, Capacity: $capacity\n"; # Debug line
+            print "DEBUG: Status: $status, Capacity: $capacity\n";
 
             $check_and_notify->($status, $capacity);
         },

@@ -30,19 +30,9 @@ Suggestions, ideas, or requests are always welcome! Please feel free to open an 
 
 ## :newspaper: News
 
-- Polybar prettify
-- Update provided config.ron file
-- New RoFi scripts!
-  - Screenshot tool (Depends on `maim`, `xdg-user-dirs` and `dunst`)
-  - Polybar badge changing tool
-  - Music control tool
-  - Keyboard layout tool
-- New perl + Gtk3 scripts for a comfy-er experience!
-  - Minimalistic calendar available clicking on your polybar!
-  - Cmus music control with emojis + basic music control!
-- Async lemonbar managed by perl [Usabe but still W.I.P]
-- Better documentation
-  - WIP Wiki to PDF distribution.
+- Updated perl dependencies from: v5.36 -> v5.40 
+  - If your distribution doesn't have v5.40 you can revert them manually. They still work the same :) 
+- Update copyright notices in module source code
 
 ## :rocket: Installation
 
@@ -92,11 +82,11 @@ This theme includes:
 
 ## Credit / Sources
 
+> Scripts are marked under the GPLv3 or later. Feel free to take them with either licenses (GPLv3+ or BSD-3-Clause) at your convenience.
+
 🚨 If you want your source / mention & material to be removed from here, please send an email or open an issue and read the copyright notice at the end of this file. 🚨
 
-This project is built on top of the [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376.
-
-> As of 2023, Blue Coffee link is down, It seems the author deleted both account and repository. If someone has a fork 
+This project is built on top of the [Blue Coffee](https://github.com/Qwart376/Blue-Coffee) theme by @Qwart376 (originally licensed under the MIT license).
 
 I drew inspiration and patches from the following sources:
 

@@ -2,7 +2,7 @@
 # Epitaph Music Control. Small perl 5 script to make a simple GUI wrapper around
 # cmus-remote.
 #
-# Copyright (C) [2023] [VentGrey]
+# Copyright (C) [2023-2024] [VentGrey]
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 use strict;
 use warnings;
 use utf8;
-use v5.36;
+use v5.40;
 use Gtk3 '-init' ;
 use Glib ('TRUE', 'FALSE');
 

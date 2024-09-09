@@ -3,7 +3,7 @@
 # using GTK3. The reminders file is stored as a .txt, use at your discretion.
 #
 #
-# Copyright (C) [2023] [VentGrey]
+# Copyright (C) [2023-2024] [VentGrey]
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 use utf8;
-use v5.36;
+use v5.40;
 
 use Gtk3 '-init' ;
 use DateTime ;
@@ -36,8 +36,7 @@ if ($pid && $pid != $$) {
 my $window = Gtk3::Window->new('popup') ;
 $window->set_decorated(0) ;
 $window->set_keep_above(1) ;
-$window->set_title('Epitaph Tiny Calendar') ;
-#$window->set_default_size(200, 200) ;
+$window->set_title('Epitaph Perl Calendar') ;
 $window->signal_connect( destroy => sub { Gtk3->main_quit } );
 
 my ($x, $y) = split /,/,

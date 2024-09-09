@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use v5.36; # Modern perl
+use v5.40; # Modern perl
 
 use AnyEvent; # Make this script async
 use POSIX; # Use handy posix functions
@@ -64,14 +64,14 @@ sub update_bar {
     print_bar();
 }
 
-########Modules#################################################################
-# Modules listed here are any .pl files present in ./modules, to make this     #
-# async we have to call those modules in AnyEvent timers, not all modules      #
-# require a timer poll, like the workspaces one.                               #
-#                                                                              #
-#   - Feel free to add more modules moderately to avoid I/O errors in lemonbar #
-#   - If you wish to contribute a module please do so                          #
-################################################################################
+########==Modules==###################################################################
+# Modules listed here are any .pl files present in ./modules, to make this           #
+# async we have to call those modules in AnyEvent timers, not all modules            #
+# require a timer poll, like the workspaces one.                                     #
+#                                                                                    #
+#   - Feel free to add more modules moderately to avoid I/O errors in lemonbar       #
+#   - If you wish to contribute a module please do so                                #
+######################################################################################
 
 #===== Bar printer =====
 # This module re-prints the bar every few seconds (timer) to ensure a constant
